@@ -1,0 +1,6 @@
+<div id="wrapper" [ngClass]="{'toggled': sidebarEnabled}">
+  <app-sidebar (sidebarToggle)="onSidebarToggled($event)"></app-sidebar>
+  <div id="page-content-wrapper">
+    <ng-content></ng-content>
+  </div>
+</div>
