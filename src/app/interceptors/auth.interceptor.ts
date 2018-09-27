@@ -29,7 +29,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 
       let newReq;
 
-      this.token = this.userService.user.token;
+      this.token = this.userService.consultant.token;
 
       newReq = req.clone({
         headers: req.headers.set(

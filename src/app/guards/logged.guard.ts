@@ -13,7 +13,7 @@ export class LoggedGuard implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    if (this.authService.logged && this.userService.user) {
+    if (this.authService.logged && this.userService.consultant) {
       if (url === '/login') {
         this.router.navigate(['/inicio']);
       } else {

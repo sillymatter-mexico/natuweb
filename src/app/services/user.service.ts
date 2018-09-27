@@ -20,7 +20,7 @@ export class UserService {
     this._consultant = consultant;
   }
 
-  get user() {
+  get consultant() {
     return this._consultant;
   }
 

@@ -15,6 +15,7 @@ import { ServerHttpInterceptor } from './interceptors/server.interceptor';
 import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedGuard} from './guards/logged.guard';
+import { AvatarComponent } from './avatar/avatar.component';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -27,7 +28,8 @@ export function onInit(authService: AuthService) {
     LayoutComponent,
     HeaderComponent,
     SidebarComponent,
-    LoginComponent
+    LoginComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

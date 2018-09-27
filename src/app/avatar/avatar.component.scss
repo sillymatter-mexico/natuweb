@@ -1,0 +1,60 @@
+// width = height*.77
+.avatar-container, .avatar-container.small{
+  vertical-align: top;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background-color:#FE8A5E;
+  border: solid 2px white;
+  position:relative;
+  display: inline-block;
+  &.big {
+    width: 75px;
+    height: 75px;
+    .avatar-canvas{
+      width: 58px;
+      height: 75px;
+      .avatar-accessory,.main-avatar{
+        width: 58px;
+        height: 75px;
+      }
+      img {
+        width: 58px;
+        height: 75px;
+      }
+    }
+  }
+  &.large {
+    width: 100px;
+    height: 100px;
+    .avatar-canvas{
+      width: 77px;
+      height: 100px;
+      .avatar-accessory,.main-avatar{
+        width: 77px;
+        height: 100px;
+      }
+      img {
+        width: 77px;
+        height: 100px;
+      }
+    }
+  }
+}
+.avatar-canvas {
+  position: relative;
+  width: 38.5px;
+  height: 50px;
+  margin: auto;
+  .avatar-accessory,.main-avatar{
+    position: absolute;
+    margin:auto;
+    width: 38.5px;
+    height: 50px;
+  }
+  img{
+    width: 38.5px;
+    height: 50px;
+  }
+}
+

@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,11 +9,14 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   @Output() private sidebarToggle: EventEmitter<boolean>;
-  private isEnabled: boolean;
+  public isEnabled: boolean;
+  public consultant: any;
+  public avatarSize: string;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.sidebarToggle = new EventEmitter<boolean>();
     this.isEnabled = false;
+    this.consultant = this.userService.consultant;
   }
 
   ngOnInit() {

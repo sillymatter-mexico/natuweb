@@ -1,12 +1,14 @@
-<div id="sidebar-wrapper">
-  <ul class="sidebar-nav">
-    <li class="sidebar-brand">
-      <a (click)="onToggleSidebar()">
-        Start Bootstrap
-      </a>
-    </li>
-    <li>
-      <a href="#">Dashboard</a>
-    </li>
-  </ul>
+<div id="sidebar-wrapper" class="bg-sidebar">
+  <div class="sidebar-nav">
+    <div class="toggle py-4" (click)="onToggleSidebar()">
+      <p class="text-center">
+        <span class="font-weight-bold text-black-50 align-middle mr-2" *ngIf="isEnabled">Mi Natura Web</span>
+        <i class="fas text-black-50 align-middle" [ngClass]="{'fa-angle-right': !isEnabled, 'fa-angle-left': isEnabled}"></i>
+      </p>
+    </div>
+    <div class="avatar w-100 text-center">
+      <app-avatar [consultant]="consultant.consultant_avatar"
+                  [size]="isEnabled ? 'big' : 'small'"></app-avatar>
+    </div>
+  </div>
 </div>
