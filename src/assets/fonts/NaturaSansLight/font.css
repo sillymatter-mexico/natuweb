@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'NaturaSans-Light';
+  src: url('NaturaSans-Light.eot');
+  src: url('NaturaSans-Light.woff2') format('woff2'),
+       url('NaturaSans-Light.woff') format('woff'),
+       url('NaturaSans-Light.ttf') format('truetype'),
+       url('NaturaSans-Light.svg#NaturaSans-Light') format('svg'),
+       url('NaturaSans-Light.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

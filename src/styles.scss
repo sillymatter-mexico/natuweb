@@ -2,6 +2,96 @@
 @import "variables";
 @import '~bootstrap/scss/bootstrap';
 
+@font-face {
+  font-family: 'NaturaSansRegular';
+  src: url('assets/fonts/NaturaSansRegular/NaturaSans-Regular.eot');
+  src: url('assets/fonts/NaturaSansRegular/NaturaSans-Regular.woff2') format('woff2'),
+  url('assets/fonts/NaturaSansRegular/NaturaSans-Regular.woff') format('woff'),
+  url('assets/fonts/NaturaSansRegular/NaturaSans-Regular.ttf') format('truetype'),
+  url('assets/fonts/NaturaSansRegular/NaturaSans-Regular.svg#NaturaSans-Regular') format('svg'),
+  url('assets/fonts/NaturaSansRegular/NaturaSans-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NaturaSansBold';
+  src: url('assets/fonts/NaturaSansBold/NaturaSans-Bold.eot');
+  src: url('assets/fonts/NaturaSansBold/NaturaSans-Bold.woff2') format('woff2'),
+  url('assets/fonts/NaturaSansBold/NaturaSans-Bold.woff') format('woff'),
+  url('assets/fonts/NaturaSansBold/NaturaSans-Bold.ttf') format('truetype'),
+  url('assets/fonts/NaturaSansBold/NaturaSans-Bold.svg#NaturaSans-Bold') format('svg'),
+  url('assets/fonts/NaturaSansBold/NaturaSans-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NaturaSansLight';
+  src: url('assets/fonts/NaturaSansLight/NaturaSans-Light.eot');
+  src: url('assets/fonts/NaturaSansLight/NaturaSans-Light.woff2') format('woff2'),
+  url('assets/fonts/NaturaSansLight/NaturaSans-Light.woff') format('woff'),
+  url('assets/fonts/NaturaSansLight/NaturaSans-Light.ttf') format('truetype'),
+  url('assets/fonts/NaturaSansLight/NaturaSans-Light.svg#NaturaSans-Light') format('svg'),
+  url('assets/fonts/NaturaSansLight/NaturaSans-Light.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NaturaScript';
+  src: url('assets/fonts/NaturaScript/NaturaScript.eot');
+  src: url('assets/fonts/NaturaScript/NaturaScript.woff2') format('woff2'),
+  url('assets/fonts/NaturaScript/NaturaScript.woff') format('woff'),
+  url('assets/fonts/NaturaScript/NaturaScript.ttf') format('truetype'),
+  url('assets/fonts/NaturaScript/NaturaScript.svg#NaturaScript') format('svg'),
+  url('assets/fonts/NaturaScript/NaturaScript.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'NaturaSansRegular';
+}
+
+.natura-script {
+  font-family: 'NaturaScript'!important;
+}
+
 body {
   overflow-x: hidden;
+}
+
+.logo {
+  display: inline-block;
+  max-width: 100px;
+}
+
+.btn-natura {
+  border-radius: 20px;
+  border: 1px solid transparent;
+  -webkit-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.5);
+  transition: .3s;
+  color: #004897;
+  background-color: white;
+  &:hover {
+    border: 1px solid #004897;
+  }
+  &:active {
+    background: #417cb9;
+    border: 1px solid transparent;
+    background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
+    background: -webkit-linear-gradient(left, #417cb9 0%,#7b84c4 100%);
+    background: linear-gradient(to right, #417cb9 0%,#7b84c4 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417cb9', endColorstr='#7b84c4',GradientType=1 );
+    color: white;
+  }
+  &.btn-big {
+    border-radius: 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: .5em 3em;
+  }
 }

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'NaturaSans-Regular';
+  src: url('NaturaSans-Regular.eot');
+  src: url('NaturaSans-Regular.woff2') format('woff2'),
+       url('NaturaSans-Regular.woff') format('woff'),
+       url('NaturaSans-Regular.ttf') format('truetype'),
+       url('NaturaSans-Regular.svg#NaturaSans-Regular') format('svg'),
+       url('NaturaSans-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
