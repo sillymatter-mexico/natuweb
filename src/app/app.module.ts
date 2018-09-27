@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,7 +8,17 @@ import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
+import {AuthService} from './services/auth.service';
 import {FormsModule} from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ServerHttpInterceptor } from './interceptors/server.interceptor';
+import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
+import {AuthGuard} from './guards/auth.guard';
+import {LoggedGuard} from './guards/logged.guard';
+
+export function onInit(authService: AuthService) {
+  return () => authService.getSavedSession();
+}
 
 @NgModule({
   declarations: [
@@ -23,9 +33,29 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    LoggedGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerHttpInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: onInit,
+      deps: [AuthService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

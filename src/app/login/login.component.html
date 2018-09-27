@@ -8,21 +8,45 @@
       <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="text-left mt-5 px-2 px-md-5">
         <h5 class="text-primary mb-5"><strong>Ingresa tus datos</strong></h5>
         <div class="form-group mb-5">
-          <label for="cn" class="font-weight-bold">Código de consultor (a)</label>
-          <input type="number"
-                 class="form-control" id="cn"
-                 placeholder="Código de consultor (a)">
+          <label for="username" class="font-weight-bold"
+                 [class.text-danger]="(f.submitted && username.invalid)">
+            Código de consultor (a)
+          </label>
+          <input type="number" name="username" required
+                 class="form-control" id="username" [(ngModel)]="user.username"
+                 placeholder="Código de consultor (a)" #username="ngModel"
+                 [class.is-invalid]="(f.submitted && username.invalid)">
+          <div *ngIf="f.submitted && username.invalid" class="invalid-feedback">
+            <p *ngIf="username.errors.required">Este campo es requerido.</p>
+          </div>
         </div>
         <div class="form-group mb-4">
-          <label for="password" class="font-weight-bold">Contraseña</label>
-          <input type="password" class="form-control" id="password" placeholder="Contraseña">
+          <label for="password" class="font-weight-bold"
+                 [class.text-danger]="(f.submitted && password.invalid) || requestError">
+            Contraseña
+          </label>
+          <input type="password" class="form-control"
+                 id="password" placeholder="Contraseña" [(ngModel)]="user.password"
+                 required name="password" #password="ngModel"
+                 [class.is-invalid]="(f.submitted && password.invalid) || requestError">
+          <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+            <p *ngIf="password.errors.required">Este campo es requerido.</p>
+          </div>
+          <div *ngIf="requestError" class="invalid-feedback">
+            <p *ngIf="requestError">{{requestError}}</p>
+          </div>
         </div>
         <div class="form-check mb-5">
-          <input type="checkbox" class="form-check-input" id="rememberme">
-          <label class="form-check-label font-weight-bold" for="rememberme">Recordar</label>
+          <input type="checkbox" class="form-check-input"
+                 id="rememberSession" name="rememberSession"
+                 [(ngModel)]="rememberSession">
+          <label class="form-check-label font-weight-bold" for="rememberSession">Recordar</label>
         </div>
         <div class="w-100 text-center">
-          <button type="submit" class="btn btn-natura btn-big">Ingresar</button>
+          <button type="submit" class="btn btn-natura btn-big" [disabled]="loading">
+            <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+            Ingresar
+          </button>
         </div>
       </form>
 

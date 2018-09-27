@@ -2,19 +2,20 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {LoggedGuard} from './guards/logged.guard';
+import {AuthGuard} from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
-  // { path: 'login', component: LoginComponent, canActivate: [LoggedGuard]},
-  { path: 'login', component: LoginComponent},
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, canActivate: [LoggedGuard]},
   // { path: '**', component: PageNotFoundComponent },
   {
     path: 'inicio',
     component: DashboardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [{
       path: '',
-      // canActivateChild: [AuthGuard],
+      canActivateChild: [AuthGuard],
       children: [
         // {path: 'home', component: HomeComponent},
         // {path: 'exchanges', component: ExchangeListComponent},
