@@ -1,0 +1,143 @@
+$natura-add-staff: "\e913";
+$natura-attendance: "\e914";
+$natura-checkin: "\e915";
+$natura-edit: "\e916";
+$natura-help: "\e917";
+$natura-home: "\e918";
+$natura-id: "\e919";
+$natura-invited: "\e91a";
+$natura-location: "\e91b";
+$natura-logout: "\e91c";
+$natura-news: "\e91d";
+$natura-private-event: "\e91e";
+$natura-profile: "\e91f";
+$natura-register-list: "\e921";
+$natura-carret-back: "\e922";
+$natura-schedule: "\e923";
+$natura-send-report: "\e924";
+$natura-share: "\e925";
+$natura-workshop: "\e926";
+
+
+@font-face {
+  font-family: 'NaturaIcons';
+  src:  url('assets/fonts/NaturaIconFont/NaturaIcons.eot?4vrr6t');
+  src:  url('assets/fonts/NaturaIconFont/NaturaIcons.eot?4vrr6t#iefix') format('embedded-opentype'),
+  url('assets/fonts/NaturaIconFont/NaturaIcons.ttf?4vrr6t') format('truetype'),
+  url('assets/fonts/NaturaIconFont/NaturaIcons.woff?4vrr6t') format('woff'),
+  url('assets/fonts/NaturaIconFont/NaturaIcons.svg?4vrr6t#natura-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="natura-"], [class*=" natura-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'NaturaIcons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.natura-add-staff {
+  &:before {
+    content: $natura-add-staff;
+  }
+}
+.natura-attendance {
+  &:before {
+    content: $natura-attendance;
+  }
+}
+.natura-checkin {
+  &:before {
+    content: $natura-checkin;
+  }
+}
+.natura-edit {
+  &:before {
+    content: $natura-edit;
+  }
+}
+.natura-help {
+  &:before {
+    content: $natura-help;
+  }
+}
+.natura-home {
+  &:before {
+    content: $natura-home;
+  }
+}
+.natura-id {
+  &:before {
+    content: $natura-id;
+  }
+}
+.natura-invited {
+  &:before {
+    content: $natura-invited;
+  }
+}
+.natura-location {
+  &:before {
+    content: $natura-location;
+  }
+}
+.natura-logout {
+  &:before {
+    content: $natura-logout;
+  }
+}
+.natura-news {
+  &:before {
+    content: $natura-news;
+  }
+}
+.natura-private-event {
+  &:before {
+    content: $natura-private-event;
+  }
+}
+.natura-profile {
+  &:before {
+    content: $natura-profile;
+  }
+}
+.natura-register-list {
+  &:before {
+    content: $natura-register-list;
+  }
+}
+.natura-carret-back {
+  &:before {
+    content: $natura-carret-back;
+  }
+}
+.natura-schedule {
+  &:before {
+    content: $natura-schedule;
+  }
+}
+.natura-send-report {
+  &:before {
+    content: $natura-send-report;
+  }
+}
+.natura-share {
+  &:before {
+    content: $natura-share;
+  }
+}
+.natura-workshop {
+  &:before {
+    content: $natura-workshop;
+  }
+}
+

@@ -11,12 +11,19 @@ export class SidebarComponent implements OnInit {
   @Output() private sidebarToggle: EventEmitter<boolean>;
   public isEnabled: boolean;
   public consultant: any;
-  public avatarSize: string;
+  public menuItems: any[];
 
   constructor(private userService: UserService) {
     this.sidebarToggle = new EventEmitter<boolean>();
     this.isEnabled = false;
     this.consultant = this.userService.consultant;
+    this.menuItems = [
+      {name: 'Inicio', icon: 'home', route: ''},
+      {name: 'Talleres', icon: 'workshop', route: ''},
+      {name: 'Boletín natura', icon: 'news', route: ''},
+      {name: 'Editar mi perfil', icon: 'profile', route: ''},
+      {name: 'Ayuda', icon: 'help', route: ''},
+    ];
   }
 
   ngOnInit() {

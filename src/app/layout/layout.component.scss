@@ -4,16 +4,16 @@ app-layout {
 
   #wrapper {
     padding-left: $sidebar-collapsed-width;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
     background-color: whitesmoke;
     min-height: 100vh;
   }
 
   #wrapper.toggled {
-    padding-left: $sidebar-width;
+    padding-left: $sidebar-collapsed-width;
   }
 
   #sidebar-wrapper {
@@ -28,13 +28,12 @@ app-layout {
     background: url('../../assets/img/backgrounds/sidebar-collapsed.png') no-repeat;
     background-size: cover;
     background-color: white;
-    transition: none;
   }
 
   #wrapper.toggled #sidebar-wrapper {
     width: $sidebar-width;
-    background: url('../../assets/img/backgrounds/sidebar.png');
-    background-color: white;
+    background: white url('../../assets/img/backgrounds/sidebar.png');
+    background-size: cover;
   }
 
   #page-content-wrapper {
@@ -61,6 +60,24 @@ app-layout {
       text-align: center;
       cursor: pointer;
     }
+    .menu-item {
+      cursor: pointer;
+      transition: .3s;
+      > * {
+        vertical-align: baseline;
+      }
+      i {
+        font-size: 1.5em;
+      }
+      &:hover, &:active, .active {
+        background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
+        background: -webkit-linear-gradient(left, #417cb9 0%,#7b84c4 100%);
+        background: linear-gradient(to right, #417cb9 0%,#7b84c4 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417cb9', endColorstr='#7b84c4',GradientType=1 );
+        color: white;
+        font-weight: bold;
+      }
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -69,7 +86,18 @@ app-layout {
       position: relative;
       padding: 15px;
     }
-
+    #wrapper {
+      padding-left: $sidebar-collapsed-width;
+    }
+    #wrapper.toggled {
+      padding-left: $sidebar-width;
+    }
+    #sidebar-wrapper {
+      width: $sidebar-collapsed-width;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+      width: $sidebar-width;
+    }
     #wrapper.toggled #page-content-wrapper {
       position: relative;
       margin-right: 0;
