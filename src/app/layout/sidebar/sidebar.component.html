@@ -30,7 +30,7 @@
       <div class="menu-item py-3"
            [ngClass]="{'text-left pl-2': isEnabled, 'text-center pl-0': !isEnabled}"
            *ngFor="let item of menuItems" [routerLink]="[item.route]" routerLinkActive="active">
-        <i class="natura-{{item.icon}}"></i>
+        <i class="natura-icon-{{item.icon}}"></i>
         <span class="font-weight-light ml-4" *ngIf="isEnabled">{{item.name}}</span>
       </div>
     </div>

@@ -1,22 +1,22 @@
-$natura-add-staff: "\e913";
-$natura-attendance: "\e914";
-$natura-checkin: "\e915";
-$natura-edit: "\e916";
-$natura-help: "\e917";
-$natura-home: "\e918";
-$natura-id: "\e919";
-$natura-invited: "\e91a";
-$natura-location: "\e91b";
-$natura-logout: "\e91c";
-$natura-news: "\e91d";
-$natura-private-event: "\e91e";
-$natura-profile: "\e91f";
-$natura-register-list: "\e921";
-$natura-carret-back: "\e922";
-$natura-schedule: "\e923";
-$natura-send-report: "\e924";
-$natura-share: "\e925";
-$natura-workshop: "\e926";
+$natura-icon-add-staff: "\e913";
+$natura-icon-attendance: "\e914";
+$natura-icon-checkin: "\e915";
+$natura-icon-edit: "\e916";
+$natura-icon-help: "\e917";
+$natura-icon-home: "\e918";
+$natura-icon-id: "\e919";
+$natura-icon-invited: "\e91a";
+$natura-icon-location: "\e91b";
+$natura-icon-logout: "\e91c";
+$natura-icon-news: "\e91d";
+$natura-icon-private-event: "\e91e";
+$natura-icon-profile: "\e91f";
+$natura-icon-register-list: "\e921";
+$natura-icon-carret-back: "\e922";
+$natura-icon-schedule: "\e923";
+$natura-icon-send-report: "\e924";
+$natura-icon-share: "\e925";
+$natura-icon-workshop: "\e926";
 
 
 @font-face {
@@ -30,7 +30,7 @@ $natura-workshop: "\e926";
   font-style: normal;
 }
 
-[class^="natura-"], [class*=" natura-"] {
+[class^="natura-icon"], [class*=" natura-icon"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'NaturaIcons' !important;
   speak: none;
@@ -45,99 +45,99 @@ $natura-workshop: "\e926";
   -moz-osx-font-smoothing: grayscale;
 }
 
-.natura-add-staff {
+.natura-icon-add-staff {
   &:before {
-    content: $natura-add-staff;
+    content: $natura-icon-add-staff;
   }
 }
-.natura-attendance {
+.natura-icon-attendance {
   &:before {
-    content: $natura-attendance;
+    content: $natura-icon-attendance;
   }
 }
-.natura-checkin {
+.natura-icon-checkin {
   &:before {
-    content: $natura-checkin;
+    content: $natura-icon-checkin;
   }
 }
-.natura-edit {
+.natura-icon-edit {
   &:before {
-    content: $natura-edit;
+    content: $natura-icon-edit;
   }
 }
-.natura-help {
+.natura-icon-help {
   &:before {
-    content: $natura-help;
+    content: $natura-icon-help;
   }
 }
-.natura-home {
+.natura-icon-home {
   &:before {
-    content: $natura-home;
+    content: $natura-icon-home;
   }
 }
-.natura-id {
+.natura-icon-id {
   &:before {
-    content: $natura-id;
+    content: $natura-icon-id;
   }
 }
-.natura-invited {
+.natura-icon-invited {
   &:before {
-    content: $natura-invited;
+    content: $natura-icon-invited;
   }
 }
-.natura-location {
+.natura-icon-location {
   &:before {
-    content: $natura-location;
+    content: $natura-icon-location;
   }
 }
-.natura-logout {
+.natura-icon-logout {
   &:before {
-    content: $natura-logout;
+    content: $natura-icon-logout;
   }
 }
-.natura-news {
+.natura-icon-news {
   &:before {
-    content: $natura-news;
+    content: $natura-icon-news;
   }
 }
-.natura-private-event {
+.natura-icon-private-event {
   &:before {
-    content: $natura-private-event;
+    content: $natura-icon-private-event;
   }
 }
-.natura-profile {
+.natura-icon-profile {
   &:before {
-    content: $natura-profile;
+    content: $natura-icon-profile;
   }
 }
-.natura-register-list {
+.natura-icon-register-list {
   &:before {
-    content: $natura-register-list;
+    content: $natura-icon-register-list;
   }
 }
-.natura-carret-back {
+.natura-icon-carret-back {
   &:before {
-    content: $natura-carret-back;
+    content: $natura-icon-carret-back;
   }
 }
-.natura-schedule {
+.natura-icon-schedule {
   &:before {
-    content: $natura-schedule;
+    content: $natura-icon-schedule;
   }
 }
-.natura-send-report {
+.natura-icon-send-report {
   &:before {
-    content: $natura-send-report;
+    content: $natura-icon-send-report;
   }
 }
-.natura-share {
+.natura-icon-share {
   &:before {
-    content: $natura-share;
+    content: $natura-icon-share;
   }
 }
-.natura-workshop {
+.natura-icon-workshop {
   &:before {
-    content: $natura-workshop;
+    content: $natura-icon-workshop;
   }
 }
 
