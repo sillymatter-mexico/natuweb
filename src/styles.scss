@@ -56,6 +56,10 @@
   font-family: 'NaturaSansRegular';
 }
 
+a {
+  cursor: pointer;
+}
+
 .natura-script {
   font-family: 'NaturaScript'!important;
 }
@@ -74,6 +78,13 @@
   transition: .3s;
   color: #004897;
   background-color: white;
+  &.btn-small {
+    font-size: 1em;
+    padding: 2px 8px;
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2);
+  }
   &:hover {
     border: 1px solid #004897;
   }
@@ -83,7 +94,7 @@
     background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
     background: -webkit-linear-gradient(left, #417cb9 0%,#7b84c4 100%);
     background: linear-gradient(to right, #417cb9 0%,#7b84c4 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417cb9', endColorstr='#7b84c4',GradientType=1 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417cb9', endColorstr='#7b84c4',GradientType=1);
     color: white;
   }
   &.btn-big {

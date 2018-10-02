@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,10 +16,16 @@ import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedGuard} from './guards/logged.guard';
 import { AvatarComponent } from './avatar/avatar.component';
+import {CollapseModule} from 'ngx-bootstrap';
+import { HomeComponent } from './home/home.component';
+import { WorkshopListPreviewComponent } from './workshop-list-preview/workshop-list-preview.component';
+import locale from '@angular/common/locales/es-MX';
+import {registerLocaleData} from '@angular/common';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
 }
+registerLocaleData(locale, 'es-MX');
 
 @NgModule({
   declarations: [
@@ -29,18 +35,22 @@ export function onInit(authService: AuthService) {
     HeaderComponent,
     SidebarComponent,
     LoginComponent,
-    AvatarComponent
+    AvatarComponent,
+    HomeComponent,
+    WorkshopListPreviewComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    CollapseModule.forRoot(),
+    AppRoutingModule,
   ],
   providers: [
     AuthGuard,
     LoggedGuard,
+    { provide: LOCALE_ID, useValue: 'es-MX' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerHttpInterceptor,

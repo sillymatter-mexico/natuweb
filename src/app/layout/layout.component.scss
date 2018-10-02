@@ -8,7 +8,6 @@ app-layout {
     -moz-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear;
-    background-color: whitesmoke;
     min-height: 100vh;
   }
 
@@ -28,6 +27,7 @@ app-layout {
     background: url('../../assets/img/backgrounds/sidebar-collapsed.png') no-repeat;
     background-size: cover;
     background-color: white;
+    box-shadow: 1px 0px 11px rgba(0,0,0,0.2);
   }
 
   #wrapper.toggled #sidebar-wrapper {
@@ -39,7 +39,6 @@ app-layout {
   #page-content-wrapper {
     width: calc(100% - #{$sidebar-collapsed-width});
     position: absolute;
-    padding: 15px;
   }
 
   #wrapper.toggled #page-content-wrapper {
@@ -69,7 +68,7 @@ app-layout {
       i {
         font-size: 1.5em;
       }
-      &:hover, &:active, .active {
+      &:hover, &:active, &.active {
         background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
         background: -webkit-linear-gradient(left, #417cb9 0%,#7b84c4 100%);
         background: linear-gradient(to right, #417cb9 0%,#7b84c4 100%);
@@ -84,7 +83,6 @@ app-layout {
     #page-content-wrapper {
       width: 100%;
       position: relative;
-      padding: 15px;
     }
     #wrapper {
       padding-left: $sidebar-collapsed-width;

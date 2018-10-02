@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AuthService} from './auth.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class UserService {
   private _consultant: any;
   private _rememberUser: boolean;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   set consultant(consultant: any) {
     if (this._rememberUser) {
@@ -34,5 +34,9 @@ export class UserService {
 
   deleteUser() {
     this._consultant = null;
+  }
+
+  setAvatar(data: any) {
+    return this.http.put('/api/gamification/consultants-avatars/', data);
   }
 }

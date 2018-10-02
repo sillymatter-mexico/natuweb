@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row bg-white welcome-banner">
+    <div class="col-12 col-lg-8 p-4 d-none d-sm-block">
+      <div class="row">
+        <div class="col-auto">
+          <img src="../../assets/img/images/logo.png" class="img-responsive logo">
+        </div>
+        <div class="col d-flex align-items-center">
+          <h3 class="d-inline-block mb-0 font-weight-bold align-middle">Te damos la bienvenida al sitio de Mi Natura Web</h3>
+        </div>
+        <div class="col-12 d-none d-md-block">
+          <p class="text-muted mt-3">
+            En Natura México queremos estar más cerca que nunca, por eso hemos desarrollado Mi Natura, la aplicación para conectarte con tu relación, formación, negocio y sustentabilidad.
+          </p>
+          <p class="font-weight-bold">
+            Te invitamos a conocer la fucionalidad de Mi Natura y a mantenerte pendiente de ella.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 d-none d-lg-block pr-0 py-4 text-right">
+      <img src="../../assets/img/images/phones.png" class="img-responsive banner-phones">
+    </div>
+  </div>
+  <div class="row my-5" *ngIf="loading">
+    <div class="col-12 text-center">
+      <i class="fas fa-3x fa-spinner fa-spin"></i>
+    </div>
+  </div>
+  <div class="row py-4 px-3" *ngIf="!loading">
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <app-workshop-list-preview
+        [workshopList]="myWorkshops"
+        title="Mis talleres">
+      </app-workshop-list-preview>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <app-workshop-list-preview
+        [workshopList]="recentWorkshops"
+        title="Talleres recientes">
+      </app-workshop-list-preview>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-4">
+      <app-workshop-list-preview
+        title="Talleres concluidos">
+      </app-workshop-list-preview>
+    </div>
+  </div>
+</div>

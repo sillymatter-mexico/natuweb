@@ -1,0 +1,19 @@
+<div class="workshop-list-preview">
+  <div class="list-header text-white p-3">
+    <h4 class="font-weight-bold m-0">{{title}}</h4>
+  </div>
+  <div class="workshop-list py-3 px-4">
+    <p *ngIf="workshopList.length === 0">
+      No hay talleres disponibles en esta lista.
+    </p>
+    <div class="workshop" *ngFor="let workshop of workshopList">
+      <p class="font-weight-bold mb-2">{{workshop.name}}</p>
+      <p class="text-muted mb-1 description">
+        {{workshop.description}}
+      </p>
+      <p class="text-muted">{{ workshop.start_date | date:'medium' }} </p>
+      <button class="btn btn-natura btn-small">Más información</button>
+      <hr>
+    </div>
+  </div>
+</div>
