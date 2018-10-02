@@ -2,7 +2,7 @@
 
 .workshop-list {
   max-height: 180px;
-  overflow-y: auto;
+  overflow-y: hidden;
 
   .workshop {
     font-size: .7em;

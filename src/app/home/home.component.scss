@@ -10,3 +10,12 @@
   height: auto;
   display: inline-block;
 }
+
+.promo {
+  background: url("../../assets/img/backgrounds/promo.png");
+  background-size: cover;
+  .appstore-icon {
+    max-width: 200px;
+    width: 30%;
+  }
+}
