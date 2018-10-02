@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoggedGuard} from './guards/logged.guard';
 import {AuthGuard} from './guards/auth.guard';
 import {HomeComponent} from './home/home.component';
-import {HomeResolver} from './resolvers/home.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
