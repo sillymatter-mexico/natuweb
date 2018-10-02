@@ -61,4 +61,8 @@ export class HomeComponent implements OnInit {
     this.workshopService.workshopTypes = response[2].data.workshop_group;
   }
 
+  isLeader() {
+    return this.userService.consultant.carrer_level.startsWith('CN') || this.userService.consultant.isDRV;
+  }
+
 }
