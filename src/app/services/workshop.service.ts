@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 export class WorkshopService {
 
   private _workshopTypes: any;
+  private _myWorkshops: any[];
 
   constructor(private http: HttpClient) { }
 
@@ -32,5 +33,10 @@ export class WorkshopService {
     url += '&month=' + month + '&year=' + year;
 
     return this.http.get(url);
+  }
+
+  getTodayWorkshops() {
+    const date = new Date();
+    return this.getWorkshopsByDate(date.getDate(), date.getMonth() + 1, date.getFullYear());
   }
 }

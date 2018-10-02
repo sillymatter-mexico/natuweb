@@ -21,6 +21,8 @@ import { HomeComponent } from './home/home.component';
 import { WorkshopListPreviewComponent } from './workshop-list-preview/workshop-list-preview.component';
 import locale from '@angular/common/locales/es-MX';
 import {registerLocaleData} from '@angular/common';
+import { WorkshopsComponent } from './workshops/workshops.component';
+import { LoaderComponent } from './loader/loader.component';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -37,7 +39,9 @@ registerLocaleData(locale, 'es-MX');
     LoginComponent,
     AvatarComponent,
     HomeComponent,
-    WorkshopListPreviewComponent
+    WorkshopListPreviewComponent,
+    WorkshopsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

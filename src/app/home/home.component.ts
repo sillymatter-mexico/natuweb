@@ -16,8 +16,6 @@ export class HomeComponent implements OnInit {
   public recentWorkshops: any[];
   public news: any[];
   public loading: boolean;
-  private date: Date;
-
 
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
@@ -26,7 +24,6 @@ export class HomeComponent implements OnInit {
     this.myWorkshops = [];
     this.recentWorkshops = [];
     this.news = [];
-    this.date = new Date();
     this.loading = false;
   }
 
@@ -37,7 +34,7 @@ export class HomeComponent implements OnInit {
   private fetchData() {
     this.loading = true;
     const mine = this.workshopService.getMyWorkshops();
-    const recent = this.workshopService.getWorkshopsByDate(this.date.getDate(), this.date.getMonth() + 1, this.date.getFullYear());
+    const recent = this.workshopService.getTodayWorkshops();
     const news = this.appService.getNews();
 
     const request = forkJoin([mine, recent, news]);

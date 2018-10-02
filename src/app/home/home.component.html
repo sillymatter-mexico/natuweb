@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row bg-white welcome-banner">
+  <div class="row welcome-banner">
     <div class="col-12 col-lg-8 p-4 d-none d-sm-block">
       <div class="row">
         <div class="col-auto">
@@ -25,27 +25,26 @@
       <img src="../../assets/img/images/phones.png" class="img-responsive banner-phones">
     </div>
   </div>
-  <div class="row my-5" *ngIf="loading">
-    <div class="col-12 text-center">
-      <i class="fas fa-3x fa-spinner fa-spin text-primary"></i>
-    </div>
-  </div>
+  <app-loader [loading]="loading"></app-loader>
   <div class="row py-4 px-3" *ngIf="!loading">
     <div class="col-12 col-md-6 col-lg-4 mb-4" *ngIf="isLeader()">
       <app-workshop-list-preview
         [workshopList]="myWorkshops"
-        title="Mis talleres">
+        title="Mis talleres"
+        size="small">
       </app-workshop-list-preview>
     </div>
     <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
       <app-workshop-list-preview
         [workshopList]="recentWorkshops"
-        title="Talleres recientes">
+        title="Talleres recientes"
+        size="small">
       </app-workshop-list-preview>
     </div>
     <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
       <app-workshop-list-preview
-        title="Talleres concluidos">
+        title="Talleres concluidos"
+        size="small">
       </app-workshop-list-preview>
     </div>
     <div class="col-12 col-md-6 col-lg-8 mb-4">

@@ -62,6 +62,8 @@ app-layout {
     .menu-item {
       cursor: pointer;
       transition: .3s;
+      border: 0 none;
+      outline: 0 none;
       > * {
         vertical-align: baseline;
       }

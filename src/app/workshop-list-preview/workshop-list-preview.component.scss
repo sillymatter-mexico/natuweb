@@ -1,11 +1,17 @@
 @import "../../variables";
 
-.workshop-list {
-  max-height: 180px;
-  overflow-y: hidden;
+.natura-card-body {
+  &.small {
+    max-height: 180px;
+    overflow-y: hidden;
+  }
+
+  &.medium {
+    max-height: 360px;
+    overflow-y: hidden;
+  }
 
   .workshop {
-    font-size: .7em;
 
     .description {
       width: 100%;

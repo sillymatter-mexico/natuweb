@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoggedGuard} from './guards/logged.guard';
 import {AuthGuard} from './guards/auth.guard';
 import {HomeComponent} from './home/home.component';
+import {WorkshopsComponent} from './workshops/workshops.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -19,7 +20,7 @@ const routes: Routes = [
       canActivateChild: [AuthGuard],
       children: [
         {path: 'inicio', component: HomeComponent},
-        // {path: 'exchanges', component: ExchangeListComponent},
+        {path: 'talleres', component: WorkshopsComponent},
         // {path: 'exchange/:code', component: ExchangePageComponent},
         // {path: 'friends', component: FriendListComponent},
       ]
