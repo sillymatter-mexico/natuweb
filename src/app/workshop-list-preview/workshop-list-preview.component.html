@@ -3,7 +3,7 @@
     <h4 class="font-weight-bold m-0">{{title}}</h4>
   </div>
   <div class="natura-card-body" [ngClass]="size">
-    <ng-content select="[filter]"></ng-content>
+    <ng-content select="[top]"></ng-content>
     <div class="workshop-list py-3 px-4">
       <p *ngIf="workshopList.length === 0">
         No hay talleres disponibles en esta lista.

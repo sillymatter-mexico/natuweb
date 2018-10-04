@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {WorkshopService} from '../services/workshop.service';
 import {forkJoin} from 'rxjs';
 import {take} from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-workshops',
@@ -15,6 +16,8 @@ export class WorkshopsComponent implements OnInit {
   public todayWorkshops: any[];
   public loading: boolean;
   public date: Date;
+  public dayNames: string[];
+  public dayList: any[];
 
   constructor(private workshopService: WorkshopService) {
     this.loading = false;
@@ -26,6 +29,9 @@ export class WorkshopsComponent implements OnInit {
     this.myWorkshops = [];
     this.todayWorkshops = [];
     this.date = new Date();
+    this.dayNames  = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'HOY'];
+    this.dayList = [];
+    this.buildCalendar();
   }
 
   ngOnInit() {
@@ -52,6 +58,34 @@ export class WorkshopsComponent implements OnInit {
   private setData(response: any[]) {
     this.myWorkshops = response[0].data.workshop;
     this.todayWorkshops = response[1].data.workshop;
+  }
+
+  private buildCalendar() {
+    const currentDate = moment();
+    const day = currentDate.day();
+
+    for (let x = 0; x <= 7; x++) {
+      const m = moment();
+      if (x < day) {
+        m.subtract(day - x, 'days');
+      } else if (x > day) {
+        m.add(x - day, 'days');
+      }
+      const dayName = (x === day) ? this.dayNames[7] : this.dayNames[x % 7];
+
+      const dayObject = {
+        name: dayName,
+        number: m.format('D'),
+        month: m.format('M'),
+        year: m.format('YYYY')
+      };
+
+      this.dayList.push(dayObject);
+    }
+  }
+
+  getActiveDay(day) {
+    return (this.date.getDate() === parseInt(day.number, 10) && (this.date.getMonth() + 1) === parseInt(day.month, 10));
   }
 
 }

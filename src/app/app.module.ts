@@ -41,7 +41,7 @@ registerLocaleData(locale, 'es-MX');
     HomeComponent,
     WorkshopListPreviewComponent,
     WorkshopsComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

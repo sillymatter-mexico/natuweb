@@ -1,13 +1,16 @@
 @import "../../variables";
 
 .natura-card-body {
+
+  position: relative;
+
   &.small {
     max-height: 180px;
     overflow-y: hidden;
   }
 
   &.medium {
-    max-height: 360px;
+    max-height: 380px;
     overflow-y: hidden;
   }
 
