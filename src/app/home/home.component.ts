@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WorkshopService} from '../services/workshop.service';
 import {UserService} from '../services/user.service';
-import {forkJoin, of} from 'rxjs';
-import {mergeMap, take} from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
+import { take } from 'rxjs/operators';
 import {AppService} from '../services/app.service';
 
 @Component({
@@ -36,15 +36,17 @@ export class HomeComponent implements OnInit {
     const mine = this.workshopService.getMyWorkshops();
     const recent = this.workshopService.getTodayWorkshops();
     const news = this.appService.getNews();
+    const initData = this.appService.getInitData();
 
-    const request = forkJoin([mine, recent, news]);
+    const request = forkJoin([mine, recent, news, initData]);
     request
       .pipe(take(1))
       .subscribe((response: any[]) => {
+        console.log(response);
         this.loading = false;
         this.setData(response);
       }, error => {
-        this.loading = true;
+        this.loading = false;
         console.log(error);
       });
   }
@@ -52,10 +54,11 @@ export class HomeComponent implements OnInit {
   private setData(response: any[]) {
     this.myWorkshops = response[0].data.workshop;
     this.recentWorkshops = response[1].data.workshop;
-    this.news = response[2].data.news;
-    this.userService.consultant.carrer_level = response[2].data.carrer_level;
-    this.userService.consultant.is_staff = response[2].data.is_staff;
-    this.workshopService.workshopTypes = response[2].data.workshop_group;
+    this.news = response[2];
+    this.appService.news = this.news;
+    this.userService.consultant.carrer_level = response[3].data.carrer_level;
+    this.userService.consultant.is_staff = response[3].data.is_staff;
+    this.workshopService.workshopTypes = response[3].data.workshop_group;
   }
 
   isLeader() {

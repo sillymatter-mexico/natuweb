@@ -23,6 +23,10 @@ import locale from '@angular/common/locales/es-MX';
 import {registerLocaleData} from '@angular/common';
 import { WorkshopsComponent } from './workshops/workshops.component';
 import { LoaderComponent } from './loader/loader.component';
+import { NewsComponent } from './news/news.component';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -42,12 +46,15 @@ registerLocaleData(locale, 'es-MX');
     WorkshopListPreviewComponent,
     WorkshopsComponent,
     LoaderComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     CollapseModule.forRoot(),
     AppRoutingModule,
   ],

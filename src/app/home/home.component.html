@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-8 p-4 d-none d-sm-block">
       <div class="row">
         <div class="col-auto">
-          <img src="../../assets/img/images/logo.png" class="img-responsive logo">
+          <img src="../../assets/img/images/logo.png" class="img-fluid logo">
         </div>
         <div class="col d-flex align-items-center">
           <h3 class="d-inline-block mb-0 font-weight-bold align-middle">
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-4 d-none d-lg-block pr-0 py-4 text-right">
-      <img src="../../assets/img/images/phones.png" class="img-responsive banner-phones">
+      <img src="../../assets/img/images/phones.png" class="img-fluid banner-phones">
     </div>
   </div>
   <app-loader [loading]="loading"></app-loader>
@@ -52,9 +52,9 @@
         <div class="natura-header p-3">
           <h4 class="font-weight-bold m-0">Boletín Natura</h4>
         </div>
-        <div [style.backgroundImage]="'url('+news[0].image+')'"
+        <div [style.backgroundImage]="'url('+news[0].cover+')'"
              class="natura-card-body natura-img-fill">
-          <button class="btn btn-natura btn-big btn-wide btn-floating right bottom">
+          <button class="btn btn-natura btn-big btn-wide btn-floating right bottom" [routerLink]="['/boletin']">
             <span class="align-middle">Ver más</span>
             <i class="fas fa-angle-right ml-2 align-middle"></i>
           </button>
