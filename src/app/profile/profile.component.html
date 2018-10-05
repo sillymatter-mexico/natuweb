@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="natura-card mt-4 p-1 p-sm-4">
+        <div class="row">
+          <div class="col-12 mb-5">
+            <img src="../../assets/img/icons/gradient-png/profile.png" class="natura-card-icon">
+            <h4 class="mb-0 font-weight-bold mt-2">Editar mi perfil</h4>
+          </div>
+          <div class="col-12">
+            <div class="natura-card">
+              <div class="natura-card-header p-3">
+                <h5 class="font-weight-bold m-0">Selecciona tu avatar</h5>
+              </div>
+              <div class="natura-card-body">
+                <form class="form-inline justify-content-around my-4">
+                  <div class="custom-control custom-radio my-1 mr-sm-2">
+                    <input type="radio" class="custom-control-input"
+                           id="maleRadius" name="gender" value="M"
+                           [(ngModel)]="gender" (change)="fetchAvatars()">
+                    <label class="custom-control-label" for="maleRadius">Masculino</label>
+                  </div>
+                  <div class="custom-control custom-radio my-1 mr-sm-2">
+                    <input type="radio" class="custom-control-input"
+                           id="femaleRadius" name="gender" value="F"
+                           [(ngModel)]="gender" (change)="fetchAvatars()">
+                    <label class="custom-control-label" for="femaleRadius">Femenino</label>
+                  </div>
+                </form>
+                <app-loader [loading]="loading"></app-loader>
+                <div class="row mt-5 justify-content-center align-items-center" *ngIf="!loading">
+                  <div class="col-2 col-md-1 text-right p-0">
+                    <i class="fas fa-2x fa-angle-left avatar-angle" (click)="changeAvatar('previous')"></i>
+                  </div>
+                  <div class="col-2 d-none d-md-block text-right">
+                    <app-avatar [consultant]="avatars[getSelected('left')]" size="big"></app-avatar>
+                  </div>
+                  <div class="col-8 col-md-3 text-center">
+                    <app-avatar [consultant]="avatars[getSelected()]" size="large"></app-avatar>
+                  </div>
+                  <div class="col-2 d-none d-md-block text-left">
+                    <app-avatar [consultant]="avatars[getSelected('right')]" size="big"></app-avatar>
+                  </div>
+                  <div class="col-2 col-md-1 text-left p-0">
+                    <i class="fas fa-2x fa-angle-right avatar-angle" (click)="changeAvatar('next')"></i>
+                  </div>
+                  <div class="col-12 text-center my-5">
+                    <h4 class="font-weight-bold">{{consultant.name}}</h4>
+                    <h4 class="font-weight-bold text-primary" *ngIf="!consultant.isDRV">{{consultant.carrer_level}}</h4>
+                    <h4 class="font-weight-bold text-primary" *ngIf="consultant.isDRV">DRV</h4>
+                  </div>
+                  <div class="col-12 text-center pb-5">
+                    <button class="btn btn-natura btn-big" [disabled]="saving" (click)="saveAvatar()">
+                      <i class="fas fa-spinner fa-spin" *ngIf="saving"></i>
+                      <span *ngIf="!saving">Guardar</span>
+                      <span *ngIf="saving">Guardando</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

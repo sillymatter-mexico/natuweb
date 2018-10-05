@@ -36,11 +36,11 @@
             <p *ngIf="requestError">{{requestError}}</p>
           </div>
         </div>
-        <div class="form-check mb-5">
-          <input type="checkbox" class="form-check-input"
+        <div class="custom-control custom-checkbox mb-5 my-1 mr-sm-2">
+          <input type="checkbox" class="custom-control-input"
                  id="rememberSession" name="rememberSession"
                  [(ngModel)]="rememberSession">
-          <label class="form-check-label font-weight-bold" for="rememberSession">Recordar</label>
+          <label class="custom-control-label font-weight-bold" for="rememberSession">Recordar</label>
         </div>
         <div class="w-100 text-center">
           <button type="submit" class="btn btn-natura btn-big" [disabled]="loading">

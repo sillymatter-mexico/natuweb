@@ -7,6 +7,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {HomeComponent} from './home/home.component';
 import {WorkshopsComponent} from './workshops/workshops.component';
 import {NewsComponent} from './news/news.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
         {path: 'inicio', component: HomeComponent},
         {path: 'talleres', component: WorkshopsComponent},
         {path: 'boletin', component: NewsComponent},
+        {path: 'perfil', component: ProfileComponent},
         // {path: 'exchange/:code', component: ExchangePageComponent},
       ]
     }]

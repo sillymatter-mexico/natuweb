@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from '../services/app.service';
 import {take} from 'rxjs/operators';
-import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-news',
@@ -31,7 +30,6 @@ export class NewsComponent implements OnInit {
       .subscribe((response: any) => {
         this.loading = false;
         this.news = response;
-        console.log(this.news);
       }, error => {
         this.loading = false;
         console.log(error);
