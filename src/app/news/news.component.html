@@ -12,9 +12,8 @@
             <h5 class="mt-5 mb-0">No hay noticias en este momento.</h5>
           </div>
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 new-container p-3" *ngFor="let new of news">
-            <a [href]="new.file" target="_blank">
-              <div class="new-cover" [style.backgroundImage]="'url(' + new.cover + ')'"></div>
-            </a>
+            <a [href]="new.file" target="_blank"
+               class="new-cover" [style.backgroundImage]="'url(' + new.cover + ')'"></a>
             <p class="font-weight-bold">{{new.name}}</p>
           </div>
         </div>
