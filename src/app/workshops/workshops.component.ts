@@ -3,6 +3,7 @@ import {WorkshopService} from '../services/workshop.service';
 import {forkJoin} from 'rxjs';
 import {take} from 'rxjs/operators';
 import * as moment from 'moment';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-workshops',
@@ -19,7 +20,7 @@ export class WorkshopsComponent implements OnInit {
   public dayNames: string[];
   public dayList: any[];
 
-  constructor(private workshopService: WorkshopService) {
+  constructor(private workshopService: WorkshopService, private toastr: ToastrService) {
     this.loading = false;
     this.workshopTypeList = [
       {name: `Taller<br>mandatorio`, picture: 'mandatory.png'},
@@ -50,7 +51,8 @@ export class WorkshopsComponent implements OnInit {
         this.loading = false;
         this.setData(response);
       }, error => {
-        this.loading = true;
+        this.loading = false;
+        this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
         console.log(error);
       });
   }

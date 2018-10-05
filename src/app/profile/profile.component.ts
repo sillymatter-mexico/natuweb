@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppService} from '../services/app.service';
 import {UserService} from '../services/user.service';
 import {take} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit {
   public selectedAvatar: number;
   public saving: boolean;
 
-  constructor(private appService: AppService, private userService: UserService) {
+  constructor(private appService: AppService, private userService: UserService, private toastr: ToastrService) {
     this.avatars = [];
     this.loading = false;
     this.saving = false;
@@ -39,6 +40,7 @@ export class ProfileComponent implements OnInit {
         this.loading = false;
       }, (error: any) => {
         this.loading = false;
+        this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
         console.log('error', error);
       });
   }
@@ -85,7 +87,7 @@ export class ProfileComponent implements OnInit {
     this.selectedAvatar = this.mod(index, this.avatars.length);
   }
 
-  saveAvatar() {
+  public saveAvatar() {
     this.saving = true;
     const accessories: any[] = [];
     const avatar = this.avatars[this.selectedAvatar];
@@ -101,10 +103,14 @@ export class ProfileComponent implements OnInit {
     };
 
     this.userService.setAvatar(data)
+      .pipe(take(1))
       .subscribe((response: any) => {
         this.saving = false;
         this.consultant.consultant_avatar = response.data;
+        this.userService.consultant = this.consultant;
+        this.toastr.success('Se ha guardado el avatar que seleccionaste', 'Exito');
       }, (error: any) => {
+        this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
         console.log(error);
         this.saving = false;
       });

@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   set consultant(consultant: any) {
-    if (this._rememberUser) {
+    if (this._rememberUser || localStorage.getItem('consultant') !== null) {
       localStorage.setItem('consultant', JSON.stringify(consultant));
     } else {
       sessionStorage.setItem('consultant', JSON.stringify(consultant));

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from '../services/app.service';
 import {take} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-news',
@@ -12,7 +13,7 @@ export class NewsComponent implements OnInit {
   public news: any[];
   public loading: boolean;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private toastr: ToastrService) {
     this.news = this.appService.news;
     this.loading = false;
   }
@@ -31,6 +32,7 @@ export class NewsComponent implements OnInit {
         this.loading = false;
         this.news = response;
       }, error => {
+        this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
         this.loading = false;
         console.log(error);
       });

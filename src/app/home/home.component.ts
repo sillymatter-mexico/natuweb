@@ -5,6 +5,7 @@ import {UserService} from '../services/user.service';
 import { forkJoin } from 'rxjs';
 import { take } from 'rxjs/operators';
 import {AppService} from '../services/app.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
               private userService: UserService,
-              private appService: AppService) {
+              private appService: AppService,
+              private toastr: ToastrService) {
     this.myWorkshops = [];
     this.recentWorkshops = [];
     this.news = [];
@@ -48,6 +50,7 @@ export class HomeComponent implements OnInit {
       }, error => {
         this.loading = false;
         console.log(error);
+        this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
       });
   }
 

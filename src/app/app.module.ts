@@ -28,6 +28,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import { ProfileComponent } from './profile/profile.component';
+import { ToastrModule } from 'ngx-toastr';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -58,6 +59,7 @@ registerLocaleData(locale, 'es-MX');
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     CollapseModule.forRoot(),
+    ToastrModule.forRoot(),
     AppRoutingModule,
   ],
   providers: [
