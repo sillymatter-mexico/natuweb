@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
     request
       .pipe(take(1))
       .subscribe((response: any[]) => {
-        console.log(response);
         this.loading = false;
         this.setData(response);
       }, error => {
@@ -55,12 +54,14 @@ export class HomeComponent implements OnInit {
   }
 
   private setData(response: any[]) {
+    const consultant =  this.userService.consultant;
     this.myWorkshops = response[0].data.workshop;
     this.recentWorkshops = response[1].data.workshop;
     this.news = response[2];
     this.appService.news = this.news;
-    this.userService.consultant.carrer_level = response[3].data.carrer_level;
-    this.userService.consultant.is_staff = response[3].data.is_staff;
+    consultant.carrer_level = response[3].data.carrer_level;
+    consultant.is_staff = response[3].data.is_staff;
+    this.userService.consultant = consultant;
     this.workshopService.workshopTypes = response[3].data.workshop_group;
   }
 
