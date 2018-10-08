@@ -29,6 +29,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import { ProfileComponent } from './profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
+import { HelpComponent } from './help/help.component';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -50,6 +51,7 @@ registerLocaleData(locale, 'es-MX');
     LoaderComponent,
     NewsComponent,
     ProfileComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,

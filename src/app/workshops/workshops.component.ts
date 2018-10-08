@@ -22,11 +22,7 @@ export class WorkshopsComponent implements OnInit {
 
   constructor(private workshopService: WorkshopService, private toastr: ToastrService) {
     this.loading = false;
-    this.workshopTypeList = [
-      {name: `Taller<br>mandatorio`, picture: 'mandatory.png'},
-      {name: `Taller<br>opcional`, picture: 'optional.jpg'},
-      {name: `Fortaleciendo<br>mi negocio`, picture: 'fmn.jpg'}
-    ];
+    this.workshopTypeList = this.workshopService.workshopTypeList;
     this.myWorkshops = [];
     this.todayWorkshops = [];
     this.date = new Date();

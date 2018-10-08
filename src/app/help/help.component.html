@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="natura-card my-4 p-1 p-sm-4">
+        <div class="row m-0">
+          <div class="col-12 mb-5">
+            <img src="../../assets/img/icons/gradient-png/help.png" class="natura-card-icon">
+            <h4 class="mb-0 font-weight-bold mt-2">Ayuda</h4>
+          </div>
+          <div class="col-12">
+            <div class="natura-card">
+              <div class="natura-card-header p-3">
+                <h5 class="font-weight-bold m-0">¿Cómo crear un taller?</h5>
+              </div>
+              <div class="natura-card-body row px-3">
+                <div class="col-12 py-3">
+                  <img src="../../assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
+                  <h4 class="mb-0 font-weight-bold mt-2">Talleres</h4>
+                </div>
+                <div class="col-12 py-1 text-center">
+                  <p class="m-0 font-weight-bold">
+                    Selecciona el icono de talleres y selecciona Nuevo taller.
+                    Recuerda, sólo los líderes y DRVs pueden crear un taller.
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 p-4" *ngFor="let type of workshopTypeList">
+                  <div class="workshop-type"
+                       [style.backgroundImage]="'url(../../assets/img/images/' + type.picture + ')'">
+                    <h5 class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="type.name"></h5>
+                  </div>
+                </div>
+                <div class="col-12 text-center p-3">
+                  <div class="btn btn-natura rounded mx-2 mb-3">
+                    <i class="fas fa-arrow-down align-middle"></i>
+                    <p class="d-inline-block align-middle mb-0 ml-3">Tutorial líder</p>
+                  </div>
+                  <div class="btn btn-natura rounded mx-2 mb-3">
+                    <i class="fas fa-arrow-down align-middle"></i>
+                    <p class="d-inline-block align-middle mb-0 ml-3">Tutorial consultora</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 p-1 p-sm-3 pb-0 pb-sm-0">
+            <p class="font-weight-bold m-0 text-muted">Contáctanos</p>
+            <small class="m-0 text-muted">Centro de Atención Natura: 01 (55) 50017801</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

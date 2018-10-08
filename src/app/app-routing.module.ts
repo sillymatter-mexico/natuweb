@@ -8,6 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {WorkshopsComponent} from './workshops/workshops.component';
 import {NewsComponent} from './news/news.component';
 import {ProfileComponent} from './profile/profile.component';
+import {HelpComponent} from './help/help.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
         {path: 'talleres', component: WorkshopsComponent},
         {path: 'boletin', component: NewsComponent},
         {path: 'perfil', component: ProfileComponent},
+        {path: 'ayuda', component: HelpComponent},
         // {path: 'exchange/:code', component: ExchangePageComponent},
       ]
     }]

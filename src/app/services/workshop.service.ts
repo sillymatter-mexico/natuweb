@@ -7,9 +7,15 @@ import {HttpClient} from '@angular/common/http';
 export class WorkshopService {
 
   private _workshopTypes: any;
-  private _myWorkshops: any[];
+  private _workshopTypeList: any[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this._workshopTypeList  = [
+      {name: `Taller<br>mandatorio`, picture: 'mandatory.png'},
+      {name: `Taller<br>opcional`, picture: 'optional.jpg'},
+      {name: `Fortaleciendo<br>mi negocio`, picture: 'fmn.jpg'}
+    ];
+  }
 
   set workshopTypes(types: any) {
     this._workshopTypes = types;
@@ -21,6 +27,14 @@ export class WorkshopService {
 
   getMyWorkshops(page: number = 1) {
     return this.http.get('/api/v2/workshop/mylist/?page=' + page);
+  }
+
+  get workshopTypeList() {
+    return this._workshopTypeList;
+  }
+
+  set workshopTypeList(typeList: any[]) {
+    this._workshopTypeList = typeList;
   }
 
   getWorkshopsByDate(day, month, year, page = 1) {
