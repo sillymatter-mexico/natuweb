@@ -80,9 +80,9 @@ export class ProfileComponent implements OnInit {
   changeAvatar(direction: string) {
     let index = this.selectedAvatar;
     if (direction === 'previous') {
-      index++;
-    } else if (direction === 'next') {
       index--;
+    } else if (direction === 'next') {
+      index++;
     }
     this.selectedAvatar = this.mod(index, this.avatars.length);
   }
