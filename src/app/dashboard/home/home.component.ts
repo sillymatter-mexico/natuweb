@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {WorkshopService} from '../services/workshop.service';
-import {UserService} from '../services/user.service';
+import {WorkshopService} from '../../services/workshop.service';
+import {UserService} from '../../services/user.service';
 import { forkJoin } from 'rxjs';
 import { take } from 'rxjs/operators';
-import {AppService} from '../services/app.service';
+import {AppService} from '../../services/app.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -54,15 +54,16 @@ export class HomeComponent implements OnInit {
   }
 
   private setData(response: any[]) {
+    console.log(response);
     const consultant =  this.userService.consultant;
-    this.myWorkshops = response[0].data.workshop;
-    this.recentWorkshops = response[1].data.workshop;
+    this.myWorkshops = response[0].workshop;
+    this.recentWorkshops = response[1].workshop;
     this.news = response[2];
     this.appService.news = this.news;
-    consultant.carrer_level = response[3].data.carrer_level;
-    consultant.is_staff = response[3].data.is_staff;
+    consultant.carrer_level = response[3].carrer_level;
+    consultant.is_staff = response[3].is_staff;
     this.userService.consultant = consultant;
-    this.workshopService.workshopTypes = response[3].data.workshop_group;
+    this.workshopService.workshopTypes = response[3].workshop_group;
   }
 
   isLeader() {

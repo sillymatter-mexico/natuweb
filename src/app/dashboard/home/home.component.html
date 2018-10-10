@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-8 p-4 d-none d-sm-block">
       <div class="row">
         <div class="col-auto">
-          <img src="../../assets/img/images/logo.png" class="img-fluid logo">
+          <img src="../../../assets/img/images/logo.png" class="img-fluid logo">
         </div>
         <div class="col d-flex align-items-center">
           <h3 class="d-inline-block mb-0 font-weight-bold align-middle">
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-4 d-none d-lg-block pr-0 py-4 text-right">
-      <img src="../../assets/img/images/phones.png" class="img-fluid banner-phones">
+      <img src="../../../assets/img/images/phones.png" class="img-fluid banner-phones">
     </div>
   </div>
   <app-loader [loading]="loading"></app-loader>
@@ -31,14 +31,16 @@
       <app-workshop-list-preview
         [workshopList]="myWorkshops"
         title="Mis talleres"
-        size="small">
+        size="small"
+        url="/talleres/mios">
       </app-workshop-list-preview>
     </div>
     <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
       <app-workshop-list-preview
         [workshopList]="recentWorkshops"
         title="Talleres recientes"
-        size="small">
+        size="small"
+        url="/talleres/recientes">
       </app-workshop-list-preview>
     </div>
     <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
@@ -70,10 +72,10 @@
           <h2 class="mb-1 pt-4 font-weight-bold">Mi Natura</h2>
           <p>Descarga la app</p>
           <a href="https://itunes.apple.com/mx/app/mi-natura/id1078710699" target="_blank">
-            <img src="../../assets/img/images/appstore_icon.svg" class="appstore-icon mr-3">
+            <img src="../../../assets/img/images/appstore_icon.svg" class="appstore-icon mr-3">
           </a>
           <a href="https://play.google.com/store/apps/details?id=com.natura.conectate" target="_blank">
-            <img src="../../assets/img/images/playstore_icon.svg" class="appstore-icon">
+            <img src="../../../assets/img/images/playstore_icon.svg" class="appstore-icon">
           </a>
         </div>
       </div>

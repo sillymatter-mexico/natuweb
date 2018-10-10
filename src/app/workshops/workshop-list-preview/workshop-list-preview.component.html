@@ -14,7 +14,8 @@
           {{workshop.description}}
         </p>
         <p class="text-muted">{{ workshop.start_date | date:'medium' }} </p>
-        <button class="btn btn-natura btn-small">Más información</button>
+        <button class="btn btn-natura btn-small" [routerLink]="[url]" *ngIf="url">Más información</button>
+        <button class="btn btn-natura btn-small" *ngIf="!url">Más información</button>
         <hr>
       </div>
     </div>

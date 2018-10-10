@@ -54,8 +54,8 @@ export class WorkshopsComponent implements OnInit {
   }
 
   private setData(response: any[]) {
-    this.myWorkshops = response[0].data.workshop;
-    this.todayWorkshops = response[1].data.workshop;
+    this.myWorkshops = response[0].workshop;
+    this.todayWorkshops = response[1].workshop;
   }
 
   private buildCalendar() {

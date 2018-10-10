@@ -10,6 +10,7 @@ export class WorkshopListPreviewComponent implements OnInit {
   @Input() public workshopList: any[];
   @Input() public title: string;
   @Input() public size: string;
+  @Input() public url: string;
 
   constructor() {
     this.workshopList = [];

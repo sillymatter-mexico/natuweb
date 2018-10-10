@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {WorkshopService} from '../services/workshop.service';
+import {WorkshopService} from '../../services/workshop.service';
 
 @Component({
   selector: 'app-help',

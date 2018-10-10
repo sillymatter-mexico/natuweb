@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="natura-card mt-4 p-1 p-sm-4">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <div class="float-left cursor-pointer" *ngIf="previous" (click)="goToPrevious()">
+              <i class="fas fa-angle-left mr-4"></i><h5 class="font-weight-bold d-inline-block">Regresar</h5>
+            </div>
+            <div class="float-right text-capitalize">{{ today | date:'EEEE, MMMM d, y' }}</div>
+          </div>
+          <div class="col-12 mb-5">
+            <img src="../../../assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
+            <h4 class="mb-0 font-weight-bold mt-2">{{title}}</h4>
+          </div>
+          <div class="col-12">
+            <div class="natura-card">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

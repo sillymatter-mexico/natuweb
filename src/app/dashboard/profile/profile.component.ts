@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from '../services/app.service';
-import {UserService} from '../services/user.service';
+import {AppService} from '../../services/app.service';
+import {UserService} from '../../services/user.service';
 import {take} from 'rxjs/operators';
 import {ToastrService} from 'ngx-toastr';
 
@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
     this.appService.getAvatars(this.gender)
       .pipe(take(1))
       .subscribe((response: any) => {
-        this.buildAvatars(response.data);
+        this.buildAvatars(response);
         this.loading = false;
       }, (error: any) => {
         this.loading = false;

@@ -15,21 +15,23 @@ import { ServerHttpInterceptor } from './interceptors/server.interceptor';
 import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedGuard} from './guards/logged.guard';
-import { AvatarComponent } from './avatar/avatar.component';
+import { AvatarComponent } from './layout/avatar/avatar.component';
 import {CollapseModule} from 'ngx-bootstrap';
-import { HomeComponent } from './home/home.component';
-import { WorkshopListPreviewComponent } from './workshop-list-preview/workshop-list-preview.component';
+import { HomeComponent } from './dashboard/home/home.component';
+import { WorkshopListPreviewComponent } from './workshops/workshop-list-preview/workshop-list-preview.component';
 import locale from '@angular/common/locales/es-MX';
 import {registerLocaleData} from '@angular/common';
 import { WorkshopsComponent } from './workshops/workshops.component';
 import { LoaderComponent } from './loader/loader.component';
-import { NewsComponent } from './news/news.component';
+import { NewsComponent } from './dashboard/news/news.component';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HelpComponent } from './help/help.component';
+import { HelpComponent } from './dashboard/help/help.component';
+import { WorkshopListViewComponent } from './workshops/workshop-list-view/workshop-list-view.component';
+import { WorkshopListComponent } from './workshops/workshop-list/workshop-list.component';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -52,6 +54,8 @@ registerLocaleData(locale, 'es-MX');
     NewsComponent,
     ProfileComponent,
     HelpComponent,
+    WorkshopListViewComponent,
+    WorkshopListComponent,
   ],
   imports: [
     BrowserModule,

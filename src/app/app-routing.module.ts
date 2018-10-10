@@ -4,11 +4,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoggedGuard} from './guards/logged.guard';
 import {AuthGuard} from './guards/auth.guard';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './dashboard/home/home.component';
 import {WorkshopsComponent} from './workshops/workshops.component';
-import {NewsComponent} from './news/news.component';
-import {ProfileComponent} from './profile/profile.component';
-import {HelpComponent} from './help/help.component';
+import {NewsComponent} from './dashboard/news/news.component';
+import {ProfileComponent} from './dashboard/profile/profile.component';
+import {HelpComponent} from './dashboard/help/help.component';
+import {WorkshopListViewComponent} from './workshops/workshop-list-view/workshop-list-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -27,7 +28,7 @@ const routes: Routes = [
         {path: 'boletin', component: NewsComponent},
         {path: 'perfil', component: ProfileComponent},
         {path: 'ayuda', component: HelpComponent},
-        // {path: 'exchange/:code', component: ExchangePageComponent},
+        {path: 'talleres/:type', component: WorkshopListViewComponent},
       ]
     }]
   }
