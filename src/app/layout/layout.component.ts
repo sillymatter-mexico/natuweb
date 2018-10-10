@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AppService} from '../services/app.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,15 +11,11 @@ export class LayoutComponent implements OnInit {
 
   public sidebarEnabled: boolean;
 
-  constructor() {
-    this.sidebarEnabled = false;
-  }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
-  }
-
-  onSidebarToggled(isEnabled: boolean) {
-    this.sidebarEnabled = isEnabled;
+    this.appService.sidebarToggle
+      .subscribe((status: boolean) => this.sidebarEnabled = status);
   }
 
 }

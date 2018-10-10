@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map, take} from 'rxjs/operators';
@@ -9,9 +9,12 @@ import {map, take} from 'rxjs/operators';
 export class AppService {
 
   private _news: any[];
+  public sidebarToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public sidebarToggled: boolean;
 
   constructor(private http: HttpClient, private afs: AngularFirestore) {
     this.news = [];
+    this.sidebarToggled = false;
   }
 
   get news() {
@@ -39,5 +42,10 @@ export class AppService {
   getAvatars(gender) {
     return this.http.get('/api/gamification/avatars/' + gender + '/')
             .pipe(map ((response: any) => response.data));
+  }
+
+  toggleSidebar() {
+    this.sidebarToggled = !this.sidebarToggled;
+    this.sidebarToggle.emit(this.sidebarToggled);
   }
 }

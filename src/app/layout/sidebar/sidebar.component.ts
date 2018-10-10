@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from '../../services/user.service';
+import {AppService} from '../../services/app.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,13 +9,12 @@ import {UserService} from '../../services/user.service';
 })
 export class SidebarComponent implements OnInit {
 
-  @Output() private sidebarToggle: EventEmitter<boolean>;
   public isEnabled: boolean;
   public consultant: any;
   public menuItems: any[];
 
-  constructor(private userService: UserService) {
-    this.sidebarToggle = new EventEmitter<boolean>();
+  constructor(private userService: UserService, private appService: AppService) {
+    this.isEnabled = appService.sidebarToggled;
     this.isEnabled = false;
     this.consultant = this.userService.consultant;
     this.menuItems = [
@@ -27,11 +27,12 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.appService.sidebarToggle
+      .subscribe((status: boolean) => this.isEnabled = status);
   }
 
   onToggleSidebar() {
-    this.isEnabled = !this.isEnabled;
-    this.sidebarToggle.emit(this.isEnabled);
+    this.appService.toggleSidebar();
   }
 
 }

@@ -10,8 +10,9 @@
              placeholder="Buscar" aria-label="Buscar">
     </div>
   </form>
-  <a (click)="logout()">
-    <small class="align-baseline mr-2 d-none d-md-inline-block">Cerrar sesión</small>
+  <i class="fas fa-bars d-md-none cursor-pointer" (click)="onSidebarToggle()"></i>
+  <a (click)="logout()" class="float-right float-md-none">
+    <small class="align-baseline mr-2 d-none d-sm-inline-block">Cerrar sesión</small>
     <i class="natura-icon-logout align-middle"></i>
   </a>
 </nav>

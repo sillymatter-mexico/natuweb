@@ -104,5 +104,28 @@ app-layout {
     }
   }
 
+  @media (max-width: 767.98px) {
+    #wrapper {
+      padding-left: 0;
+    }
+
+    #wrapper.toggled {
+      padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+      width: 0;
+    }
+
+    #page-content-wrapper {
+      width: 100%;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+      position: absolute;
+      margin-right: 0;
+    }
+  }
+
 }
 
