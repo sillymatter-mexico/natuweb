@@ -11,12 +11,13 @@ export class WorkshopService {
   private _workshopTypes: any;
   private _workshopTypeList: any[];
   private _listTypes: any[];
+  private _selectedWorkshop: any;
 
   constructor(private http: HttpClient) {
     this._workshopTypeList  = [
-      {name: `Taller<br>mandatorio`, picture: 'mandatory.png'},
-      {name: `Taller<br>opcional`, picture: 'optional.jpg'},
-      {name: `Fortaleciendo<br>mi negocio`, picture: 'fmn.jpg'}
+      {id: 1, name: 'Taller<br>mandatorio', picture: 'mandatory.png', alias: 'mandatorios'},
+      {id: 2, name: 'Taller<br>opcional', picture: 'optional.jpg', alias: 'opcionales'},
+      {id: 3, name: 'Fortaleciendo<br>mi negocio', picture: 'fmn.jpg', alias: 'fmn'}
     ];
 
     this._listTypes = [
@@ -31,6 +32,26 @@ export class WorkshopService {
 
   get workshopTypes() {
     return this._workshopTypes;
+  }
+
+  set selectedWorkshop(workshop: any) {
+    this._selectedWorkshop = workshop;
+    sessionStorage.setItem('selectedWorkshop', JSON.stringify(workshop));
+  }
+
+  get selectedWorkshop() {
+    if (this._selectedWorkshop) {
+      return this._selectedWorkshop;
+    }
+    return JSON.parse(sessionStorage.getItem('selectedWorkshop'));
+  }
+
+  public clearSelectedWorkshop() {
+    sessionStorage.removeItem('selectedWorkshop');
+  }
+
+  public getWorkshopType(alias: string) {
+    return this._workshopTypeList.find(x => x.alias === alias);
   }
 
   public getWorkshopList(name: string) {
@@ -75,6 +96,11 @@ export class WorkshopService {
 
   public getWorkshopPage(url: string) {
     return this.http.get(url)
-      .pipe(map ((response: any) => response.data));
+            .pipe(map ((response: any) => response.data));
+  }
+
+  public getWorkshopNameList(id: number) {
+    return this.http.get('/api/v2/workshop-list/?id=' + id)
+            .pipe(map ((response: any) => response.data));
   }
 }

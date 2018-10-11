@@ -33,6 +33,9 @@ import { HelpComponent } from './dashboard/help/help.component';
 import { WorkshopListViewComponent } from './workshops/workshop-list-view/workshop-list-view.component';
 import { WorkshopListComponent } from './workshops/workshop-list/workshop-list.component';
 import { MomentDatePipe } from './pipes/moment-date.pipe';
+import { WorkshopCreateComponent } from './workshops/workshop-create/workshop-create.component';
+import { WorkshopCreateDetailComponent } from './workshops/workshop-create-detail/workshop-create-detail.component';
+import { PreviousButtonDirective } from './directives/previous-button.directive';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -58,6 +61,9 @@ registerLocaleData(locale, 'es-MX');
     WorkshopListViewComponent,
     WorkshopListComponent,
     MomentDatePipe,
+    WorkshopCreateComponent,
+    WorkshopCreateDetailComponent,
+    PreviousButtonDirective,
   ],
   imports: [
     BrowserModule,

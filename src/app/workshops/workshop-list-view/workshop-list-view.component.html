@@ -4,7 +4,7 @@
       <div class="natura-card my-4 p-1 p-sm-4">
         <div class="row">
           <div class="col-12 mb-3">
-            <div class="float-left cursor-pointer" *ngIf="previous" (click)="goToPrevious()">
+            <div class="float-left cursor-pointer" appPreviousButton>
               <i class="fas fa-angle-left mr-4"></i><h5 class="font-weight-bold d-inline-block">Regresar</h5>
             </div>
             <div class="float-right text-capitalize">{{ today | date:'EEEE, MMMM d, y' }}</div>
@@ -14,7 +14,7 @@
             <h4 class="mb-0 font-weight-bold mt-2">{{title}}</h4>
           </div>
           <div class="col-12">
-            <div class="natura-card overflow-scroll" [style.maxHeight.px]="height-300">
+            <div class="natura-card">
               <app-loader [loading]="loading"></app-loader>
               <app-workshop-list
                 *ngIf="!loading"

@@ -15,10 +15,10 @@
     <div class="col-3 col-md-2 py-2 text-center">
       <app-avatar [consultant]="workshop.author.consultant_avatar" *ngIf="workshop.author" size="big"></app-avatar>
       <app-avatar [consultant]="consultant.consultant_avatar" *ngIf="!workshop.author"></app-avatar>
-      <p class="font-weight-bold text-primary m-0" *ngIf="workshop.author">
+      <p class="font-weight-bold text-primary m-0 avatar-name" *ngIf="workshop.author">
         {{ workshop.author.full_name }}
       </p>
-      <p class="font-weight-bold text-primary m-0" *ngIf="!workshop.author">
+      <p class="font-weight-bold text-primary m-0 avatar-name" *ngIf="!workshop.author">
         {{ consultant.full_name }}
       </p>
     </div>

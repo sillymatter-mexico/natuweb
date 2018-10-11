@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="natura-card mt-4 p-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="float-left cursor-pointer" appPreviousButton>
+              <i class="fas fa-angle-left mr-4"></i><h5 class="font-weight-bold d-inline-block">Regresar</h5>
+            </div>
+          </div>
+          <div class="col-12">
+            <img src="../../assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
+            <h5 class="mb-0 font-weight-bold mt-2">Detalles generales</h5>
+          </div>
+          <div class="col-12 px-3 pb-1 pt-3">
+            <div class="workshop-type py-5"
+                 [style.backgroundImage]="'url(../../assets/img/images/' + workshopType.picture + ')'">
+              <p class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="workshopType.name"></p>
+              <h1 class="text-white ml-3 font-weight-bold">{{workshopName?.name}}</h1>
+            </div>
+          </div>
+          <div class="col-12 pt-3">
+            <app-loader [loading]="loading"></app-loader>
+          </div>
+          <div class="col-12 col-md-6 text-center mb-3">
+            <div class="btn-natura-select text-left p-2 p-sm-3">
+              <i class="natura-icon-private-event align-middle icon"></i>
+              <div class="text d-inline-block align-middle px-2 px-md-3">
+                <p class="font-weight-bold m-0">Evento privado</p>
+                <small class="m-0">Visíble solo para invitados</small>
+              </div>
+              <div class="check d-inline-block align-middle ml-2 ml-md-3 ml-lg-5">
+                <i class="fas fa-check"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 text-center mb-3">
+            <div class="btn-natura-select text-left p-2 p-sm-3">
+              <i class="natura-icon-attendance align-middle icon"></i>
+              <div class="text d-inline-block align-middle px-2 px-md-3">
+                <p class="font-weight-bold m-0">Evento público</p>
+                <small class="m-0">Visíble para cualquier usuario de Mi Natura</small>
+              </div>
+              <div class="check d-inline-block align-middle ml-2 ml-md-3 ml-lg-5">
+                <i class="fas fa-check"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

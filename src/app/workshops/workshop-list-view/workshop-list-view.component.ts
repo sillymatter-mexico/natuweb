@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {RouterExtendService} from '../../services/router-extend.service';
 import {WorkshopService} from '../../services/workshop.service';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs';
@@ -15,16 +14,13 @@ export class WorkshopListViewComponent implements OnInit {
 
   public today: Date;
   public title: string;
-  public previous: string;
   public workshopList: any[];
   public loading: boolean;
   public previousPage: string;
   public nextPage: string;
   public consultant: any;
-  public height: number;
 
   constructor(private router: Router,
-              private routerExtend: RouterExtendService,
               private route: ActivatedRoute,
               private workshopService: WorkshopService,
               private toastr: ToastrService,
@@ -35,16 +31,10 @@ export class WorkshopListViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.previous = this.routerExtend.getPreviousUrl();
     this.route.paramMap.subscribe((params: ParamMap) => {
       const type = params.get('type');
       this.fetchWorkshops(type);
     });
-    this.height = window.innerHeight;
-  }
-
-  public goToPrevious(): void {
-      this.router.navigateByUrl(this.previous);
   }
 
   private fetchWorkshops(type: string) {

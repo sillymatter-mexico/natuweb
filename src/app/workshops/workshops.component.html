@@ -9,7 +9,7 @@
             <p class="m-0 d-none d-md-block">Selecciona un tipo de taller para comenzar</p>
           </div>
           <div class="col-12 col-md-4 p-3" *ngFor="let type of workshopTypeList">
-            <div class="workshop-type"
+            <div class="workshop-type" [routerLink]="['/talleres', 'crear', type.alias]"
                  [style.backgroundImage]="'url(../../assets/img/images/' + type.picture + ')'">
               <h5 class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="type.name"></h5>
             </div>
@@ -26,10 +26,12 @@
         [workshopList]="myWorkshops"
         size="medium">
         <div bottom class="natura-card-bottom">
-          <button class="btn btn-natura btn-big btn-wide d-inline-block">
-            <span class="align-middle">Ver más</span>
-            <i class="fas fa-angle-right ml-2 align-middle"></i>
-          </button>
+          <a [routerLink]="['/talleres', 'mios']">
+            <button class="btn btn-natura btn-big btn-wide d-inline-block" >
+              <span class="align-middle">Ver más</span>
+              <i class="fas fa-angle-right ml-2 align-middle"></i>
+            </button>
+          </a>
         </div>
       </app-workshop-list-preview>
     </div>
