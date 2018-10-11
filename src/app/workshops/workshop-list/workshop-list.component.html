@@ -1,3 +1,46 @@
-<p>
-  workshop-list works!
-</p>
+<div class="container-fluid p-1 p-md-3">
+  <div class="row mx-1 mx-md-3 py-2 bg-light rounded d-none d-md-flex">
+    <div class="col-4 col-sm-3 col-md-2 py-1 border-right">
+      <h5 class="text-primary m-0">Nombre</h5>
+    </div>
+    <div class="col-4 py-1 border-right">
+      <h5 class="text-primary m-0">Taller</h5>
+    </div>
+    <div class="col-4 col-md-3 py-1">
+      <h5 class="text-primary m-0">Fecha</h5>
+    </div>
+  </div>
+
+  <div class="row my-3 mx-1 m-md-3 rounded bg-light align-items-baseline" *ngFor="let workshop of workshopList">
+    <div class="col-3 col-md-2 py-2 text-center">
+      <app-avatar [consultant]="workshop.author.consultant_avatar" *ngIf="workshop.author" size="big"></app-avatar>
+      <app-avatar [consultant]="consultant.consultant_avatar" *ngIf="!workshop.author"></app-avatar>
+      <p class="font-weight-bold text-primary m-0" *ngIf="workshop.author">
+        {{ workshop.author.full_name }}
+      </p>
+      <p class="font-weight-bold text-primary m-0" *ngIf="!workshop.author">
+        {{ consultant.full_name }}
+      </p>
+    </div>
+    <div class="col-9 col-md-4 align-self-auto align-self-md-end py-3">
+      <p class="font-weight-bold m-0">{{workshop.name}}</p>
+      <small class="text-muted d-block text-ellipsis">{{workshop.description}}</small>
+      <small class="text-muted d-block d-md-none text-capitalize">
+        {{workshop.start_date | momentDate:'ddd, D [de] MMM HH:mm [hrs.]' }}
+      </small>
+      <div class="btn btn-natura btn-small mt-2 d-inline-block d-md-none">
+        Más info.
+      </div>
+    </div>
+    <div class="col-4 col-md-3 d-none d-md-block align-self-end py-3">
+      <small class="text-muted d-block text-capitalize">
+        {{workshop.start_date | momentDate:'ddd, D [de] MMM HH:mm [hrs.]' }}
+      </small>
+    </div>
+    <div class="col-3 align-self-end py-3 d-none d-md-block text-center">
+      <div class="btn btn-natura">
+        Más info.
+      </div>
+    </div>
+  </div>
+</div>

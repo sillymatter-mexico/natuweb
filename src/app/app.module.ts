@@ -32,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HelpComponent } from './dashboard/help/help.component';
 import { WorkshopListViewComponent } from './workshops/workshop-list-view/workshop-list-view.component';
 import { WorkshopListComponent } from './workshops/workshop-list/workshop-list.component';
+import { MomentDatePipe } from './pipes/moment-date.pipe';
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -56,6 +57,7 @@ registerLocaleData(locale, 'es-MX');
     HelpComponent,
     WorkshopListViewComponent,
     WorkshopListComponent,
+    MomentDatePipe,
   ],
   imports: [
     BrowserModule,

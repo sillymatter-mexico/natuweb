@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit {
   }
 
   private setData(response: any[]) {
-    console.log(response);
     const consultant =  this.userService.consultant;
     this.myWorkshops = response[0].workshop;
     this.recentWorkshops = response[1].workshop;

@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class WorkshopListComponent implements OnInit {
 
   @Input() public workshopList: any[];
+  @Input() public consultant: any;
 
   constructor() {
     this.workshopList = [];

@@ -73,8 +73,8 @@ a {
 .btn-natura {
   border-radius: 20px;
   border: 1px solid transparent;
-  -webkit-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
-  -moz-box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.5);
   box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.5);
   transition: .3s;
   color: #004897;
@@ -172,5 +172,15 @@ a {
 
   .cursor-pointer {
     cursor: pointer!important;
+  }
+
+  .text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .overflow-scroll {
+    overflow: scroll;
   }
 }

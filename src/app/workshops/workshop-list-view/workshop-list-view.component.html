@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <div class="natura-card mt-4 p-1 p-sm-4">
+      <div class="natura-card my-4 p-1 p-sm-4">
         <div class="row">
           <div class="col-12 mb-3">
             <div class="float-left cursor-pointer" *ngIf="previous" (click)="goToPrevious()">
@@ -14,9 +14,25 @@
             <h4 class="mb-0 font-weight-bold mt-2">{{title}}</h4>
           </div>
           <div class="col-12">
-            <div class="natura-card">
-
+            <div class="natura-card overflow-scroll" [style.maxHeight.px]="height-300">
+              <app-loader [loading]="loading"></app-loader>
+              <app-workshop-list
+                *ngIf="!loading"
+                [workshopList]="workshopList"
+                [consultant]="consultant"></app-workshop-list>
             </div>
+          </div>
+          <div class="col-12 text-left pt-4">
+            <a class="cursor-pointer mr-5"
+               *ngIf="previousPage && previousPage.trim() !== ''"
+               (click)="getPage(previousPage)">
+              <i class="fas fa-2x fa-angle-left text-primary"></i>
+            </a>
+            <a class="cursor-pointer"
+               *ngIf="nextPage && nextPage.trim() !== ''"
+               (click)="getPage(nextPage)">
+              <i class="fas fa-2x fa-angle-right text-primary"></i>
+            </a>
           </div>
         </div>
       </div>

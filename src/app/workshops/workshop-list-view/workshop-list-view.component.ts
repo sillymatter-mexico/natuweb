@@ -4,6 +4,7 @@ import {RouterExtendService} from '../../services/router-extend.service';
 import {WorkshopService} from '../../services/workshop.service';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-workshop-list-view',
@@ -16,13 +17,21 @@ export class WorkshopListViewComponent implements OnInit {
   public title: string;
   public previous: string;
   public workshopList: any[];
+  public loading: boolean;
+  public previousPage: string;
+  public nextPage: string;
+  public consultant: any;
+  public height: number;
 
   constructor(private router: Router,
               private routerExtend: RouterExtendService,
               private route: ActivatedRoute,
               private workshopService: WorkshopService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private userService: UserService) {
     this.today = new Date();
+    this.loading = false;
+    this.consultant = this.userService.consultant;
   }
 
   ngOnInit() {
@@ -31,6 +40,7 @@ export class WorkshopListViewComponent implements OnInit {
       const type = params.get('type');
       this.fetchWorkshops(type);
     });
+    this.height = window.innerHeight;
   }
 
   public goToPrevious(): void {
@@ -40,7 +50,6 @@ export class WorkshopListViewComponent implements OnInit {
   private fetchWorkshops(type: string) {
     this.workshopService.getWorkshopList(type)
       .subscribe((data: any) => {
-        console.log('data', data);
         this.title = data.title;
         this.fetchList(data.list);
       }, (error: any) => {
@@ -50,12 +59,33 @@ export class WorkshopListViewComponent implements OnInit {
   }
 
   private fetchList(list: Observable<any>) {
+    this.loading = true;
     list.subscribe((data: any) => {
-      console.log('data', data);
+      this.loading = false;
+      this.workshopList = data.workshop;
+      this.previousPage = data.previousPage;
+      this.nextPage = data.nextPage;
     }, (error: any) => {
       console.log(error);
+      this.loading = false;
       this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
     });
+  }
+
+  public getPage(url: string) {
+    this.loading = true;
+    this.workshopService.getWorkshopPage(url)
+      .subscribe((data: any) => {
+        console.log('data', data);
+        this.loading = false;
+        this.workshopList = data.workshop;
+        this.previousPage = data.previousPage;
+        this.nextPage = data.nextPage;
+      }, (error: any) => {
+        console.log(error);
+        this.loading = false;
+        this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
+      });
   }
 
 }

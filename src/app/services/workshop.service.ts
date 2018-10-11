@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -38,7 +38,7 @@ export class WorkshopService {
     if (data) {
       return of(data);
     } else {
-      throw new Error('No se encontró la lista de talleres solicitada');
+      return throwError('No se encontró la lista de talleres solicitada');
     }
   }
 
@@ -71,5 +71,10 @@ export class WorkshopService {
   public getTodayWorkshops() {
     const date = new Date();
     return this.getWorkshopsByDate(date.getDate(), date.getMonth() + 1, date.getFullYear());
+  }
+
+  public getWorkshopPage(url: string) {
+    return this.http.get(url)
+      .pipe(map ((response: any) => response.data));
   }
 }
