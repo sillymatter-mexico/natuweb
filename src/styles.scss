@@ -5,6 +5,7 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/functions';
 @import '~@fortawesome/fontawesome-free/css/all.css';
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
 @import "icon-font";
 
 @font-face {
@@ -136,9 +137,9 @@ a {
   width: 100%;
   display: inline-block;
   border: 1px solid transparent;
-  -webkit-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2);
-  -moz-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2);
-  box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+  -moz-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
   transition: .3s;
   color: #004897;
   max-width: 320px;
@@ -240,17 +241,60 @@ a {
     margin-right: 16px;
   }
 
-  .cursor-pointer {
-    cursor: pointer!important;
-  }
+}
 
-  .text-ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.bg-natura {
+  background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
+  background: -webkit-linear-gradient(left, #417cb9 0%,#7b84c4 100%);
+  background: linear-gradient(to right, #417cb9 0%,#7b84c4 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417cb9', endColorstr='#7b84c4',GradientType=1);
+}
 
-  .overflow-scroll {
-    overflow: scroll;
+.cursor-pointer {
+  cursor: pointer!important;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.bs-datepicker-head, .bs-datepicker-body table td span.selected {
+  background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
+  background: -webkit-linear-gradient(left, #417cb9 0%,#7b84c4 100%);
+  background: linear-gradient(to right, #417cb9 0%,#7b84c4 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417cb9', endColorstr='#7b84c4',GradientType=1);
+}
+
+.bs-datepicker-body table td span.selected {
+  -webkit-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+  -moz-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+.bs-datepicker-body table td.week span {
+  color: #417cb9!important;
+}
+
+timepicker {
+  button {
+    border-color: #ced4da!important;
+    &:hover {
+      background-color: #e2e6ea;
+      border-color: #e2e6ea;
+    }
+  }
+  input {
+    padding: 5px!important;
   }
 }
+
+.pac-container, .pac-logo {
+  z-index: 2000;
+}
+

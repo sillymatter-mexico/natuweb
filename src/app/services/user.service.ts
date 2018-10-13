@@ -20,6 +20,10 @@ export class UserService {
     this._consultant = consultant;
   }
 
+  get isLeader(): boolean {
+    return !this.consultant.carrer_level.startsWith('CN') || this.consultant.isDRV;
+  }
+
   get consultant() {
     return this._consultant;
   }

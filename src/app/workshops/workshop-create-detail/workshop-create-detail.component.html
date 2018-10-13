@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <div class="natura-card mt-4 p-4">
+      <div class="natura-card mt-4 p-4 p-md-5">
         <div class="row">
           <div class="col-12">
             <div class="float-left cursor-pointer" appPreviousButton>
@@ -23,7 +23,9 @@
             <app-loader [loading]="loading"></app-loader>
           </div>
           <div class="col-12 col-md-6 text-center mb-3">
-            <div class="btn-natura-select text-left p-2 p-sm-3">
+            <div class="btn-natura-select text-left p-2 p-sm-3"
+                 (click)="onSetPrivacy(true)"
+                 [ngClass]="{'active': workshop.private}">
               <i class="natura-icon-private-event align-middle icon"></i>
               <div class="text d-inline-block align-middle px-2 px-md-3">
                 <p class="font-weight-bold m-0">Evento privado</p>
@@ -35,7 +37,9 @@
             </div>
           </div>
           <div class="col-12 col-md-6 text-center mb-3">
-            <div class="btn-natura-select text-left p-2 p-sm-3">
+            <div class="btn-natura-select text-left p-2 p-sm-3"
+                 (click)="onSetPrivacy(false)"
+                 [ngClass]="{'active': !workshop.private}">
               <i class="natura-icon-attendance align-middle icon"></i>
               <div class="text d-inline-block align-middle px-2 px-md-3">
                 <p class="font-weight-bold m-0">Evento público</p>
@@ -45,6 +49,92 @@
                 <i class="fas fa-check"></i>
               </div>
             </div>
+          </div>
+          <div class="col-12 text-center">
+            <p class="text-primary m-0 cursor-pointer"><u>¿Qué es un evento privado?</u></p>
+          </div>
+          <div class="col-12 p-1 p-md-3">
+            <div class="natura-card">
+              <div class="natura-card-header p-3">
+                <h5 class="m-0 font-weight-bold">Taller</h5>
+              </div>
+              <div class="natura-card-body p-2 p-md-4 p-lg-5">
+                <form (ngSubmit)="onSubmit(f)" #f="ngForm" id="workshopForm">
+                  <div class="form-row">
+                    <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
+                      <label for="name"><strong>Nombre del taller*</strong></label>
+                      <input type="text" class="form-control" name="name"
+                             id="name" placeholder="Nombre del taller"
+                             [(ngModel)]="workshop.name">
+                    </div>
+                    <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
+                      <label for="description"><strong>Descripción*</strong></label>
+                      <textarea class="form-control" name="description"
+                                id="description" placeholder="Descripción"
+                                [(ngModel)]="workshop.description"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row justify-content-center">
+                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                      <label for="date"><strong>Fecha*</strong></label>
+                      <input class="form-control" name="selectedDate"
+                             id="date" placeholder="Fecha del taller"
+                             bsDatepicker [(ngModel)]="selectedDate"
+                             [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                             [minDate]="today"
+                             autocomplete="off">
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                      <label for="hour"><strong>Hora*</strong></label>
+                      <timepicker [(ngModel)]="selectedHour" id="hour"
+                                  name="selectedHour" [showSpinners]="false"></timepicker>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                      <label for="duration"><strong>Duración*</strong></label>
+                      <select
+                          class="form-control" name="duration"
+                          id="duration" placeholder="Duración del taller"
+                          [(ngModel)]="workshop.duration">
+                        <option *ngFor="let hour of hours; let i = index"
+                                [value]="hour.value" [selected]="i === 0">
+                          {{hour.display}} hora<span *ngIf="hour.display > 1">s</span>
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                      <label for="duration"><strong>Especialista</strong></label>
+                      <select
+                        class="form-control" name="specialist"
+                        id="specialist" placeholder="Especialista"
+                        [(ngModel)]="workshop.specialist">
+                        <option *ngFor="let specialist of specialists"
+                                [value]="specialist.id">
+                          {{specialist.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-12 text-center mt-3">
+                      <button class="btn btn-default" type="button">
+                        <span class="fas fa-map-marker-alt align-middle mr-3"></span>
+                        <p class="d-inline-block m-0 align-middle"
+                           (click)="onSelectLocation()"
+                           *ngIf="!workshop.address_string || workshop.address_string.trim() === ''">
+                          Agregar ubicación
+                        </p>
+                        <p class="d-inline-block m-0 align-middle"
+                           (click)="onSelectLocation()"
+                           *ngIf="workshop.address_string && workshop.address_string.trim() !== ''">
+                          {{workshop.address_string}}
+                        </p>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-natura btn-big" form="workshopForm">Crear taller</button>
           </div>
         </div>
       </div>

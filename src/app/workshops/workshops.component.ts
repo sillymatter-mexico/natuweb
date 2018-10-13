@@ -4,6 +4,7 @@ import {forkJoin} from 'rxjs';
 import {take} from 'rxjs/operators';
 import * as moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-workshops',
@@ -19,8 +20,9 @@ export class WorkshopsComponent implements OnInit {
   public date: Date;
   public dayNames: string[];
   public dayList: any[];
+  public isLeader: boolean;
 
-  constructor(private workshopService: WorkshopService, private toastr: ToastrService) {
+  constructor(private workshopService: WorkshopService, private toastr: ToastrService, private userService: UserService) {
     this.loading = false;
     this.workshopTypeList = this.workshopService.workshopTypeList;
     this.myWorkshops = [];
@@ -28,6 +30,7 @@ export class WorkshopsComponent implements OnInit {
     this.date = new Date();
     this.dayNames  = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'HOY'];
     this.dayList = [];
+    this.isLeader = this.userService.isLeader;
     this.buildCalendar();
   }
 

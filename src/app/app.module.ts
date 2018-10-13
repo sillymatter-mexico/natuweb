@@ -16,13 +16,13 @@ import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedGuard} from './guards/logged.guard';
 import { AvatarComponent } from './layout/avatar/avatar.component';
-import {CollapseModule} from 'ngx-bootstrap';
+import {BsDatepickerModule, CollapseModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
 import { HomeComponent } from './dashboard/home/home.component';
 import { WorkshopListPreviewComponent } from './workshops/workshop-list-preview/workshop-list-preview.component';
 import locale from '@angular/common/locales/es-MX';
 import {registerLocaleData} from '@angular/common';
 import { WorkshopsComponent } from './workshops/workshops.component';
-import { LoaderComponent } from './loader/loader.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 import { NewsComponent } from './dashboard/news/news.component';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
@@ -36,6 +36,11 @@ import { MomentDatePipe } from './pipes/moment-date.pipe';
 import { WorkshopCreateComponent } from './workshops/workshop-create/workshop-create.component';
 import { WorkshopCreateDetailComponent } from './workshops/workshop-create-detail/workshop-create-detail.component';
 import { PreviousButtonDirective } from './directives/previous-button.directive';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { esLocale } from 'ngx-bootstrap/locale';
+import { LocationSelectorComponent } from './shared/location-selector/location-selector.component';
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
+defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
   return () => authService.getSavedSession();
@@ -64,6 +69,7 @@ registerLocaleData(locale, 'es-MX');
     WorkshopCreateComponent,
     WorkshopCreateDetailComponent,
     PreviousButtonDirective,
+    LocationSelectorComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,12 +79,22 @@ registerLocaleData(locale, 'es-MX');
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     CollapseModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
+    ModalModule.forRoot(),
     ToastrModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAtOhZyrFpLgYsPxWiuJ9yfOnz097YiKP8',
+      libraries: ['places']}),
     AppRoutingModule,
+  ],
+  entryComponents: [
+    LocationSelectorComponent
   ],
   providers: [
     AuthGuard,
     LoggedGuard,
+    GoogleMapsAPIWrapper,
     { provide: LOCALE_ID, useValue: 'es-MX' },
     {
       provide: HTTP_INTERCEPTORS,

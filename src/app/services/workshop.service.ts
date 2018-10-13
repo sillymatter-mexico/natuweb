@@ -12,18 +12,34 @@ export class WorkshopService {
   private _workshopTypeList: any[];
   private _listTypes: any[];
   private _selectedWorkshop: any;
+  private readonly _specialists: any[];
+  private readonly _hours: any[] = [];
 
   constructor(private http: HttpClient) {
+
     this._workshopTypeList  = [
       {id: 1, name: 'Taller<br>mandatorio', picture: 'mandatory.png', alias: 'mandatorios'},
       {id: 2, name: 'Taller<br>opcional', picture: 'optional.jpg', alias: 'opcionales'},
       {id: 3, name: 'Fortaleciendo<br>mi negocio', picture: 'fmn.jpg', alias: 'fmn'}
     ];
 
+    this._specialists = [
+      { id: 0, name: 'Ninguno' },
+      { id: 1, name: 'Emmanuel Romero - Maquillaje' },
+      { id: 2, name: 'Julio Castillo - Maquillaje' },
+      { id: 3, name: 'Andrea Quiroga - Perfumería' },
+      { id: 4, name: 'Julia García - Rostro' }
+    ];
+
     this._listTypes = [
       {name: 'mios', title: 'Mis talleres', list: this.getMyWorkshops()},
       {name: 'recientes', title: 'Talleres recientes', list: this.getTodayWorkshops()}
     ];
+
+    for (let x = 1; x <= 12; x++) {
+      this._hours.push({value: x * 60, display: x});
+    }
+
   }
 
   set workshopTypes(types: any) {
@@ -32,6 +48,14 @@ export class WorkshopService {
 
   get workshopTypes() {
     return this._workshopTypes;
+  }
+
+  get specialists() {
+    return this._specialists;
+  }
+
+  get hours() {
+    return this._hours;
   }
 
   set selectedWorkshop(workshop: any) {
