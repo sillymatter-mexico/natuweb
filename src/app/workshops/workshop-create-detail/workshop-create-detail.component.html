@@ -114,19 +114,17 @@
                       </select>
                     </div>
                     <div class="col-12 text-center mt-3">
-                      <button class="btn btn-default" type="button">
+                      <div class="cursor-pointer w-100" (click)="onSelectLocation()">
                         <span class="fas fa-map-marker-alt align-middle mr-3"></span>
                         <p class="d-inline-block m-0 align-middle"
-                           (click)="onSelectLocation()"
                            *ngIf="!workshop.address_string || workshop.address_string.trim() === ''">
                           Agregar ubicación
                         </p>
                         <p class="d-inline-block m-0 align-middle"
-                           (click)="onSelectLocation()"
                            *ngIf="workshop.address_string && workshop.address_string.trim() !== ''">
                           {{workshop.address_string}}
                         </p>
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </form>
