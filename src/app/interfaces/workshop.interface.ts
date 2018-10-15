@@ -8,7 +8,7 @@ export interface Workshop {
   specialist?: number; // id only
   sede?: string; // string
   duration: number; // in minutes
-  address_point: AddressPoint; // Object with latitude and longitude
-  address_string: string; // string
-  private: boolean; // boolean not implemented yet
+  address_point?: AddressPoint; // Object with latitude and longitude
+  address_string?: string; // string
+  private?: boolean; // boolean not implemented yet
 }

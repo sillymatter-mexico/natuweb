@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WorkshopService} from '../../services/workshop.service';
 import {UserService} from '../../services/user.service';
-import { forkJoin } from 'rxjs';
+import {combineLatest, forkJoin} from 'rxjs';
 import { take } from 'rxjs/operators';
 import {AppService} from '../../services/app.service';
 import {ToastrService} from 'ngx-toastr';
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     const news = this.appService.getNews();
     const initData = this.appService.getInitData();
 
-    const request = forkJoin([mine, recent, news, initData]);
+    const request = combineLatest([mine, recent, news, initData]);
     request
       .pipe(take(1))
       .subscribe((response: any[]) => {

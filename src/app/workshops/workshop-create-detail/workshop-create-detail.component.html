@@ -51,7 +51,9 @@
             </div>
           </div>
           <div class="col-12 text-center">
-            <p class="text-primary m-0 cursor-pointer"><u>¿Qué es un evento privado?</u></p>
+            <p class="text-primary m-0 cursor-pointer" (click)="onOpenPrivateModal(privateModal)">
+              <u>¿Qué es un evento privado?</u>
+            </p>
           </div>
           <div class="col-12 p-1 p-md-3">
             <div class="natura-card">
@@ -65,43 +67,61 @@
                       <label for="name"><strong>Nombre del taller*</strong></label>
                       <input type="text" class="form-control" name="name"
                              id="name" placeholder="Nombre del taller"
-                             [(ngModel)]="workshop.name">
+                             [(ngModel)]="workshop.name" required
+                             [disabled]="workshopName.id !== 1" #name="ngModel"
+                             [ngClass]="{'is-invalid': f.submitted && name.errors}">
                     </div>
                     <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
                       <label for="description"><strong>Descripción*</strong></label>
-                      <textarea class="form-control" name="description"
-                                id="description" placeholder="Descripción"
-                                [(ngModel)]="workshop.description"></textarea>
+                      <textarea class="form-control" name="description" rows="4"
+                                id="description" placeholder="Descripción" #description="ngModel"
+                                [(ngModel)]="workshop.description" required
+                                [disabled]="workshopName.id !== 1 && workshopType.id === 1"
+                                [ngClass]="{'is-invalid': f.submitted && description.errors}"></textarea>
+                    </div>
+                    <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2"
+                         *ngIf="consultant.isDRV && workshopType.id === 2">
+                      <label for="sede"><strong>Sede</strong></label>
+                      <input type="text" class="form-control" name="sede"
+                             id="sede" placeholder="Sede"
+                             [(ngModel)]="workshop.sede">
                     </div>
                   </div>
                   <div class="form-row justify-content-center">
-                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                    <div class="form-group col-12 col-sm-6"
+                         [ngClass]="workshopName.specialist ? 'col-lg-3' : 'col-lg-4'">
                       <label for="date"><strong>Fecha*</strong></label>
                       <input class="form-control" name="selectedDate"
                              id="date" placeholder="Fecha del taller"
                              bsDatepicker [(ngModel)]="selectedDate"
                              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
-                             [minDate]="today"
-                             autocomplete="off">
+                             [minDate]="today" #date="ngModel"
+                             [ngClass]="{'is-invalid': f.submitted && date.errors}"
+                             autocomplete="off" required>
                     </div>
-                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                    <div class="form-group col-12 col-sm-6"
+                         [ngClass]="workshopName.specialist ? 'col-lg-3' : 'col-lg-4'">
                       <label for="hour"><strong>Hora*</strong></label>
                       <timepicker [(ngModel)]="selectedHour" id="hour"
-                                  name="selectedHour" [showSpinners]="false"></timepicker>
+                                  name="selectedHour" [showSpinners]="false"
+                                  #hour="ngModel" required
+                                  [ngClass]="{'is-invalid': f.submitted && hour.errors}"></timepicker>
                     </div>
-                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                    <div class="form-group col-12"
+                         [ngClass]="workshopName.specialist ? 'col-sm-6 col-lg-3' : 'col-lg-4'">
                       <label for="duration"><strong>Duración*</strong></label>
                       <select
                           class="form-control" name="duration"
                           id="duration" placeholder="Duración del taller"
-                          [(ngModel)]="workshop.duration">
+                          [(ngModel)]="workshop.duration" required>
                         <option *ngFor="let hour of hours; let i = index"
                                 [value]="hour.value" [selected]="i === 0">
                           {{hour.display}} hora<span *ngIf="hour.display > 1">s</span>
                         </option>
                       </select>
                     </div>
-                    <div class="form-group col-12 col-sm-6 col-lg-3">
+                    <div class="form-group col-12 col-sm-6 col-lg-3"
+                         *ngIf="workshopName.specialist">
                       <label for="duration"><strong>Especialista</strong></label>
                       <select
                         class="form-control" name="specialist"
@@ -132,10 +152,36 @@
             </div>
           </div>
           <div class="col-12 text-center">
-            <button type="submit" class="btn btn-natura btn-big" form="workshopForm">Crear taller</button>
+            <button type="submit" class="btn btn-natura btn-big"
+                    form="workshopForm" [disabled]="loadingWorkshop">
+              <i class="fas fa-spinner fa-spin" *ngIf="loadingWorkshop"></i>
+              Crear taller
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #privateModal>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="privateEventModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="col-12 text-center p-3">
+        <img src="../../../assets/img/icons/gradient-png/private-event.png" class="img-fluid d-inline-block"
+             style="max-width: 50px;">
+        <h4 class="my-3 font-weight-bold text-primary">Evento privado</h4>
+        <p class="m-0">
+          Al realizar un evento privado,
+          tendrás la oportunidad de seleccionar a las personas que te gustaría que asistieran.
+          Mientras que para el resto de los usuarios no será visible este taller.
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-template>

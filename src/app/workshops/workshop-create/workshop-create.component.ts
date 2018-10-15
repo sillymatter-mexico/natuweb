@@ -47,7 +47,7 @@ export class WorkshopCreateComponent implements OnInit {
   }
 
   setSelectedWorkshop(workshop: any) {
-    this.workshopService.selectedWorkshop = workshop;
+    this.workshopService.selectedWorkshopType = workshop;
     this.router.navigate([workshop.id], {relativeTo: this.route});
   }
 

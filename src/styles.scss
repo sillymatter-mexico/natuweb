@@ -292,6 +292,11 @@ timepicker {
   input {
     padding: 5px!important;
   }
+  &.is-invalid {
+    input {
+      border-color: #dc3545;
+    }
+  }
 }
 
 .pac-container, .pac-logo {

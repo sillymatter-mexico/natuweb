@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {of, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Workshop} from '../interfaces/workshop.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class WorkshopService {
   private _workshopTypes: any;
   private _workshopTypeList: any[];
   private _listTypes: any[];
+  private _selectedWorkshopType: any;
   private _selectedWorkshop: any;
   private readonly _specialists: any[];
   private readonly _hours: any[] = [];
@@ -24,11 +26,11 @@ export class WorkshopService {
     ];
 
     this._specialists = [
-      { id: 0, name: 'Ninguno' },
-      { id: 1, name: 'Emmanuel Romero - Maquillaje' },
-      { id: 2, name: 'Julio Castillo - Maquillaje' },
-      { id: 3, name: 'Andrea Quiroga - Perfumería' },
-      { id: 4, name: 'Julia García - Rostro' }
+      { id: '0', name: 'Ninguno' },
+      { id: '1', name: 'Emmanuel Romero - Maquillaje' },
+      { id: '2', name: 'Julio Castillo - Maquillaje' },
+      { id: '3', name: 'Andrea Quiroga - Perfumería' },
+      { id: '4', name: 'Julia García - Rostro' }
     ];
 
     this._listTypes = [
@@ -58,6 +60,23 @@ export class WorkshopService {
     return this._hours;
   }
 
+  set selectedWorkshopType(workshop: any) {
+    this._selectedWorkshopType = workshop;
+    sessionStorage.setItem('selectedWorkshopName', JSON.stringify(workshop));
+  }
+
+  get selectedWorkshopType() {
+    if (this._selectedWorkshopType) {
+      return this._selectedWorkshopType;
+    }
+    return JSON.parse(sessionStorage.getItem('selectedWorkshopName'));
+  }
+
+  public clearSelectedWorkshopType() {
+    this._selectedWorkshopType = null;
+    sessionStorage.removeItem('selectedWorkshopName');
+  }
+
   set selectedWorkshop(workshop: any) {
     this._selectedWorkshop = workshop;
     sessionStorage.setItem('selectedWorkshop', JSON.stringify(workshop));
@@ -71,6 +90,7 @@ export class WorkshopService {
   }
 
   public clearSelectedWorkshop() {
+    this._selectedWorkshopType = null;
     sessionStorage.removeItem('selectedWorkshop');
   }
 
@@ -126,5 +146,9 @@ export class WorkshopService {
   public getWorkshopNameList(id: number) {
     return this.http.get('/api/v2/workshop-list/?id=' + id)
             .pipe(map ((response: any) => response.data));
+  }
+
+  public createWorkshop(workshop: Workshop) {
+    return this.http.post('/api/v2/workshop/', workshop);
   }
 }

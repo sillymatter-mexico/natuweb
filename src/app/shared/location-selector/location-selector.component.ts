@@ -35,7 +35,7 @@ export class LocationSelectorComponent implements OnInit {
 
   @ViewChild(AgmMap) map: AgmMap;
 
-  constructor(public mapsApiLoader: MapsAPILoader, private ngZone: NgZone, public _bsModalRef: BsModalRef) {
+  constructor(public mapsApiLoader: MapsAPILoader, private ngZone: NgZone, private _bsModalRef: BsModalRef) {
     this.searchSucceded = false;
 
     this.mapsApiLoader.load().then(() => {
