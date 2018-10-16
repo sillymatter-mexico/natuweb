@@ -19,12 +19,14 @@ export class WorkshopListViewComponent implements OnInit {
   public previousPage: string;
   public nextPage: string;
   public consultant: any;
+  public mine: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private workshopService: WorkshopService,
               private toastr: ToastrService,
               private userService: UserService) {
+    this.mine = false;
     this.today = new Date();
     this.loading = false;
     this.consultant = this.userService.consultant;
@@ -41,6 +43,7 @@ export class WorkshopListViewComponent implements OnInit {
     this.workshopService.getWorkshopList(type)
       .subscribe((data: any) => {
         this.title = data.title;
+        this.mine = data.mine;
         this.fetchList(data.list);
       }, (error: any) => {
         console.log(error);

@@ -12,7 +12,7 @@
   </div>
 
   <div class="row my-3 mx-1 m-md-3 rounded bg-light align-items-baseline" *ngFor="let workshop of workshopList">
-    <div class="col-3 col-md-2 py-2 text-center">
+    <div class="col-3 col-md-2 p-0 p-md-2 text-center">
       <app-avatar [consultant]="workshop.author.consultant_avatar" *ngIf="workshop.author" size="big"></app-avatar>
       <app-avatar [consultant]="consultant.consultant_avatar" *ngIf="!workshop.author"></app-avatar>
       <p class="font-weight-bold text-primary m-0 avatar-name" *ngIf="workshop.author">
@@ -38,7 +38,7 @@
       </small>
     </div>
     <div class="col-3 align-self-end py-3 d-none d-md-block text-center">
-      <div class="btn btn-natura">
+      <div class="btn btn-natura" (click)="onOpenWorkshop(workshop)">
         Más info.
       </div>
     </div>

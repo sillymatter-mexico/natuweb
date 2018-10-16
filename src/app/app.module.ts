@@ -41,6 +41,7 @@ import { esLocale } from 'ngx-bootstrap/locale';
 import { LocationSelectorComponent } from './shared/location-selector/location-selector.component';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import { WorkshopCreatedComponent } from './workshops/workshop-created/workshop-created.component';
+import { WorkshopViewComponent } from './workshops/workshop-view/workshop-view.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -72,6 +73,7 @@ registerLocaleData(locale, 'es-MX');
     PreviousButtonDirective,
     LocationSelectorComponent,
     WorkshopCreatedComponent,
+    WorkshopViewComponent,
   ],
   imports: [
     BrowserModule,

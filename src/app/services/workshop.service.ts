@@ -34,8 +34,8 @@ export class WorkshopService {
     ];
 
     this._listTypes = [
-      {name: 'mios', title: 'Mis talleres', list: this.getMyWorkshops()},
-      {name: 'recientes', title: 'Talleres recientes', list: this.getTodayWorkshops()}
+      {name: 'mios', title: 'Mis talleres', list: this.getMyWorkshops(), mine: true},
+      {name: 'recientes', title: 'Talleres recientes', list: this.getTodayWorkshops(), mine: false}
     ];
 
     for (let x = 1; x <= 12; x++) {
@@ -75,23 +75,6 @@ export class WorkshopService {
   public clearSelectedWorkshopType() {
     this._selectedWorkshopType = null;
     sessionStorage.removeItem('selectedWorkshopName');
-  }
-
-  set selectedWorkshop(workshop: any) {
-    this._selectedWorkshop = workshop;
-    sessionStorage.setItem('selectedWorkshop', JSON.stringify(workshop));
-  }
-
-  get selectedWorkshop() {
-    if (this._selectedWorkshop) {
-      return this._selectedWorkshop;
-    }
-    return JSON.parse(sessionStorage.getItem('selectedWorkshop'));
-  }
-
-  public clearSelectedWorkshop() {
-    this._selectedWorkshopType = null;
-    sessionStorage.removeItem('selectedWorkshop');
   }
 
   public getWorkshopType(alias: string) {
@@ -149,6 +132,13 @@ export class WorkshopService {
   }
 
   public createWorkshop(workshop: Workshop) {
-    return this.http.post('/api/v2/workshop/', workshop);
+    return this.http.post('/api/v2/workshop/', workshop)
+            .pipe(map ((response: any) => response.detail));
   }
+
+  public getWorkshop(id: number) {
+    return this.http.get('/api/v2/workshop/?workshop=' + id)
+            .pipe(map ((response: any) => response.data));
+  }
+
 }

@@ -1,6 +1,7 @@
 import {AddressPoint} from './address-point.interface';
 
 export interface Workshop {
+  id?: number;
   id_name: number; // id only
   name: string; // string
   description: string; // string

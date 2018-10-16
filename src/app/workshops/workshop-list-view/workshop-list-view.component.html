@@ -19,17 +19,18 @@
               <app-workshop-list
                 *ngIf="!loading"
                 [workshopList]="workshopList"
-                [consultant]="consultant"></app-workshop-list>
+                [consultant]="consultant"
+                [mine]="mine"></app-workshop-list>
             </div>
           </div>
           <div class="col-12 text-left pt-4">
-            <a class="cursor-pointer mr-5"
-               *ngIf="previousPage && previousPage.trim() !== ''"
+            <a class="mr-5 page-arrow"
+               [ngClass]="{'disabled': !(previousPage && previousPage.trim() !== '')}"
                (click)="getPage(previousPage)">
               <i class="fas fa-2x fa-angle-left text-primary"></i>
             </a>
-            <a class="cursor-pointer"
-               *ngIf="nextPage && nextPage.trim() !== ''"
+            <a class="page-arrow"
+               [ngClass]="{'disabled': !(nextPage && nextPage.trim() !== '')}"
                (click)="getPage(nextPage)">
               <i class="fas fa-2x fa-angle-right text-primary"></i>
             </a>

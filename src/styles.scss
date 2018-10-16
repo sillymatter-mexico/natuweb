@@ -303,3 +303,13 @@ timepicker {
   z-index: 2000;
 }
 
+.page-arrow {
+  cursor: pointer;
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    opacity: 0.3;
+  }
+}
+
