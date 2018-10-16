@@ -141,4 +141,9 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
+  public getLeaderWorkshop(id: number) {
+    return this.http.get('/api/v2/workshop/mylist/' + id + '/')
+            .pipe(map ((response: any) => response.data));
+  }
+
 }

@@ -16,7 +16,7 @@ import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedGuard} from './guards/logged.guard';
 import { AvatarComponent } from './layout/avatar/avatar.component';
-import {BsDatepickerModule, CollapseModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
+import {BsDatepickerModule, BsDropdownModule, CollapseModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
 import { HomeComponent } from './dashboard/home/home.component';
 import { WorkshopListPreviewComponent } from './workshops/workshop-list-preview/workshop-list-preview.component';
 import locale from '@angular/common/locales/es-MX';
@@ -42,6 +42,7 @@ import { LocationSelectorComponent } from './shared/location-selector/location-s
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import { WorkshopCreatedComponent } from './workshops/workshop-created/workshop-created.component';
 import { WorkshopViewComponent } from './workshops/workshop-view/workshop-view.component';
+import { WorkshopCheckinComponent } from './workshops/workshop-checkin/workshop-checkin.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -74,6 +75,7 @@ registerLocaleData(locale, 'es-MX');
     LocationSelectorComponent,
     WorkshopCreatedComponent,
     WorkshopViewComponent,
+    WorkshopCheckinComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,7 @@ registerLocaleData(locale, 'es-MX');
     TimepickerModule.forRoot(),
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
+    BsDropdownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAtOhZyrFpLgYsPxWiuJ9yfOnz097YiKP8',
       libraries: ['places']}),

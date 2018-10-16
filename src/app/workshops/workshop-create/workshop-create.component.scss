@@ -5,30 +5,3 @@
   background-size: cover;
   background-position: center;
 }
-
-.workshop-name {
-  width: 100%;
-  height: 100%;
-  border: 1px solid transparent;
-  -webkit-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2);
-  -moz-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2);
-  box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.2);
-  transition: .3s;
-  color: #004897;
-  background-color: white;
-  p {
-    max-width: 100%;
-  }
-  &:hover {
-    border: 1px solid #004897;
-  }
-  &:active {
-    background: #417cb9;
-    border: 1px solid transparent;
-    background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
-    background: -webkit-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
-    background: linear-gradient(to right, #417cb9 0%, #7b84c4 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#417cb9', endColorstr='#7b84c4', GradientType=1);
-    color: white;
-  }
-}
