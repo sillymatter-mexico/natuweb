@@ -37,12 +37,13 @@
             </div>
           </div>
           <div class="col-12 col-md-4 px-3 py-1">
-            <div class="natura-card-button p-3 d-flex align-items-center cursor-pointer">
+            <div class="natura-card-button p-3 d-flex align-items-center cursor-pointer"
+                 (click)="onCheckinLoad()">
               <i class="icon natura-icon-checkin mr-4"></i>
               <p class="m-0 font-weight-bold m-0">Check in</p>
             </div>
           </div>
-          <div class="col-12 col-md-6 mt-md-3">
+          <div class="col-12 col-md-6 mt-md-3 mb-3 mb-md-0">
             <div class="natura-card h-100">
               <div class="natura-card-header p-3">
                 <h4 class="font-weight-bold m-0">Taller</h4>
@@ -61,7 +62,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 mt-md-3">
+          <div class="col-12 col-md-6 mt-md-3 mb-3 mb-md-0">
             <div class="natura-card h-100">
               <div class="natura-card-header p-3">
                 <h4 class="font-weight-bold m-0 d-inline-block">Información</h4>
@@ -70,7 +71,7 @@
                   <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
                       role="menu" aria-labelledby="button-basic">
                     <li role="menuitem">
-                      <a class="dropdown-item">
+                      <a class="dropdown-item" (click)="onAttendanceListLoad()">
                         <p class="my-2">
                           <i class="natura-icon-register-list mr-3 font-weight-bold"></i>
                           <span>Lista de registro</span>

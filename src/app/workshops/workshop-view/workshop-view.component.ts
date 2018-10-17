@@ -3,6 +3,8 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {WorkshopService} from '../../services/workshop.service';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../../services/user.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {WorkshopCheckinComponent} from '../workshop-checkin/workshop-checkin.component';
 
 @Component({
   selector: 'app-workshop-view',
@@ -14,11 +16,13 @@ export class WorkshopViewComponent implements OnInit {
   public workshop: any;
   public loading: boolean;
   private consultant: any;
+  private checkinModal: BsModalRef;
 
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
               private toastr: ToastrService,
-              private userService: UserService) {
+              private userService: UserService,
+              private modalService: BsModalService) {
     this.loading = false;
   }
 
@@ -67,6 +71,22 @@ export class WorkshopViewComponent implements OnInit {
 
   getMapsURI() {
     return 'https://maps.google.com/?q=' + encodeURI(this.workshop.position_string);
+  }
+
+  onCheckinLoad() {
+    const initialState = {
+      workshop: this.workshop,
+      checkin: true
+    };
+    this.checkinModal = this.modalService.show(WorkshopCheckinComponent, {initialState});
+  }
+
+  onAttendanceListLoad() {
+    const initialState = {
+      workshop: this.workshop,
+      checkin: false
+    };
+    this.checkinModal = this.modalService.show(WorkshopCheckinComponent, {initialState});
   }
 
 }

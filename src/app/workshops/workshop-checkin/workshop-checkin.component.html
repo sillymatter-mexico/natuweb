@@ -1,3 +1,65 @@
-<p>
-  workshop-checkin works!
-</p>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="col-12 text-center p-3">
+      <i class="far fa-3x fa-check-circle text-primary" *ngIf="checkin"></i>
+      <p class="text-muted my-2 font-weight-bold" *ngIf="checkin">Check in</p>
+      <i class="natura-icon-register-list fa-3x text-primary" *ngIf="!checkin"></i>
+      <p class="text-muted my-2 font-weight-bold" *ngIf="!checkin">Lista de asistencias</p>
+      <h4>{{workshop.name}}</h4>
+    </div>
+    <div class="col-12 text-left py-3 px-3 px-md-5">
+      <p>
+        <i class="natura-icon-id mr-3 font-weight-bold"></i>
+        <span>ID {{workshop.id}}</span>
+      </p>
+      <p>
+        <i class="far fa-clock mr-3"></i>
+        <span>{{workshop.start_date | momentDate:'ddd, D [de] MMM HH:mm [hrs.]' }}</span>
+      </p>
+    </div>
+    <div class="col-12 text-left px-3 px-md-5" *ngIf="checkin">
+      <button class="btn btn-natura mr-3" [disabled]="loading" (click)="onSaveCheckin()">
+        <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+        Guardar asistencias
+      </button>
+      <button class="btn btn-natura rounded-circle" (click)="toggleAddInput()">
+        <i class="fas fa-plus"></i>
+      </button>
+      <div class="input-group pt-3" *ngIf="showAddInput">
+        <input type="number" class="form-control"
+               placeholder="Inserta aquí el CN"
+               aria-label="CN" [(ngModel)]="addInput">
+        <div class="input-group-append">
+          <button class="btn btn-secondary bg-natura"
+                  type="button" id="button-CN"
+                  [disabled]="addInput === undefined"
+                  (click)="onAddCN()">Agregar</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 px-3 pt-4 pb-3 px-md-5">
+      <p *ngIf="assists.length === 0">No has registrado asistencias para este taller.</p>
+      <div class="w-100 p-3" *ngFor="let assist of assists">
+        <div [ngClass]="{'custom-control custom-checkbox': checkin}">
+          <input type="checkbox" id="checkbox-{{assist.cn}}"
+                 class="custom-control-input"
+                 [(ngModel)]="assist.checkin"
+                 *ngIf="checkin">
+          <label for="checkbox-{{assist.cn}}" [ngClass]="{'custom-control-label': checkin}">
+            <h5 class="m-0 font-weight-bold">{{assist.name}}</h5>
+            <h5 class="m-0 text-primary font-weight-bold">
+              <span>{{assist.carrer_level}}</span>
+              <span *ngIf="assist.carrer_level && assist.cn"> - </span>
+              <span>{{assist.cn}}</span>
+            </h5>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

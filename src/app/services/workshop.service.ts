@@ -146,4 +146,9 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
+  public saveCheckins(checkins: any) {
+    return this.http.post('/api/v2/checkin/', checkins)
+            .pipe(map ((response: any) => response.data));
+  }
+
 }

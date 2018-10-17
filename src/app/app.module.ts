@@ -97,7 +97,8 @@ registerLocaleData(locale, 'es-MX');
   ],
   entryComponents: [
     LocationSelectorComponent,
-    WorkshopCreatedComponent
+    WorkshopCreatedComponent,
+    WorkshopCheckinComponent
   ],
   providers: [
     AuthGuard,
