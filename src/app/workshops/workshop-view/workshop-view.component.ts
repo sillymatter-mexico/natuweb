@@ -109,4 +109,39 @@ export class WorkshopViewComponent implements OnInit {
       });
   }
 
+  enabledCheckin() {
+    const now = new Date();
+    const finish_date = this.toNormalDate(new Date(this.workshop.finish_date));
+    const start_date =  this.toNormalDate(new Date(this.workshop.start_date));
+    const open_date = start_date.setHours(start_date.getHours() - 1);
+    let expire_date = finish_date.setDate(finish_date.getDate() + 14);
+    if (this.consultant && this.consultant.isDRV) {
+      expire_date = finish_date.setDate(finish_date.getDate() + 30);
+    }
+    return this.consultant.isDRV && this.isAfter(now, open_date) && this.isBefore(now, expire_date);
+  }
+
+  enabledAddStaff() {
+    const now = new Date();
+    const finish_date = this.toNormalDate(new Date(this.workshop.finish_date));
+    return this.isBefore(now, finish_date) && this.consultant.isDRV;
+  }
+
+  isBefore(date1, date2) {
+    return date1 < date2;
+  }
+
+  isAfter(date1, date2) {
+    return date1 > date2;
+  }
+
+  toNormalDate(date: Date) {
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth();
+    const day = date.getUTCDate();
+    const hour = date.getUTCHours();
+    const minute = date.getUTCMinutes();
+    return new Date(year, month, day, hour, minute);
+  }
+
 }

@@ -32,14 +32,14 @@
           </div>
           <div class="col-12 col-md-4 px-3 py-1">
             <div class="natura-card-button p-3 d-flex align-items-center cursor-pointer"
-                 (click)="onAddStaff()">
+                 (click)="onAddStaff()" [ngClass]="{'disabled': !enabledAddStaff()}">
               <i class="icon natura-icon-add-staff mr-4"></i>
               <p class="m-0 font-weight-bold m-0">Añadir staff</p>
             </div>
           </div>
           <div class="col-12 col-md-4 px-3 py-1">
             <div class="natura-card-button p-3 d-flex align-items-center cursor-pointer"
-                 (click)="onCheckinLoad()">
+                 (click)="onCheckinLoad()" [ngClass]="{'disabled': !enabledCheckin()}">
               <i class="icon natura-icon-checkin mr-4"></i>
               <p class="m-0 font-weight-bold m-0">Check in</p>
             </div>
@@ -72,7 +72,8 @@
                   <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
                       role="menu" aria-labelledby="button-basic">
                     <li role="menuitem">
-                      <a class="dropdown-item" (click)="onAttendanceListLoad()">
+                      <a class="dropdown-item"
+                         (click)="onAttendanceListLoad()">
                         <p class="my-2">
                           <i class="natura-icon-register-list mr-3 font-weight-bold"></i>
                           <span>Lista de registro</span>
@@ -80,7 +81,8 @@
                       </a>
                     </li>
                     <li role="menuitem">
-                      <a class="dropdown-item" (click)="onSendReport()">
+                      <a class="dropdown-item"
+                         (click)="onSendReport()">
                         <p class="my-2">
                           <i class="natura-icon-send-report mr-3 font-weight-bold"></i>
                           <span>Enviar reporte</span>

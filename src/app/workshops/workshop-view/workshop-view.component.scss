@@ -10,3 +10,10 @@
   -webkit-box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.2);
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  text-decoration: none;
+  opacity: 0.3;
+}
