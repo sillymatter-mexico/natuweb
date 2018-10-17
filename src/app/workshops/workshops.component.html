@@ -24,7 +24,8 @@
       <app-workshop-list-preview
         title="Mis talleres"
         [workshopList]="myWorkshops"
-        size="medium">
+        size="medium"
+        [mine]="true">
         <div bottom class="natura-card-bottom">
           <a [routerLink]="['/talleres', 'mios']">
             <button class="btn btn-natura btn-big btn-wide d-inline-block" >
