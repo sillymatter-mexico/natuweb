@@ -31,7 +31,8 @@
             </div>
           </div>
           <div class="col-12 col-md-4 px-3 py-1">
-            <div class="natura-card-button p-3 d-flex align-items-center cursor-pointer">
+            <div class="natura-card-button p-3 d-flex align-items-center cursor-pointer"
+                 (click)="onAddStaff()">
               <i class="icon natura-icon-add-staff mr-4"></i>
               <p class="m-0 font-weight-bold m-0">Añadir staff</p>
             </div>
@@ -79,7 +80,7 @@
                       </a>
                     </li>
                     <li role="menuitem">
-                      <a class="dropdown-item">
+                      <a class="dropdown-item" (click)="onSendReport()">
                         <p class="my-2">
                           <i class="natura-icon-send-report mr-3 font-weight-bold"></i>
                           <span>Enviar reporte</span>

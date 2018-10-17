@@ -43,6 +43,7 @@ import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import { WorkshopCreatedComponent } from './workshops/workshop-created/workshop-created.component';
 import { WorkshopViewComponent } from './workshops/workshop-view/workshop-view.component';
 import { WorkshopCheckinComponent } from './workshops/workshop-checkin/workshop-checkin.component';
+import { WorkshopAddStaffComponent } from './workshops/workshop-add-staff/workshop-add-staff.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -76,6 +77,7 @@ registerLocaleData(locale, 'es-MX');
     WorkshopCreatedComponent,
     WorkshopViewComponent,
     WorkshopCheckinComponent,
+    WorkshopAddStaffComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ registerLocaleData(locale, 'es-MX');
   entryComponents: [
     LocationSelectorComponent,
     WorkshopCreatedComponent,
-    WorkshopCheckinComponent
+    WorkshopCheckinComponent,
+    WorkshopAddStaffComponent
   ],
   providers: [
     AuthGuard,

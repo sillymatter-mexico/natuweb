@@ -1,10 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {WorkshopService} from '../../services/workshop.service';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../../services/user.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {WorkshopCheckinComponent} from '../workshop-checkin/workshop-checkin.component';
+import {WorkshopAddStaffComponent} from '../workshop-add-staff/workshop-add-staff.component';
 
 @Component({
   selector: 'app-workshop-view',
@@ -17,12 +18,14 @@ export class WorkshopViewComponent implements OnInit {
   public loading: boolean;
   private consultant: any;
   private checkinModal: BsModalRef;
+  private addStaffModal: BsModalRef;
 
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
               private toastr: ToastrService,
               private userService: UserService,
-              private modalService: BsModalService) {
+              private modalService: BsModalService,
+              private router: Router) {
     this.loading = false;
   }
 
@@ -48,6 +51,7 @@ export class WorkshopViewComponent implements OnInit {
         if (this.isWorkshopLeader()) {
           this.fetchLeaderData(id);
         } else {
+          this.router.navigate(['/inicio']);
           this.loading = false;
         }
       }, (error: any) => {
@@ -87,6 +91,22 @@ export class WorkshopViewComponent implements OnInit {
       checkin: false
     };
     this.checkinModal = this.modalService.show(WorkshopCheckinComponent, {initialState});
+  }
+
+  onAddStaff() {
+    const initialState = {
+      workshop: this.workshop
+    };
+    this.checkinModal = this.modalService.show(WorkshopAddStaffComponent, {initialState});
+  }
+
+  onSendReport() {
+    this.workshopService.sendReport(this.consultant.email, this.workshop.id)
+      .subscribe((data: any) => {
+        this.toastr.success('Reporte enviado a ' + this.consultant.email);
+      }, (error: any) => {
+        this.toastr.error('Ocurrió un error al enviar el reporte');
+      });
   }
 
 }

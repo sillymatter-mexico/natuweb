@@ -151,4 +151,19 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
+  public searchStaff(id: number, cn: number) {
+    return this.http.get('/api/v2/workshop/staff/?workshop_ID=' + id + '&cn_code=' + cn)
+            .pipe(map ((response: any) => response.data));
+  }
+
+  public addStaff(data: any) {
+    return this.http.post('/api/v2/workshop/staff/', data)
+            .pipe(map ((response: any) => response.data));
+  }
+
+  public sendReport(email: string, id: number) {
+    return this.http.get( '/api/v2/report/?email=' + email + '&workshopID=' + id)
+            .pipe(map ((response: any) => response.data));
+  }
+
 }

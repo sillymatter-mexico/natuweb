@@ -1,0 +1,48 @@
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="col-12 text-center p-3">
+      <i class="natura-icon-add-staff fa-3x text-primary"></i>
+      <p class="text-muted my-2 font-weight-bold">Añadir staff</p>
+      <h4>{{workshop.name}}</h4>
+    </div>
+    <div class="col-12 text-left py-3 px-3 px-md-5">
+      <p>
+        <i class="natura-icon-id mr-3 font-weight-bold"></i>
+        <span>ID {{workshop.id}}</span>
+      </p>
+      <p>
+        <i class="far fa-clock mr-3"></i>
+        <span>{{workshop.start_date | momentDate:'ddd, D [de] MMM HH:mm [hrs.]' }}</span>
+      </p>
+    </div>
+    <div class="col-12 text-left px-3 px-md-5">
+      <div class="input-group pt-3">
+        <input type="number" class="form-control"
+               placeholder="Inserta aquí el CN"
+               aria-label="CN" [(ngModel)]="addInput">
+        <div class="input-group-append">
+          <button class="btn btn-secondary bg-natura"
+                  type="button" id="button-CN"
+                  [disabled]="addInput === undefined"
+                  (click)="onAddStaff()">
+            <i class="fas fa-spinner fa-spin" *ngIf="loadingSearch"></i>
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 px-3 pt-4 pb-3 px-md-5" *ngIf="currentStaff">
+      <p>
+        ¿Deseas agregar a <strong>{{currentStaff.user}}</strong>
+        como staff del taller <strong>{{currentStaff.workshop}}</strong>?
+      </p>
+      <button class="btn btn-danger mr-3" (click)="cancelAddStaff()">No agregar</button>
+      <button class="btn btn-primary m" (click)="saveStaff()">Agregar</button>
+    </div>
+  </div>
+</div>
