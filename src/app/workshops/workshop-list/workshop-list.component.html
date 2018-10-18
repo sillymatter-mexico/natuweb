@@ -28,7 +28,8 @@
       <small class="text-muted d-block d-md-none text-capitalize">
         {{workshop.start_date | momentDate:'ddd, D [de] MMM HH:mm [hrs.]' }}
       </small>
-      <div class="btn btn-natura btn-small mt-2 d-inline-block d-md-none">
+      <div class="btn btn-natura btn-small mt-2 d-inline-block d-md-none"
+           (click)="onOpenWorkshop(workshop)">
         Más info.
       </div>
     </div>

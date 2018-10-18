@@ -5,13 +5,13 @@ import {Router} from '@angular/router';
 @Directive({
   selector: '[appPreviousButton]'
 })
-export class PreviousButtonDirective implements OnInit{
+export class PreviousButtonDirective implements OnInit {
 
   @HostBinding('style.display') display: string;
   public previous: string;
 
   @HostListener('click') public onClick () {
-    this.router.navigateByUrl(this.previous);
+    this.routerExtend.goToPreviousUrl();
   }
 
   constructor(private routerExtend: RouterExtendService,
@@ -23,6 +23,7 @@ export class PreviousButtonDirective implements OnInit{
 
   ngOnInit() {
     this.previous = this.routerExtend.getPreviousUrl();
+    console.log('previous', this.previous);
     if (!this.previous) {
       this.renderer.addClass(this.el.nativeElement, 'd-none');
     }

@@ -6,20 +6,33 @@ import {NavigationEnd, Router} from '@angular/router';
 })
 export class RouterExtendService {
 
-  private previousUrl: string;
-  private currentUrl: string;
+  private navigationStack: any[];
 
   constructor(private router: Router) {
-    this.currentUrl = this.router.url;
-    router.events.subscribe(event => {
+    this.navigationStack = [];
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.previousUrl = this.currentUrl;
-        this.currentUrl = event.url;
+        const navLength = this.navigationStack.length;
+        this.navigationStack.push(event.url);
+        console.log(this.navigationStack);
       }
     });
   }
 
   public getPreviousUrl() {
-    return this.previousUrl !== this.router.url ? this.previousUrl : null;
+    const navLength = this.navigationStack.length;
+    let lastPage: string;
+    if (navLength > 1) {
+      lastPage = this.navigationStack[navLength - 2];
+      return lastPage;
+    }
+    return null;
+  }
+
+  public goToPreviousUrl() {
+    const navLength = this.navigationStack.length;
+    const lastPage: string = this.navigationStack[navLength - 2];
+    this.router.navigate([lastPage]);
+    this.navigationStack.splice(navLength - 2, 2);
   }
 }
