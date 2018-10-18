@@ -135,6 +135,8 @@ a {
   border-radius: 20px!important;
   border: 0 none;
   outline: 0 none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   -webkit-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5)!important;;
   -moz-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5)!important;;
   box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5)!important;
@@ -361,6 +363,19 @@ timepicker {
     background: linear-gradient(to right, #417cb9 0%, #7b84c4 100%)!important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#417cb9', endColorstr='#7b84c4', GradientType=1);
     color: white;
+  }
+}
+
+.natura-search {
+  .form-control {
+    border-radius: 0 20px 20px 0;
+    box-shadow: none;
+    outline: none!important;
+    height: 28px;
+  }
+  .input-group-text {
+    border-radius: 20px 0 0 20px;
+    height: 28px;
   }
 }
 

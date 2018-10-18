@@ -16,6 +16,7 @@ export class WorkshopService {
   private _selectedWorkshop: any;
   private readonly _specialists: any[];
   private readonly _hours: any[] = [];
+  private _watchPermission: any;
 
   constructor(private http: HttpClient) {
 
@@ -42,6 +43,20 @@ export class WorkshopService {
       this._hours.push({value: x * 60, display: x});
     }
 
+    this._watchPermission = {
+      permission: false,
+      workshop: null
+    };
+
+  }
+
+  get watchPermission() {
+    return this._watchPermission;
+  }
+
+  set watchPermission(watchPermission: any) {
+    this._watchPermission.permission = watchPermission.permission;
+    this._watchPermission.workshop = watchPermission.workshop;
   }
 
   set workshopTypes(types: any) {

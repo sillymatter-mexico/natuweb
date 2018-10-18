@@ -4,6 +4,8 @@ import {WorkshopService} from '../../services/workshop.service';
 import * as moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
 import {TabsetComponent} from 'ngx-bootstrap';
+import {debounceTime, distinctUntilChanged, startWith, switchMap, take, tap} from 'rxjs/operators';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-workshop-filters',
@@ -27,6 +29,7 @@ export class WorkshopFiltersComponent implements OnInit {
   public workshopLists: any;
   public drvList: any[];
   public selectedDRV: any;
+  public queryField: FormControl;
   @ViewChild('filterTabs') filterTabs: TabsetComponent;
 
   constructor(private route: ActivatedRoute,
@@ -38,10 +41,11 @@ export class WorkshopFiltersComponent implements OnInit {
     this.date = new Date();
     this.dayList = [];
     this.dayNames  = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'HOY'];
-    this.dayWorkshops = {list: [], next: null, previous: null};
-    this.calendarWorkshops = {list: [], next: null, previous: null};
-    this.drvWorkshops = {list: [], next: null, previous: null};
-    this.searchWorkshops = {list: [], next: null, previous: null};
+    this.dayWorkshops = {list: [], next: null, previous: null, loading: false};
+    this.calendarWorkshops = {list: [], next: null, previous: null, loading: false};
+    this.drvWorkshops = {list: [], next: null, previous: null, loading: false};
+    this.searchWorkshops = {list: [], next: null, previous: null, loading: false};
+    this.queryField = new FormControl();
     this.workshopLists = {
       dia: this.dayWorkshops,
       calendario: this.calendarWorkshops,
@@ -56,6 +60,7 @@ export class WorkshopFiltersComponent implements OnInit {
     this.route.queryParamMap
       .subscribe((params: any) => {
         this.selectedFilter = params.get('filtro');
+        this.setWorkshopSearch();
         this.fetchWorkshops();
       });
   }
@@ -107,7 +112,7 @@ export class WorkshopFiltersComponent implements OnInit {
         } else {
           this.previousPage = this.calendarWorkshops.previous;
           this.nextPage = this.calendarWorkshops.next;
-          this.loading = false;
+          this.calendarWorkshops.loading = false;
         }
         break;
       case 'drv':
@@ -117,7 +122,7 @@ export class WorkshopFiltersComponent implements OnInit {
         } else {
           this.previousPage = this.drvWorkshops.previous;
           this.nextPage = this.drvWorkshops.next;
-          this.loading = false;
+          this.drvWorkshops.loading = false;
         }
         break;
       case 'dia':
@@ -130,17 +135,15 @@ export class WorkshopFiltersComponent implements OnInit {
         } else {
           this.previousPage = this.dayWorkshops.previous;
           this.nextPage = this.dayWorkshops.next;
-          this.loading = false;
+          this.dayWorkshops.loading = false;
         }
         break;
       case 'buscar':
         this.filterTabs.tabs[3].active = true;
-        if (this.searchWorkshops.list.length === 0) {
-          break;
-        } else {
-          this.previousPage = this.drvWorkshops.previous;
-          this.nextPage = this.drvWorkshops.next;
-          this.loading = false;
+        this.searchWorkshops.loading = false;
+        if (this.searchWorkshops.list.length !== 0) {
+          this.previousPage = this.searchWorkshops.previous;
+          this.nextPage = this.searchWorkshops.next;
         }
         break;
       default: break;
@@ -148,21 +151,24 @@ export class WorkshopFiltersComponent implements OnInit {
   }
 
   public getDayWorkshops(day: number, month: number, year: number) {
-    this.loading = true;
-    if (this.selectedFilter === 'calendario') {
-      this.date = new Date(year, month - 1, day);
+    if (this.selectedFilter === 'calendario' || this.selectedFilter === 'dia') {
+      if (this.selectedFilter === 'calendario') {
+        this.date = new Date(year, month - 1, day);
+      }
+      this.workshopLists[this.selectedFilter].loading = true;
+      this.workshopService.getWorkshopsByDate(day, month, year)
+        .pipe(take(1))
+        .subscribe((response: any) => {
+          this.workshopLists[this.selectedFilter].list = response.workshop;
+          this.workshopLists[this.selectedFilter].next = this.nextPage = response.nextPage;
+          this.workshopLists[this.selectedFilter].previous = this.previousPage = response.previousPage;
+          this.workshopLists[this.selectedFilter].loading = false;
+        }, (error: any) => {
+          this.workshopLists[this.selectedFilter].loading = false;
+          console.log(error);
+          this.toastr.error('Lo sentimos, ocurrió un error al cargar los talleres del día seleccionado');
+        });
     }
-    this.workshopService.getWorkshopsByDate(day, month, year)
-      .subscribe((response: any) => {
-        this.workshopLists[this.selectedFilter].list = response.workshop;
-        this.workshopLists[this.selectedFilter].next = this.nextPage = response.nextPage;
-        this.workshopLists[this.selectedFilter].previous = this.previousPage = response.previousPage;
-        this.loading = false;
-      }, (error: any) => {
-        this.loading = false;
-        console.log(error);
-        this.toastr.error('Lo sentimos, ocurrió un error al cargar los talleres del día seleccionado');
-      });
   }
 
   getDateWorkshops(date: Date) {
@@ -173,14 +179,15 @@ export class WorkshopFiltersComponent implements OnInit {
   }
 
   fetchDrvData() {
-    this.loading = true;
+    this.drvWorkshops.loading = true;
     this.workshopService.getDRVList()
+      .pipe(take(1))
       .subscribe((response: any) => {
         this.drvList = response.filter(x => x.name !== '');
         this.selectedDRV = this.drvList[0];
         this.getDrvWorkshops();
       }, (error: any) => {
-        this.loading = false;
+        this.drvWorkshops.loading = false;
         console.log(error);
         this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de DRVs');
       }
@@ -188,18 +195,37 @@ export class WorkshopFiltersComponent implements OnInit {
   }
 
   getDrvWorkshops() {
-    this.loading = true;
+    this.drvWorkshops.loading = true;
     this.workshopService.getWorkshopsByDRV(this.selectedDRV.id)
+      .pipe(take(1))
       .subscribe((response: any) => {
         this.drvWorkshops.list = response.workshop;
         this.drvWorkshops.next = this.nextPage = response.nextPage;
         this.drvWorkshops.previous = this.previousPage = response.previousPage;
         this.nextPage = this.drvWorkshops.next;
-        this.loading = false;
+        this.drvWorkshops.loading = false;
       }, (error: any) => {
-        this.loading = false;
+        this.drvWorkshops.loading = false;
         console.log(error);
         this.toastr.error('Lo sentimos, ocurrió un error al cargar los talleresdel DRV seleccionado');
+      });
+  }
+
+  setWorkshopSearch() {
+    this.queryField.valueChanges
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        tap(() => this.searchWorkshops.loading = true),
+        switchMap((query: any) =>  this.workshopService.searchWorkshop(query)))
+      .subscribe((response: any) => {
+        this.searchWorkshops.list = response.workshop;
+        this.searchWorkshops.loading = false;
+        this.searchWorkshops.previous = this.previousPage = response.previousPage;
+        this.searchWorkshops.next = this.nextPage = response.nextPage;
+      }, (error: any) => {
+        console.log(error);
+        this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
       });
   }
 
@@ -208,17 +234,18 @@ export class WorkshopFiltersComponent implements OnInit {
   }
 
   public getPage(url: string) {
-    this.loading = true;
+    this.workshopLists[this.selectedFilter].loading = true;
     this.previousPage = this.nextPage = null;
     this.workshopService.getWorkshopPage(url)
-      .subscribe((data: any) => {
-        this.loading = false;
-        this.workshopLists[this.selectedFilter].list = data.workshop;
-        this.workshopLists[this.selectedFilter].previous = this.previousPage = data.previousPage;
-        this.workshopLists[this.selectedFilter].next = this.nextPage = data.nextPage;
+      .pipe(take(1))
+      .subscribe((response: any) => {
+        this.workshopLists[this.selectedFilter].loading = false;
+        this.workshopLists[this.selectedFilter].list = response.workshop;
+        this.workshopLists[this.selectedFilter].previous = this.previousPage = response.previousPage;
+        this.workshopLists[this.selectedFilter].next = this.nextPage = response.nextPage;
       }, (error: any) => {
         console.log(error);
-        this.loading = false;
+        this.workshopLists[this.selectedFilter].loading = false;
         this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
       });
   }

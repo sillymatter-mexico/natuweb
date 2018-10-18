@@ -23,7 +23,6 @@ export class PreviousButtonDirective implements OnInit {
 
   ngOnInit() {
     this.previous = this.routerExtend.getPreviousUrl();
-    console.log('previous', this.previous);
     if (!this.previous) {
       this.renderer.addClass(this.el.nativeElement, 'd-none');
     }

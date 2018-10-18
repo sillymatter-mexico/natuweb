@@ -19,6 +19,7 @@ export class WorkshopViewComponent implements OnInit {
   private consultant: any;
   private checkinModal: BsModalRef;
   private addStaffModal: BsModalRef;
+  public watchPermission: any;
 
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
@@ -30,9 +31,9 @@ export class WorkshopViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.watchPermission = this.workshopService.watchPermission;
     this.consultant = this.userService.consultant;
     this.route.paramMap.subscribe((params: ParamMap) => {
-
       const id = params.get('id');
       this.fetchWorkshop(+id);
     });
@@ -48,11 +49,12 @@ export class WorkshopViewComponent implements OnInit {
       .subscribe((response: any) => {
         this.workshop = response.workshop;
         this.workshop.assistance  = response.assistance;
-        if (this.isWorkshopLeader()) {
+        if (this.isWorkshopLeader() ||
+            (this.watchPermission.permission && +this.watchPermission.workshop === +id)) {
           this.fetchLeaderData(id);
         } else {
-          this.router.navigate(['/inicio']);
           this.loading = false;
+          this.router.navigate(['/talleres']);
         }
       }, (error: any) => {
         console.log(error);
@@ -97,7 +99,7 @@ export class WorkshopViewComponent implements OnInit {
     const initialState = {
       workshop: this.workshop
     };
-    this.checkinModal = this.modalService.show(WorkshopAddStaffComponent, {initialState});
+    this.addStaffModal = this.modalService.show(WorkshopAddStaffComponent, {initialState});
   }
 
   onSendReport() {

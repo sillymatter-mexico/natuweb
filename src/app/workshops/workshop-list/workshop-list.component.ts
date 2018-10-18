@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {WorkshopService} from '../../services/workshop.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-workshop-list',
@@ -13,7 +14,7 @@ export class WorkshopListComponent implements OnInit {
   @Input() public consultant: any;
   @Input() public mine: boolean;
 
-  constructor(private router: Router, private workshopService: WorkshopService) {
+  constructor(private router: Router, private workshopService: WorkshopService, private userService: UserService) {
     this.workshopList = [];
     this.mine = false;
   }
@@ -22,7 +23,13 @@ export class WorkshopListComponent implements OnInit {
   }
 
   onOpenWorkshop(workshop: any) {
-    if (this.mine || +workshop.author.id === +this.consultant.id) {
+    let watchPermission: any;
+    if (this.mine || +workshop.author.id === +this.userService.consultant.id) {
+      watchPermission = {
+        permission: true,
+        workshop: workshop.id
+      };
+      this.workshopService.watchPermission = watchPermission;
       this.router.navigate(['/talleres', 'taller', workshop.id]);
     } else {
       /* TO DO */

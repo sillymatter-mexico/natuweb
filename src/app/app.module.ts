@@ -9,7 +9,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import {AuthService} from './services/auth.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ServerHttpInterceptor } from './interceptors/server.interceptor';
 import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
@@ -85,6 +85,7 @@ registerLocaleData(locale, 'es-MX');
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
