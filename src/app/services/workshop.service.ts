@@ -13,7 +13,6 @@ export class WorkshopService {
   private _workshopTypeList: any[];
   private _listTypes: any[];
   private _selectedWorkshopType: any;
-  private _selectedWorkshop: any;
   private readonly _specialists: any[];
   private readonly _hours: any[] = [];
   private _watchPermission: any;
