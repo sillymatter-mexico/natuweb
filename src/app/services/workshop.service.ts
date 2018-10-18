@@ -103,19 +103,6 @@ export class WorkshopService {
     this._workshopTypeList = typeList;
   }
 
-  public getWorkshopsByDate(day, month, year, page = 1) {
-    let url = '/api/v2/workshop/search-day/?page=' + page;
-
-    if (day !== null) {
-      url = url + '&day=' + day;
-    }
-
-    url += '&month=' + month + '&year=' + year;
-
-    return this.http.get(url)
-            .pipe(map ((response: any) => response.data));
-  }
-
   public getTodayWorkshops() {
     const date = new Date();
     return this.getWorkshopsByDate(date.getDate(), date.getMonth() + 1, date.getFullYear());
@@ -163,6 +150,34 @@ export class WorkshopService {
 
   public sendReport(email: string, id: number) {
     return this.http.get( '/api/v2/report/?email=' + email + '&workshopID=' + id)
+            .pipe(map ((response: any) => response.data));
+  }
+
+  public getWorkshopsByDate(day, month, year, page = 1) {
+    let url = '/api/v2/workshop/search-day/?page=' + page;
+
+    if (day !== null) {
+      url = url + '&day=' + day;
+    }
+
+    url += '&month=' + month + '&year=' + year;
+
+    return this.http.get(url)
+      .pipe(map ((response: any) => response.data));
+  }
+
+  public getDRVList() {
+    return this.http.get('/api/v2/drv-list/')
+            .pipe(map ((response: any) => response.data));
+  }
+
+  public getWorkshopsByDRV(id: number, page = 1) {
+    return this.http.get('/api/v2/workshop/search-drv/?page=' + page + '&drv_id=' + id)
+            .pipe(map ((response: any) => response.data));
+  }
+
+  public searchWorkshop(keyword: string, page = 1) {
+    return this.http.get('/api/v2/workshop/search/?page=' + page + '&search=' + keyword)
             .pipe(map ((response: any) => response.data));
   }
 

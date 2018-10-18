@@ -85,7 +85,7 @@ export class WorkshopsComponent implements OnInit {
     }
   }
 
-  getActiveDay(day) {
+  public getActiveDay(day) {
     return (this.date.getDate() === parseInt(day.number, 10) && (this.date.getMonth() + 1) === parseInt(day.month, 10));
   }
 

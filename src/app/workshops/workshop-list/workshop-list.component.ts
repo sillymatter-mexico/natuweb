@@ -22,7 +22,7 @@ export class WorkshopListComponent implements OnInit {
   }
 
   onOpenWorkshop(workshop: any) {
-    if (this.mine) {
+    if (this.mine || +workshop.author.id === +this.consultant.id) {
       this.router.navigate(['/talleres', 'taller', workshop.id]);
     } else {
       /* TO DO */

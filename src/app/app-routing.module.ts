@@ -13,6 +13,7 @@ import {WorkshopListViewComponent} from './workshops/workshop-list-view/workshop
 import {WorkshopCreateComponent} from './workshops/workshop-create/workshop-create.component';
 import {WorkshopCreateDetailComponent} from './workshops/workshop-create-detail/workshop-create-detail.component';
 import {WorkshopViewComponent} from './workshops/workshop-view/workshop-view.component';
+import {WorkshopFiltersComponent} from './workshops/workshop-filters/workshop-filters.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
         {path: 'talleres/crear/:type', component: WorkshopCreateComponent},
         {path: 'talleres/crear/:type/:workshop', component: WorkshopCreateDetailComponent},
         {path: 'talleres/taller/:id', component: WorkshopViewComponent},
+        {path: 'talleres/filtros/consulta-y-registro', component: WorkshopFiltersComponent},
       ]
     }]
   }

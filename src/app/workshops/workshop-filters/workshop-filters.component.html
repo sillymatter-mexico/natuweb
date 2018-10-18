@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="natura-card mt-4 p-2 p-md-5">
+        <div class="row">
+          <div class="col-12">
+            <div class="float-left cursor-pointer" appPreviousButton>
+              <i class="fas fa-angle-left mr-4"></i><h5 class="font-weight-bold d-inline-block">Regresar</h5>
+            </div>
+            <div class="float-right text-capitalize">{{ today | date:'EEEE, MMMM d, y' }}</div>
+          </div>
+          <div class="col-12">
+            <img src="../../assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
+            <h5 class="mb-0 font-weight-bold mt-2">Consulta y registro</h5>
+          </div>
+          <div class="col-12 p-3">
+            <tabset type="pills" #filterTabs>
+              <tab heading="Calendario" customClass="tab-natura" (select)="onSelectFilter('calendario')">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="natura-card">
+                      <div class="w-100 px-1 px-md-4 pt-3">
+                        <p class="text-capitalize font-weight-bold">{{ date | date: 'EEEE, LLL dd' }}</p>
+                        <div class="calendar-header w-100 text-center">
+                          <div *ngFor="let day of dayList"
+                               class="calendar-item text-center"
+                               [ngClass]="{'active': getActiveDay(day)}"
+                               (click)="getDayWorkshops(day.number, day.month, day.year)">
+                            <small class="font-weight-bold">{{day.name}}</small>
+                            <h5 class="text-muted">{{day.number}}</h5>
+                          </div>
+                        </div>
+                        <app-loader [loading]="loading"></app-loader>
+                        <app-workshop-list
+                          *ngIf="!loading"
+                          [workshopList]="calendarWorkshops.list"></app-workshop-list>
+                        <p class="px-4" *ngIf="calendarWorkshops.list.length === 0 && !loading">
+                          No hay talleres para la fecha seleccionada.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+              <tab heading="DRV" customClass="tab-natura" (select)="onSelectFilter('drv')">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="natura-card">
+                      <div class="w-100 px-1 px-md-4 pt-3">
+                        <div class="w-100 pt-3">
+                          <div class="form-row justify-content-end px-4">
+                            <div class="form-group col-12 col-md-4 col-lg-3 m-0">
+                              <select class="form-control font-weight-bold text-primary input-natura"
+                                      (change)="getDrvWorkshops()" [(ngModel)]="selectedDRV">
+                                <option *ngFor="let drv of drvList" [ngValue]="drv">
+                                  {{drv.name}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <app-loader [loading]="loading"></app-loader>
+                        <app-workshop-list
+                          *ngIf="!loading"
+                          [workshopList]="drvWorkshops.list"></app-workshop-list>
+                        <p class="px-4" *ngIf="drvWorkshops.list.length === 0 && !loading">
+                          No hay talleres para el DRV seleccionado.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+              <tab heading="Por día" customClass="tab-natura" (select)="onSelectFilter('dia')">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="natura-card">
+                      <div class="w-100 px-1 px-md-4 pt-3">
+                        <div class="w-100 pt-3">
+                          <div class="form-row justify-content-end px-4">
+                            <div class="form-group col-12 col-md-4 col-lg-3 m-0 position-relative">
+                              <input
+                                class="form-control text-capitalize
+                                input-natura cursor-pointer text-primary font-weight-bold"
+                                name="selectedDate"
+                                id="date" placeholder="Fecha del taller"
+                                bsDatepicker [bsValue]="today"
+                                [bsConfig]="{ dateInputFormat: 'MMMM D YYYY' }"
+                                #dp="bsDatepicker"
+                                autocomplete="off" (bsValueChange)="getDateWorkshops($event)">
+                              <i class="fas position-absolute text-primary"
+                                 style="top: 10px; right: 15px;"
+                                 [ngClass]="dp.isOpen ? 'fa-angle-up' : 'fa-angle-down'"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <app-loader [loading]="loading"></app-loader>
+                        <app-workshop-list
+                          *ngIf="!loading"
+                          [workshopList]="dayWorkshops.list"></app-workshop-list>
+                        <p class="px-4" *ngIf="dayWorkshops.list.length === 0 && !loading">
+                          No hay talleres para el día seleccionado.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+              <tab heading="Buscar" customClass="tab-natura" (select)="onSelectFilter('buscar')">
+
+              </tab>
+            </tabset>
+          </div>
+          <div class="col-12 text-left pt-4">
+            <a class="mr-5 page-arrow"
+               [ngClass]="{'disabled': !(previousPage && previousPage.trim() !== '')}"
+               (click)="getPage(previousPage)">
+              <i class="fas fa-2x fa-angle-left text-primary"></i>
+            </a>
+            <a class="page-arrow"
+               [ngClass]="{'disabled': !(nextPage && nextPage.trim() !== '')}"
+               (click)="getPage(nextPage)">
+              <i class="fas fa-2x fa-angle-right text-primary"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

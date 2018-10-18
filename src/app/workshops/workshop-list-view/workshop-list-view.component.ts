@@ -67,6 +67,7 @@ export class WorkshopListViewComponent implements OnInit {
 
   public getPage(url: string) {
     this.loading = true;
+    this.previousPage = this.nextPage = null;
     this.workshopService.getWorkshopPage(url)
       .subscribe((data: any) => {
         console.log('data', data);

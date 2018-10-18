@@ -53,10 +53,12 @@
           </div>
         </div>
         <div bottom class="natura-card-bottom">
-          <button class="btn btn-natura btn-big btn-wide d-inline-block">
-            <span class="align-middle">Ver más</span>
-            <i class="fas fa-angle-right ml-2 align-middle"></i>
-          </button>
+          <a [routerLink]="['/talleres', 'filtros', 'consulta-y-registro']" [queryParams]="{filtro: 'calendario'}">
+            <button class="btn btn-natura btn-big btn-wide d-inline-block">
+              <span class="align-middle">Ver más</span>
+              <i class="fas fa-angle-right ml-2 align-middle"></i>
+            </button>
+          </a>
         </div>
       </app-workshop-list-preview>
     </div>

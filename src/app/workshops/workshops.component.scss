@@ -14,37 +14,3 @@
     box-shadow: 1px 0 11px rgba(0,0,0,0.5);
   }
 }
-
-.calendar-header {
-  white-space: nowrap;
-  overflow-x: auto;
-  display: inline-block;
-  .calendar-item {
-    display: inline-block;
-    margin: 0 .85rem;
-    border-radius: 100%;
-    text-align: center;
-    &.active {
-      h5 {
-        background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);
-        background: -webkit-linear-gradient(left, #417cb9 0%,#7b84c4 100%);
-        background: linear-gradient(to right, #417cb9 0%,#7b84c4 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#417cb9', endColorstr='#7b84c4',GradientType=1 );
-        font-weight: bold;
-        color: white!important;
-        border-radius: 100%;
-        width: 25px;
-        height: 25px;
-        padding-top: 5px;
-        margin-top: 0;
-      }
-    }
-    small {
-      font-size: .7em;
-    }
-    h5 {
-      font-size: 1em;
-      margin: 5px 0 0;
-    }
-  }
-}

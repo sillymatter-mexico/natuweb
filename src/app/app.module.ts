@@ -16,7 +16,7 @@ import { AuthHttpInterceptor } from './interceptors/auth.interceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {LoggedGuard} from './guards/logged.guard';
 import { AvatarComponent } from './layout/avatar/avatar.component';
-import {BsDatepickerModule, BsDropdownModule, CollapseModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
+import {BsDatepickerModule, BsDropdownModule, CollapseModule, ModalModule, TabsModule, TimepickerModule} from 'ngx-bootstrap';
 import { HomeComponent } from './dashboard/home/home.component';
 import { WorkshopListPreviewComponent } from './workshops/workshop-list-preview/workshop-list-preview.component';
 import locale from '@angular/common/locales/es-MX';
@@ -44,6 +44,7 @@ import { WorkshopCreatedComponent } from './workshops/workshop-created/workshop-
 import { WorkshopViewComponent } from './workshops/workshop-view/workshop-view.component';
 import { WorkshopCheckinComponent } from './workshops/workshop-checkin/workshop-checkin.component';
 import { WorkshopAddStaffComponent } from './workshops/workshop-add-staff/workshop-add-staff.component';
+import { WorkshopFiltersComponent } from './workshops/workshop-filters/workshop-filters.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -78,6 +79,7 @@ registerLocaleData(locale, 'es-MX');
     WorkshopViewComponent,
     WorkshopCheckinComponent,
     WorkshopAddStaffComponent,
+    WorkshopFiltersComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ registerLocaleData(locale, 'es-MX');
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
     BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAtOhZyrFpLgYsPxWiuJ9yfOnz097YiKP8',
       libraries: ['places']}),
