@@ -1,7 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from './user.service';
-import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class AuthService {
   private _redirectUrl: string;
   private _rememberSession: boolean;
 
-  constructor(private http: HttpClient, private userService: UserService, private injector: Injector) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   login(user: any) {
 
@@ -72,8 +71,6 @@ export class AuthService {
   }
 
   logout() {
-    /* DO NOT TOUCH THIS */
-    const router = this.injector.get(Router);
     this._logged = false;
     localStorage.clear();
     sessionStorage.clear();
