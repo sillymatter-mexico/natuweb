@@ -55,16 +55,12 @@
         <span class="font-weight-bold align-middle">Compartir</span>
       </div>
       <div class="d-inline-block" *ngIf="showShare">
-        <!--<share-buttons [show]="3" [url]="shareURL"
+        <share-buttons [show]="3" [url]="shareURL"
                        [include]="['facebook','twitter','linkedin','pinterest','whatsapp','messenger','telegram','email']"
                        [title]="workshop.name" [theme]="'modern-light'"
                        [description]="workshop.description"
                        [image]="workshop.images"
                        [autoSetMeta]="false"
-        ></share-buttons>-->
-        <share-buttons [show]="3" [url]="shareURL"
-                       [include]="['facebook','twitter','linkedin','pinterest','whatsapp','messenger','telegram','email']"
-                       [theme]="'modern-light'"
         ></share-buttons>
       </div>
     </div>

@@ -89,14 +89,6 @@
                         </p>
                       </a>
                     </li>
-                    <li role="menuitem">
-                      <a class="dropdown-item">
-                        <p class="my-2">
-                          <i class="natura-icon-share mr-3 font-weight-bold"></i>
-                          <span>Compartir</span>
-                        </p>
-                      </a>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -129,6 +121,21 @@
                     <i class="far fa-user mr-3"></i>
                     <span>{{workshop.specialist}}</span>
                   </p>
+                </div>
+                <div class="w-100 text-right p-3">
+                  <div class="d-inline-block cursor-pointer mr-3" (click)="toggleShare()">
+                    <i class="natura-icon-share align-middle mr-3"></i>
+                    <span class="font-weight-bold align-middle">Compartir</span>
+                  </div>
+                  <div class="d-inline-block" *ngIf="showShare">
+                    <share-buttons [show]="3" [url]="shareURL"
+                                   [include]="['facebook','twitter','whatsapp','linkedin','pinterest','telegram','email']"
+                                   [title]="workshop.name" [theme]="'modern-light'"
+                                   [description]="workshop.description"
+                                   [image]="workshop.images"
+                                   [autoSetMeta]="false"
+                    ></share-buttons>
+                  </div>
                 </div>
               </div>
             </div>

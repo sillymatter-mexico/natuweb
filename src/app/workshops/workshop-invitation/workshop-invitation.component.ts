@@ -3,7 +3,6 @@ import {WorkshopService} from '../../services/workshop.service';
 import {BsModalRef} from 'ngx-bootstrap';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {ServerService} from '../../services/server.service';
 import {AppService} from '../../services/app.service';
 
 @Component({
@@ -20,11 +19,9 @@ export class WorkshopInvitationComponent implements OnInit {
   public showShare: boolean;
 
   constructor(private workshopService: WorkshopService,
-              private serverService: ServerService,
               private toastr: ToastrService,
               private route: ActivatedRoute,
-              private injector: Injector,
-              private appService: AppService) {
+              private injector: Injector) {
     this.loading = false;
     this.modal = false;
     this.showShare = false;
@@ -59,7 +56,7 @@ export class WorkshopInvitationComponent implements OnInit {
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
         this.workshop = response.workshop;
-        this.shareURL = this.serverService.devPageUrl + '/talleres/invitacion/' + this.workshop.id;
+        this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.id;
         this.loading = false;
       }, (error: any) => {
         console.log(error);

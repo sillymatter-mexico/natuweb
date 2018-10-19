@@ -20,6 +20,8 @@ export class WorkshopViewComponent implements OnInit {
   private checkinModal: BsModalRef;
   private addStaffModal: BsModalRef;
   public watchPermission: any;
+  public showShare: boolean;
+  public shareURL: string;
 
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
@@ -28,6 +30,7 @@ export class WorkshopViewComponent implements OnInit {
               private modalService: BsModalService,
               private router: Router) {
     this.loading = false;
+    this.showShare = false;
   }
 
   ngOnInit() {
@@ -66,6 +69,7 @@ export class WorkshopViewComponent implements OnInit {
   fetchLeaderData(id: number) {
     this.workshopService.getLeaderWorkshop(id)
       .subscribe((response: any) => {
+        this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.id;
         this.workshop.assists = response.assists;
         this.loading = false;
       }, (error: any) => {
@@ -126,6 +130,10 @@ export class WorkshopViewComponent implements OnInit {
     const now = new Date();
     const finish_date = this.toNormalDate(new Date(this.workshop.finish_date));
     return this.isBefore(now, finish_date) && this.consultant.isDRV;
+  }
+
+  toggleShare() {
+    this.showShare = !this.showShare;
   }
 
   isBefore(date1, date2) {
