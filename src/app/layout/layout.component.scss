@@ -27,7 +27,7 @@ app-layout {
     background: url('../../assets/img/backgrounds/sidebar-collapsed.png') no-repeat;
     background-size: cover;
     background-color: white;
-    box-shadow: 1px 0px 11px rgba(0,0,0,0.2);
+    box-shadow: 1px 0 11px rgba(0,0,0,0.2);
   }
 
   #wrapper.toggled #sidebar-wrapper {
@@ -39,6 +39,8 @@ app-layout {
   #page-content-wrapper {
     width: calc(100% - #{$sidebar-collapsed-width});
     position: absolute;
+    background: url('../../assets/img/backgrounds/dashboard.png');
+    background-size: 100% auto;
   }
 
   #wrapper.toggled #page-content-wrapper {
