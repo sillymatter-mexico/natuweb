@@ -12,6 +12,8 @@ export class RouterExtendService {
     this.navigationStack = [];
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        (<any>window).ga('set', 'page', event.urlAfterRedirects);
+        (<any>window).ga('send', 'pageview');
         const tree: UrlTree = router.parseUrl(event.url);
         const params: any = {...tree.queryParams};
         tree.queryParams = {};
