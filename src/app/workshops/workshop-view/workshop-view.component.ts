@@ -67,7 +67,6 @@ export class WorkshopViewComponent implements OnInit {
     this.workshopService.getLeaderWorkshop(id)
       .subscribe((response: any) => {
         this.workshop.assists = response.assists;
-        console.log(this.workshop);
         this.loading = false;
       }, (error: any) => {
         console.log(error);

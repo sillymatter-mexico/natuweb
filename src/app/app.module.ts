@@ -45,6 +45,7 @@ import { WorkshopViewComponent } from './workshops/workshop-view/workshop-view.c
 import { WorkshopCheckinComponent } from './workshops/workshop-checkin/workshop-checkin.component';
 import { WorkshopAddStaffComponent } from './workshops/workshop-add-staff/workshop-add-staff.component';
 import { WorkshopFiltersComponent } from './workshops/workshop-filters/workshop-filters.component';
+import { WorkshopInvitationComponent } from './workshops/workshop-invitation/workshop-invitation.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -80,6 +81,7 @@ registerLocaleData(locale, 'es-MX');
     WorkshopCheckinComponent,
     WorkshopAddStaffComponent,
     WorkshopFiltersComponent,
+    WorkshopInvitationComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,7 +107,8 @@ registerLocaleData(locale, 'es-MX');
     LocationSelectorComponent,
     WorkshopCreatedComponent,
     WorkshopCheckinComponent,
-    WorkshopAddStaffComponent
+    WorkshopAddStaffComponent,
+    WorkshopInvitationComponent
   ],
   providers: [
     AuthGuard,

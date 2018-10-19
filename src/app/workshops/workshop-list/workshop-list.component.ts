@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {WorkshopService} from '../../services/workshop.service';
 import {UserService} from '../../services/user.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {WorkshopInvitationComponent} from '../workshop-invitation/workshop-invitation.component';
 
 @Component({
   selector: 'app-workshop-list',
@@ -13,8 +15,12 @@ export class WorkshopListComponent implements OnInit {
   @Input() public workshopList: any[];
   @Input() public consultant: any;
   @Input() public mine: boolean;
+  private workshopModal: BsModalRef;
 
-  constructor(private router: Router, private workshopService: WorkshopService, private userService: UserService) {
+  constructor(private router: Router,
+              private workshopService: WorkshopService,
+              private userService: UserService,
+              private modalService: BsModalService) {
     this.workshopList = [];
     this.mine = false;
   }
@@ -32,7 +38,10 @@ export class WorkshopListComponent implements OnInit {
       this.workshopService.watchPermission = watchPermission;
       this.router.navigate(['/talleres', 'taller', workshop.id]);
     } else {
-      /* TO DO */
+      const initialState = {
+        workshop: workshop
+      };
+      this.workshopModal = this.modalService.show(WorkshopInvitationComponent, {initialState, class: 'modal-lg'});
     }
   }
 

@@ -1,0 +1,58 @@
+<div class="container-fluid p-0 m-0 position-relative">
+  <button type="button" class="close pull-right position-absolute"
+          aria-label="Close" (click)="closeModal()" style="top: 15px; right: 15px;">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row p-0 m-0 align-items-center invitation-header" [style.backgroundImage]="'url(' + workshop.images + ')'">
+    <div class="col-12">
+      <h2 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name}}</h2>
+    </div>
+  </div>
+  <app-loader [loading]="loading"></app-loader>
+  <div class="row p-0 m-0" *ngIf="!loading">
+    <div class="col-12 col-lg-6 mt-lg-3 mb-3 mb-lg-0 border-right">
+      <div class="w-100 p-3 d-flex align-items-center">
+        <app-avatar [consultant]="workshop.author.consultant_avatar" size="large"></app-avatar>
+        <div class="ml-3">
+          <p class="font-weight-bold m-0">Creado por</p>
+          <p class="font-weight-bold m-0 text-primary">{{workshop.author.full_name}}</p>
+        </div>
+      </div>
+      <div class="w-100 px-3 pb-3">
+        <p class="m-0">{{workshop.description}}</p>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 mt-lg-3 mb-3 mb-lg-0">
+      <div class="w-100 p-3">
+        <p>
+          <i class="natura-icon-id mr-3 font-weight-bold"></i>
+          <span>ID {{workshop.id}}</span>
+        </p>
+        <p>
+          <i class="far fa-clock mr-3"></i>
+          <span>{{workshop.start_date | momentDate:'hh:mm A'}}</span>
+        </p>
+        <p *ngIf="workshop.position_string">
+          <i class="fas fa-map-marker-alt mr-3"></i>
+          <a [href]="getMapsURI()" target="_blank">
+            <u>{{workshop.position_string}}</u>
+          </a>
+        </p>
+        <p *ngIf="workshop.sede">
+          <i class="fas fa-map-pin mr-3"></i>
+          <span>{{workshop.sede}}</span>
+        </p>
+        <p *ngIf="workshop.specialist">
+          <i class="far fa-user mr-3"></i>
+          <span>{{workshop.specialist}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="col-12 text-right p-3">
+      <div class="d-inline-block cursor-pointer">
+        <i class="natura-icon-share align-middle mr-3"></i>
+        <span class="font-weight-bold align-middle">Compartir</span>
+      </div>
+    </div>
+  </div>
+</div>
