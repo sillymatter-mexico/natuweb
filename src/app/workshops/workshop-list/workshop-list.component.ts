@@ -39,7 +39,8 @@ export class WorkshopListComponent implements OnInit {
       this.router.navigate(['/talleres', 'taller', workshop.id]);
     } else {
       const initialState = {
-        workshop: workshop
+        workshop: workshop,
+        modal: true
       };
       this.workshopModal = this.modalService.show(WorkshopInvitationComponent, {initialState, class: 'modal-lg'});
     }

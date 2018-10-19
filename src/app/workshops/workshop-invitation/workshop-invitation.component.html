@@ -3,7 +3,8 @@
           aria-label="Close" (click)="closeModal()" style="top: 15px; right: 15px;">
     <span aria-hidden="true">&times;</span>
   </button>
-  <div class="row p-0 m-0 align-items-center invitation-header" [style.backgroundImage]="'url(' + workshop.images + ')'">
+  <div class="row p-0 m-0 align-items-center invitation-header"
+       [style.backgroundImage]="'url(' + workshop.images + ')'" *ngIf="workshop">
     <div class="col-12">
       <h2 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name}}</h2>
     </div>
@@ -53,6 +54,15 @@
         <i class="natura-icon-share align-middle mr-3"></i>
         <span class="font-weight-bold align-middle">Compartir</span>
       </div>
+    </div>
+    <div class="col-12">
+      <share-buttons [include]="['facebook','twitter','pinterest','whatsapp','email']"
+                     [show]="5"
+                     [url]="shareURL"
+                     [title]="workshop.name"
+                     [description]="workshop.description"
+                     [image]="workshop.images"
+      ></share-buttons>
     </div>
   </div>
 </div>

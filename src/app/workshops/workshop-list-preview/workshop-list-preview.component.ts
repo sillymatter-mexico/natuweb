@@ -1,5 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {WorkshopInvitationComponent} from '../workshop-invitation/workshop-invitation.component';
+import {WorkshopService} from '../../services/workshop.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-workshop-list-preview',
@@ -13,8 +17,12 @@ export class WorkshopListPreviewComponent implements OnInit {
   @Input() public size: string;
   @Input() public url: string;
   @Input() public mine: boolean;
+  private workshopModal: BsModalRef;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private workshopService: WorkshopService,
+              private modalService: BsModalService,
+              private userService: UserService) {
     this.workshopList = [];
     this.title = '';
     this.mine = false;
@@ -24,10 +32,20 @@ export class WorkshopListPreviewComponent implements OnInit {
   }
 
   onOpenWorkshop(workshop: any) {
-    if (this.mine) {
+    let watchPermission: any;
+    if (this.mine || +workshop.author.id === +this.userService.consultant.id) {
+      watchPermission = {
+        permission: true,
+        workshop: workshop.id
+      };
+      this.workshopService.watchPermission = watchPermission;
       this.router.navigate(['/talleres', 'taller', workshop.id]);
     } else {
-      /* TO DO */
+      const initialState = {
+        workshop: workshop,
+        modal: true
+      };
+      this.workshopModal = this.modalService.show(WorkshopInvitationComponent, {initialState, class: 'modal-lg'});
     }
   }
 

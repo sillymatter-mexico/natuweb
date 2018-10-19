@@ -46,6 +46,7 @@ import { WorkshopCheckinComponent } from './workshops/workshop-checkin/workshop-
 import { WorkshopAddStaffComponent } from './workshops/workshop-add-staff/workshop-add-staff.component';
 import { WorkshopFiltersComponent } from './workshops/workshop-filters/workshop-filters.component';
 import { WorkshopInvitationComponent } from './workshops/workshop-invitation/workshop-invitation.component';
+import {ShareButtonsModule} from '@ngx-share/buttons';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -91,6 +92,7 @@ registerLocaleData(locale, 'es-MX');
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    ShareButtonsModule.forRoot(),
     CollapseModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
