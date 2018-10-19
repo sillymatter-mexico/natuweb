@@ -17,6 +17,7 @@ export class WorkshopListPreviewComponent implements OnInit {
   @Input() public size: string;
   @Input() public url: string;
   @Input() public mine: boolean;
+  @Input() public canScroll: boolean;
   private workshopModal: BsModalRef;
 
   constructor(private router: Router,
@@ -26,6 +27,7 @@ export class WorkshopListPreviewComponent implements OnInit {
     this.workshopList = [];
     this.title = '';
     this.mine = false;
+    this.canScroll = false;
   }
 
   ngOnInit() {

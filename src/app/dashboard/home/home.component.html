@@ -31,21 +31,23 @@
       <app-workshop-list-preview
         [workshopList]="myWorkshops"
         [title]="myWorkshopsTitle"
-        size="small"
-        url="/talleres/mios">
+        [mine]="true"
+        [canScroll]="true"
+        size="small">
       </app-workshop-list-preview>
     </div>
     <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
       <app-workshop-list-preview
         [workshopList]="recentWorkshops"
+        [canScroll]="true"
         title="Talleres recientes"
-        size="small"
-        url="/talleres/recientes">
+        size="small">
       </app-workshop-list-preview>
     </div>
     <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
       <app-workshop-list-preview
         title="Talleres concluidos"
+        [canScroll]="true"
         size="small">
       </app-workshop-list-preview>
     </div>

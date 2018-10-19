@@ -3,7 +3,6 @@ import {WorkshopService} from '../../services/workshop.service';
 import {BsModalRef} from 'ngx-bootstrap';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {AppService} from '../../services/app.service';
 
 @Component({
   selector: 'app-workshop-invitation',
