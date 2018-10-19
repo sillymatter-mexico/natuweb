@@ -27,7 +27,7 @@
   </div>
   <app-loader [loading]="loading"></app-loader>
   <div class="row py-4 px-0 px-sm-3" *ngIf="!loading">
-    <div class="col-12 col-md-6 col-lg-4 mb-4" *ngIf="isLeader()">
+    <div class="col-12 col-md-6 mb-4">
       <app-workshop-list-preview
         [workshopList]="myWorkshops"
         [title]="myWorkshopsTitle"
@@ -36,7 +36,7 @@
         size="small">
       </app-workshop-list-preview>
     </div>
-    <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
+    <div class="col-12 col-md-6 mb-4">
       <app-workshop-list-preview
         [workshopList]="recentWorkshops"
         [canScroll]="true"
@@ -44,7 +44,7 @@
         size="small">
       </app-workshop-list-preview>
     </div>
-    <div class="col-12 col-md-6 mb-4" [ngClass]="{'col-lg-4': isLeader()}">
+    <div class="d-none col-12 col-md-6 mb-4">
       <app-workshop-list-preview
         title="Talleres concluidos"
         [canScroll]="true"
