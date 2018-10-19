@@ -1,5 +1,5 @@
 <div class="container-fluid p-0 m-0 position-relative">
-  <button type="button" class="close pull-right position-absolute"
+  <button type="button" class="close pull-right position-absolute" *ngIf="modal"
           aria-label="Close" (click)="closeModal()" style="top: 15px; right: 15px;">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -50,19 +50,19 @@
       </div>
     </div>
     <div class="col-12 text-right p-3">
-      <div class="d-inline-block cursor-pointer">
+      <div class="d-inline-block cursor-pointer mr-3" (click)="toggleShare()">
         <i class="natura-icon-share align-middle mr-3"></i>
         <span class="font-weight-bold align-middle">Compartir</span>
       </div>
-    </div>
-    <div class="col-12">
-      <share-buttons [include]="['facebook','twitter','pinterest','whatsapp','email']"
-                     [show]="5"
-                     [url]="shareURL"
-                     [title]="workshop.name"
-                     [description]="workshop.description"
-                     [image]="workshop.images"
-      ></share-buttons>
+      <div class="d-inline-block" *ngIf="showShare">
+        <share-buttons [show]="3" [url]="shareURL"
+                       [include]="['facebook','twitter','linkedin','pinterest','whatsapp','messenger','telegram','email']"
+                       [title]="workshop.name" [theme]="'modern-light'"
+                       [description]="workshop.description"
+                       [image]="workshop.images"
+                       [autoSetMeta]="false"
+        ></share-buttons>
+      </div>
     </div>
   </div>
 </div>

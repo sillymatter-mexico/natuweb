@@ -17,6 +17,7 @@ export class WorkshopInvitationComponent implements OnInit {
   public loading: boolean;
   public modal: boolean;
   public shareURL: string;
+  public showShare: boolean;
 
   constructor(private workshopService: WorkshopService,
               private serverService: ServerService,
@@ -26,6 +27,7 @@ export class WorkshopInvitationComponent implements OnInit {
               private appService: AppService) {
     this.loading = false;
     this.modal = false;
+    this.showShare = false;
   }
 
   ngOnInit() {
@@ -46,6 +48,10 @@ export class WorkshopInvitationComponent implements OnInit {
   closeModal() {
     const bsModalRef = this.injector.get(BsModalRef);
     bsModalRef.hide();
+  }
+
+  public toggleShare() {
+    this.showShare = !this.showShare;
   }
 
   fetchWorkshop(id: number) {
