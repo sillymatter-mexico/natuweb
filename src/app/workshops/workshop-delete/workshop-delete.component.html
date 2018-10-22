@@ -1,0 +1,23 @@
+<div class="modal-body natura-modal-bg p-3">
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="col-12 text-center p-3 mt-3">
+      <i class="fa-3x natura-icon-trash text-primary"></i>
+      <h4 class="my-3 font-weight-bold">Borrar taller</h4>
+      <p class="m-0">¿Seguro que deseas borrar el taller "{{workshop.name}}"?</p>
+      <p class="m-0"><strong>Esta acción no se puede deshacer</strong></p>
+    </div>
+    <div class="col-12 col-sm-6 offset-sm-3 text-left py-3 px-3 px-md-5 mb-3">
+      <div class="btn btn-block btn-natura" (click)="closeModal()">
+        Cancelar
+      </div>
+      <div class="btn btn-block btn-natura mt-3" (click)="deleteWorkshop()">
+        Confirmar
+      </div>
+    </div>
+  </div>
+</div>

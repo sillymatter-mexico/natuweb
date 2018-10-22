@@ -6,6 +6,7 @@ import {UserService} from '../../services/user.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {WorkshopCheckinComponent} from '../workshop-checkin/workshop-checkin.component';
 import {WorkshopAddStaffComponent} from '../workshop-add-staff/workshop-add-staff.component';
+import {WorkshopDeleteComponent} from '../workshop-delete/workshop-delete.component';
 
 @Component({
   selector: 'app-workshop-view',
@@ -19,6 +20,7 @@ export class WorkshopViewComponent implements OnInit {
   private consultant: any;
   private checkinModal: BsModalRef;
   private addStaffModal: BsModalRef;
+  private deleteModal: BsModalRef;
   public watchPermission: any;
   public showShare: boolean;
   public shareURL: string;
@@ -112,6 +114,13 @@ export class WorkshopViewComponent implements OnInit {
       }, (error: any) => {
         this.toastr.error('Ocurrió un error al enviar el reporte');
       });
+  }
+
+  onDeleteWorkshop() {
+    const initialState = {
+      workshop: this.workshop
+    };
+    this.deleteModal = this.modalService.show(WorkshopDeleteComponent, {initialState});
   }
 
   enabledCheckin() {

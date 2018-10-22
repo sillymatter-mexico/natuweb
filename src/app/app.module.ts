@@ -47,6 +47,7 @@ import { WorkshopAddStaffComponent } from './workshops/workshop-add-staff/worksh
 import { WorkshopFiltersComponent } from './workshops/workshop-filters/workshop-filters.component';
 import { WorkshopInvitationComponent } from './workshops/workshop-invitation/workshop-invitation.component';
 import {ShareButtonsModule} from '@ngx-share/buttons';
+import { WorkshopDeleteComponent } from './workshops/workshop-delete/workshop-delete.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -83,6 +84,7 @@ registerLocaleData(locale, 'es-MX');
     WorkshopAddStaffComponent,
     WorkshopFiltersComponent,
     WorkshopInvitationComponent,
+    WorkshopDeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,7 +112,8 @@ registerLocaleData(locale, 'es-MX');
     WorkshopCreatedComponent,
     WorkshopCheckinComponent,
     WorkshopAddStaffComponent,
-    WorkshopInvitationComponent
+    WorkshopInvitationComponent,
+    WorkshopDeleteComponent
   ],
   providers: [
     AuthGuard,

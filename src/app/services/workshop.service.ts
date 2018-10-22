@@ -195,4 +195,12 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
+  public deleteWorkshop(workshop: any) {
+    const options = {
+      body: workshop
+    };
+
+    return this.http.request('delete',  '/api/v2/workshop/delete/', options);
+  }
+
 }

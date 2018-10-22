@@ -1,3 +1,4 @@
+$natura-icon-trash: "\e900";
 $natura-icon-add-staff: "\e913";
 $natura-icon-attendance: "\e914";
 $natura-icon-checkin: "\e915";
@@ -43,6 +44,12 @@ $natura-icon-workshop: "\e926";
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.natura-icon-trash {
+  &:before {
+    content: $natura-icon-trash;
+  }
 }
 
 .natura-icon-add-staff {
