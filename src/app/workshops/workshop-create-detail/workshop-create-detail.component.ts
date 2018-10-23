@@ -105,7 +105,6 @@ export class WorkshopCreateDetailComponent implements OnInit {
       this.workshopService.createWorkshop(this.workshop)
         .subscribe((response: any) => {
           this.loadingWorkshop = false;
-          console.log('response', response);
           const config = {
             keyboard: false,
             ignoreBackdropClick: true
@@ -113,6 +112,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
           const initialState = {
             workshop: response
           };
+          (<any>window).ga('send', 'event', 'talleres', 'crear', response.name);
           this.createdWorkshopModal = this.modalService.show(WorkshopCreatedComponent, {initialState});
         }, (error: any) => {
           this.loadingWorkshop = false;
