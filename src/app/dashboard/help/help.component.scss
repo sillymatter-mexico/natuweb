@@ -9,4 +9,15 @@
   h5 {
     margin-top: 40px;
   }
+  &.leader {
+    cursor: pointer;
+    &:hover {
+      box-shadow: 1px 0 11px rgba(0,0,0,0.5);
+    }
+  }
+}
+
+.bg-help {
+  background: url("../../../assets/img/backgrounds/help.png");
+  background-size: cover;
 }

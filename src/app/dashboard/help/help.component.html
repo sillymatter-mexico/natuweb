@@ -8,7 +8,36 @@
             <h4 class="mb-0 font-weight-bold mt-2">Ayuda</h4>
           </div>
           <div class="col-12">
-            <div class="natura-card">
+            <div class="natura-card" *ngIf="!isLeader()">
+              <div class="natura-card-header p-3">
+                <h5 class="font-weight-bold m-0">Tutorial</h5>
+              </div>
+              <div class="natura-card-body px-3 bg-help">
+                <div class="row align-items-center">
+                  <div class="col-12 py-3 order-first">
+                    <h3 class="mb-0 mt-3">Tutorial de usuario</h3>
+                    <p class="mt-2">
+                      Descarga el tutorial para aprender a usar Mi Natura
+                    </p>
+                  </div>
+                  <div class="col-12 col-sm-4 p-0 text-left order-3 order-sm-2">
+                    <img src="../../../assets/img/images/phone.png" class="img-fluid">
+                  </div>
+                  <div class="col-12 col-sm-8 col-md-4 text-center order-2 order-sm-3">
+                    <h1 class="natura-script">descargar</h1>
+                    <a
+                      href="https://s3-us-west-2.amazonaws.com/minatura/web/manuales/MANUAL_MI_NATURA_CONSULTORA_-.pdf"
+                      target="_blank">
+                      <div class="btn btn-natura rounded mx-2 mb-3">
+                        <i class="fas fa-arrow-down align-middle"></i>
+                        <p class="d-inline-block align-middle mb-0 ml-3">Tutorial consultora</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="natura-card" *ngIf="isLeader()">
               <div class="natura-card-header p-3">
                 <h5 class="font-weight-bold m-0">¿Cómo crear un taller?</h5>
               </div>
@@ -24,7 +53,7 @@
                   </p>
                 </div>
                 <div class="col-12 col-md-4 p-4" *ngFor="let type of workshopTypeList">
-                  <div class="workshop-type"
+                  <div class="workshop-type leader" (click)="goToCreate(type)"
                        [style.backgroundImage]="'url(../../assets/img/images/' + type.picture + ')'">
                     <h5 class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="type.name"></h5>
                   </div>
@@ -36,14 +65,6 @@
                     <div class="btn btn-natura rounded mx-2 mb-3">
                       <i class="fas fa-arrow-down align-middle"></i>
                       <p class="d-inline-block align-middle mb-0 ml-3">Tutorial líder</p>
-                    </div>
-                  </a>
-                  <a
-                    href="https://s3-us-west-2.amazonaws.com/minatura/web/manuales/MANUAL_MI_NATURA_CONSULTORA_-.pdf"
-                    target="_blank">
-                    <div class="btn btn-natura rounded mx-2 mb-3">
-                      <i class="fas fa-arrow-down align-middle"></i>
-                      <p class="d-inline-block align-middle mb-0 ml-3">Tutorial consultora</p>
                     </div>
                   </a>
                 </div>

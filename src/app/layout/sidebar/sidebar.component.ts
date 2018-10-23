@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
     this.consultant = this.userService.consultant;
     this.menuItems = [
       {name: 'Inicio', icon: 'home', route: '/inicio'},
-      {name: 'Talleres', icon: 'workshop', route: '/talleres'},
+      {name: 'Talleres', icon: this.userService.isLeader ? 'workshop' : 'workshop-cn', route: '/talleres'},
       {name: 'Boletín natura', icon: 'news', route: '/boletin'},
       {name: 'Editar mi perfil', icon: 'profile', route: '/perfil'},
       {name: 'Ayuda', icon: 'help', route: '/ayuda'},
