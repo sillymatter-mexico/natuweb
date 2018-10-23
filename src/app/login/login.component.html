@@ -33,7 +33,7 @@
             <p *ngIf="password.errors.required">Este campo es requerido.</p>
           </div>
           <div *ngIf="requestError" class="invalid-feedback">
-            <p *ngIf="requestError">{{requestError}}</p>
+            <p *ngIf="requestError" [innerHTML]="requestError"></p>
           </div>
         </div>
         <div class="custom-control custom-checkbox mb-5 my-1 mr-sm-2">

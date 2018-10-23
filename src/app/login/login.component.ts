@@ -57,12 +57,16 @@ export class LoginComponent implements OnInit {
   }
 
   loginErrorHandler(data: any) {
+    const passwordError = '¿Tienes problemas para iniciar sesión?, escríbenos a:' +
+      ' <a href="mailto:appminatura@natura.net">' +
+      'appminatura@natura.net' +
+      '</a>';
+
     console.log('error', data);
 
     this.loading = false;
     const e = data.error;
     this.requestError
-      = (e.detail === 'Contraseña incorrecta.')
-        ? 'Contraseña incorrecta, es la misma que usas en el sitio de Natura.' : e.detail;
+      = (e.detail === 'Contraseña incorrecta.') ? passwordError : e.detail;
   }
 }
