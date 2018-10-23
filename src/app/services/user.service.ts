@@ -36,11 +36,11 @@ export class UserService {
     this._rememberUser = remember;
   }
 
-  deleteUser() {
+  public deleteUser() {
     this._consultant = null;
   }
 
-  setAvatar(data: any) {
+  public setAvatar(data: any) {
     return this.http.put('/api/gamification/consultants-avatars/', data);
   }
 }
