@@ -148,14 +148,14 @@
           </div>
           <div class="col-12 text-left pt-4">
             <a class="mr-5 page-arrow"
-               [ngClass]="{'disabled': !(previousPage && previousPage.trim() !== '')}"
+               *ngIf="previousPage && previousPage.trim() !== ''"
                (click)="getPage(previousPage)">
-              <i class="fas fa-2x fa-angle-left text-primary"></i>
+              <i class="fas fa-2x fa-arrow-left text-primary"></i>
             </a>
             <a class="page-arrow"
-               [ngClass]="{'disabled': !(nextPage && nextPage.trim() !== '')}"
+               *ngIf="nextPage && nextPage.trim() !== ''"
                (click)="getPage(nextPage)">
-              <i class="fas fa-2x fa-angle-right text-primary"></i>
+              <i class="fas fa-2x fa-arrow-right text-primary"></i>
             </a>
           </div>
         </div>
