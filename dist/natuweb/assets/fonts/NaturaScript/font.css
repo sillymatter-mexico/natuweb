@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'NaturaScript';
+  src: url('NaturaScript.eot');
+  src: url('NaturaScript.woff2') format('woff2'),
+       url('NaturaScript.woff') format('woff'),
+       url('NaturaScript.ttf') format('truetype'),
+       url('NaturaScript.svg#NaturaScript') format('svg'),
+       url('NaturaScript.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

@@ -9,7 +9,7 @@ app-layout {
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear;
     min-height: 100vh;
-    background: url('../../assets/img/backgrounds/dashboard.png') repeat-y;
+    background: url('/assets/img/backgrounds/dashboard.png') repeat-y;
     background-size: 100% auto;
   }
 
@@ -26,7 +26,7 @@ app-layout {
     margin-left: -$sidebar-width;
     overflow-y: auto;
     background: white;
-    background: url('../../assets/img/backgrounds/sidebar-collapsed.png') no-repeat;
+    background: url('/assets/img/backgrounds/sidebar-collapsed.png') no-repeat;
     background-size: cover;
     background-color: white;
     box-shadow: 1px 0 11px rgba(0,0,0,0.2);
@@ -34,7 +34,7 @@ app-layout {
 
   #wrapper.toggled #sidebar-wrapper {
     width: $sidebar-width;
-    background: white url('../../assets/img/backgrounds/sidebar.png');
+    background: white url('/assets/img/backgrounds/sidebar.png');
     background-size: cover;
   }
 

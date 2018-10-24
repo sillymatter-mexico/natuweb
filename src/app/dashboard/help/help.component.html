@@ -4,7 +4,7 @@
       <div class="natura-card my-4 p-1 p-sm-4">
         <div class="row m-0">
           <div class="col-12 mb-5">
-            <img src="../../../assets/img/icons/gradient-png/help.png" class="natura-card-icon">
+            <img src="/assets/img/icons/gradient-png/help.png" class="natura-card-icon">
             <h4 class="mb-0 font-weight-bold mt-2">Ayuda</h4>
           </div>
           <div class="col-12">
@@ -21,7 +21,7 @@
                     </p>
                   </div>
                   <div class="col-12 col-sm-4 p-0 text-left order-3 order-sm-2">
-                    <img src="../../../assets/img/images/phone.png" class="img-fluid">
+                    <img src="/assets/img/images/phone.png" class="img-fluid">
                   </div>
                   <div class="col-12 col-sm-8 col-md-4 text-center order-2 order-sm-3">
                     <h1 class="natura-script">descargar</h1>
@@ -43,7 +43,7 @@
               </div>
               <div class="natura-card-body row px-3">
                 <div class="col-12 py-3">
-                  <img src="../../../assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
+                  <img src="/assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
                   <h4 class="mb-0 font-weight-bold mt-2">Talleres</h4>
                 </div>
                 <div class="col-12 py-1 text-center">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-12 col-md-4 p-4" *ngFor="let type of workshopTypeList">
                   <div class="workshop-type leader" (click)="goToCreate(type)"
-                       [style.backgroundImage]="'url(../../assets/img/images/' + type.picture + ')'">
+                       [style.backgroundImage]="'url(/assets/img/images/' + type.picture + ')'">
                     <h5 class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="type.name"></h5>
                   </div>
                 </div>

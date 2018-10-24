@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="19px" viewBox="0 0 11 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow_left</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="UI_MI_NATURA-WEB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Arrow_left" fill="#FFFFFF">
+            <path d="M4.00173489,9.49499603 L10.5199272,2.59952095 C10.8995777,2.22528264 11.0558554,1.6616652 10.9274524,1.12977614 C10.7990494,0.597887083 10.4064449,0.182558053 9.90365795,0.0467229195 C9.40087096,-0.0891122143 8.86809159,0.0762110619 8.51432956,0.477836312 L0,9.48498808 L2.18534459,11.7968237 L8.54271066,18.5221637 C8.89647269,18.9237889 9.42925206,19.0891122 9.93203905,18.9532771 C10.434826,18.8174419 10.8274305,18.4021129 10.9558335,17.8702239 C11.0842365,17.3383348 10.9279588,16.7747174 10.5483083,16.400479 L4.00173489,9.49499603 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

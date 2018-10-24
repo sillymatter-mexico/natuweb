@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'NaturaSans-Bold';
+  src: url('NaturaSans-Bold.eot');
+  src: url('NaturaSans-Bold.woff2') format('woff2'),
+       url('NaturaSans-Bold.woff') format('woff'),
+       url('NaturaSans-Bold.ttf') format('truetype'),
+       url('NaturaSans-Bold.svg#NaturaSans-Bold') format('svg'),
+       url('NaturaSans-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

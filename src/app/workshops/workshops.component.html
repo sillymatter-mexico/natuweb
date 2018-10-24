@@ -4,13 +4,13 @@
       <div class="natura-card mt-4 p-4">
         <div class="row">
           <div class="col-12">
-            <img src="../../assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
+            <img src="/assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
             <h5 class="mb-0 font-weight-bold mt-2">Crear taller</h5>
             <p class="m-0 d-none d-md-block">Selecciona un tipo de taller para comenzar</p>
           </div>
           <div class="col-12 col-md-4 p-3" *ngFor="let type of workshopTypeList">
             <div class="workshop-type" [routerLink]="['/talleres', 'crear', type.alias]"
-                 [style.backgroundImage]="'url(../../assets/img/images/' + type.picture + ')'">
+                 [style.backgroundImage]="'url(/assets/img/images/' + type.picture + ')'">
               <h5 class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="type.name"></h5>
             </div>
           </div>
