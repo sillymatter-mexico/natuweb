@@ -9,9 +9,10 @@
             </div>
             <div class="float-right text-capitalize">{{ today | date:'EEEE, MMMM d, y' }}</div>
           </div>
-          <div class="col-12 mb-5">
+          <div class="col-12 mb-3">
             <img src="/assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
-            <h4 class="mb-0 font-weight-bold mt-2">{{title}}</h4>
+            <h5 class="mb-0 font-weight-bold mt-2">{{title}}</h5>
+            <p class="m-0 text-muted" *ngIf="subtitle">{{subtitle}}</p>
           </div>
           <div class="col-12">
             <div class="natura-card">

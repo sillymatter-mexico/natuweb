@@ -14,6 +14,7 @@ export class WorkshopListViewComponent implements OnInit {
 
   public today: Date;
   public title: string;
+  public subtitle: string;
   public workshopList: any[];
   public loading: boolean;
   public previousPage: string;
@@ -44,6 +45,7 @@ export class WorkshopListViewComponent implements OnInit {
       .subscribe((data: any) => {
         this.title = data.title;
         this.mine = data.mine;
+        this.subtitle = data.subtitle;
         this.fetchList(data.list);
       }, (error: any) => {
         console.log(error);

@@ -34,8 +34,19 @@ export class WorkshopService {
     ];
 
     this._listTypes = [
-      {name: 'mios', title: 'Mis talleres', list: this.getMyWorkshops(), mine: true},
-      {name: 'recientes', title: 'Talleres recientes', list: this.getTodayWorkshops(), mine: false}
+      {
+        name: 'mios',
+        title: 'Mis talleres',
+        subtitle: 'Consulta y edita los talleres creados',
+        list: this.getMyWorkshops(),
+        mine: true
+      },
+      {
+        name: 'recientes',
+        title: 'Talleres recientes',
+        list: this.getTodayWorkshops(),
+        mine: false
+      }
     ];
 
     for (let x = 1; x <= 12; x++) {
