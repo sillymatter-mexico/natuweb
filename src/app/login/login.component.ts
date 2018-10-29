@@ -57,7 +57,9 @@ export class LoginComponent implements OnInit {
   }
 
   loginErrorHandler(data: any) {
-    const passwordError = '¿Tienes problemas para iniciar sesión?, escríbenos a:' +
+    const passwordError = '' +
+      'Contraseña es incorrecta, coloca la misma que usas en el sitio de Natura <br>' +
+      '¿Tienes problemas para iniciar sesión?, escríbenos a:' +
       ' <a href="mailto:appminatura@natura.net">' +
       'appminatura@natura.net' +
       '</a>';

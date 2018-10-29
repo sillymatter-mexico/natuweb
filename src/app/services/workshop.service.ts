@@ -21,8 +21,8 @@ export class WorkshopService {
 
     this._workshopTypeList  = [
       {id: 1, name: 'Taller<br>mandatorio', picture: 'mandatory.png', alias: 'mandatorios'},
-      {id: 2, name: 'Taller<br>opcional', picture: 'optional.jpg', alias: 'opcionales'},
-      {id: 3, name: 'Fortaleciendo<br>mi negocio', picture: 'fmn.jpg', alias: 'fmn'}
+      {id: 2, name: 'Taller<br>opcional', picture: 'optional.png', alias: 'opcionales'},
+      {id: 3, name: 'Fortaleciendo<br>mi negocio', picture: 'fmn.png', alias: 'fmn'}
     ];
 
     this._specialists = [
