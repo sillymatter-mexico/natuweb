@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit {
       {name: 'Talleres', icon: this.userService.isLeader ? 'workshop' : 'workshop-cn', route: '/talleres'},
       {name: 'Boletín natura', icon: 'news', route: '/boletin'},
       {name: 'Editar mi perfil', icon: 'profile', route: '/perfil'},
-      {name: 'Ayuda', icon: 'help', route: '/ayuda'},
+      /* {name: 'Ayuda', icon: 'help', route: '/ayuda'}, */
     ];
   }
 
