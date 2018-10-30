@@ -52,7 +52,7 @@
                     Recuerda, sólo los líderes y DRVs pueden crear un taller.
                   </p>
                 </div>
-                <div class="col-12 col-md-4 p-4" *ngFor="let type of workshopTypeList">
+                <div class="col-12 col-md-4 p-4" *ngFor="let type of workshopTypeList | sort:'order'">
                   <div class="workshop-type leader" (click)="goToCreate(type)"
                        [style.backgroundImage]="'url(/assets/img/images/' + type.picture + ')'">
                     <h5 class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="type.name"></h5>

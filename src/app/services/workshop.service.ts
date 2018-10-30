@@ -20,9 +20,32 @@ export class WorkshopService {
   constructor(private http: HttpClient) {
 
     this._workshopTypeList  = [
-      {id: 1, name: 'Taller<br>mandatorio', picture: 'mandatory.png', alias: 'mandatorios'},
-      {id: 2, name: 'Taller<br>opcional', picture: 'optional.png', alias: 'opcionales'},
-      {id: 3, name: 'Fortaleciendo<br>mi negocio', picture: 'fmn.png', alias: 'fmn'}
+      {
+        id: 1,
+        name: 'Taller<br>mandatorio',
+        picture: 'mandatory.png',
+        alias: 'mandatorios',
+        description: 'Selecciona el Taller Mandatorio de Crecimiento y Mantenimiento ' +
+                  'en el que te encuentres especializado para entrenar a tu red.',
+        order: 1
+      },
+      {
+        id: 2,
+        name: 'Taller<br>opcional',
+        picture: 'optional.png',
+        alias: 'opcionales',
+        description: 'Selecciona, crea y entrena a tus consultores con talleres de tu autoría.',
+        order: 3
+      },
+      {
+        id: 3,
+        name: 'Fortaleciendo<br>mi negocio',
+        picture: 'fmn.png',
+        alias: 'fmn',
+        description: 'Selecciona uno de los talleres y entrena a tu Red ' +
+          'para que aprendan todo sobre nuestros productos, negocio y desarrollo.',
+        order: 2
+      }
     ];
 
     this._specialists = [
