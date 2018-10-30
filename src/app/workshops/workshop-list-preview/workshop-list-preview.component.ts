@@ -14,6 +14,7 @@ export class WorkshopListPreviewComponent implements OnInit {
 
   @Input() public workshopList: any[];
   @Input() public title: string;
+  @Input() public subtitle: string;
   @Input() public size: string;
   @Input() public url: string;
   @Input() public mine: boolean;

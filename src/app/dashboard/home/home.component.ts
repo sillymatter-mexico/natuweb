@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   public news: any[];
   public loading: boolean;
   public myWorkshopsTitle;
+  public myWorkshopsSubtitle;
 
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.myWorkshopsTitle = this.userService.isLeader ? 'Mis talleres' : 'Soy Staff';
+    this.myWorkshopsSubtitle = this.userService.isLeader ? 'Consulta tus talleres creados' : 'Consulta los talleres en los que te asignaron como staff';
     this.fetchData();
   }
 

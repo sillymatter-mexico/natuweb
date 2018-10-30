@@ -28,6 +28,7 @@
       <app-workshop-list-preview
         [workshopList]="myWorkshops"
         [title]="myWorkshopsTitle"
+        [subtitle]="myWorkshopsSubtitle"
         [mine]="true"
         [canScroll]="true"
         size="small">
@@ -37,7 +38,8 @@
       <app-workshop-list-preview
         [workshopList]="recentWorkshops"
         [canScroll]="true"
-        title="Talleres recientes"
+        title="Talleres del día"
+        subtitle="Consulta los talleres que se impartirán hoy"
         size="small">
       </app-workshop-list-preview>
     </div>
@@ -51,7 +53,7 @@
     <div class="col-12 col-md-6 col-lg-8 mb-4">
       <div class="natura-card">
         <div class="natura-card-header p-3">
-          <h4 class="font-weight-bold m-0">Boletín Natura</h4>
+          <h4 class="font-weight-bold m-0">Boletín Mi Natura</h4>
         </div>
         <div class="natura-card-body natura-news p-3">
           <div class="row">
