@@ -18,7 +18,6 @@ export class SidebarComponent implements OnInit {
               private appService: AppService,
               private authService: AuthService) {
     this.isEnabled = appService.sidebarToggled;
-    this.isEnabled = false;
     this.consultant = this.userService.consultant;
     this.menuItems = [
       {name: 'Inicio', icon: 'home', route: '/inicio'},

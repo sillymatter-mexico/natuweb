@@ -2,6 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {map, take} from 'rxjs/operators';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,16 @@ export class AppService {
   public sidebarToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
   public sidebarToggled: boolean;
 
-  constructor(private http: HttpClient, private afs: AngularFirestore) {
+  constructor(private http: HttpClient,
+              private afs: AngularFirestore,
+              private breakpointObserver: BreakpointObserver) {
     this.news = [];
     this.sidebarToggled = false;
+    this.breakpointObserver
+      .observe(['(min-width: 768px)'])
+      .subscribe((result: any) => {
+        this.setSidebarState(result.matches);
+      });
   }
 
   get news() {
@@ -46,6 +54,11 @@ export class AppService {
 
   toggleSidebar() {
     this.sidebarToggled = !this.sidebarToggled;
+    this.sidebarToggle.emit(this.sidebarToggled);
+  }
+
+  setSidebarState(toggled: boolean) {
+    this.sidebarToggled = toggled;
     this.sidebarToggle.emit(this.sidebarToggled);
   }
 }

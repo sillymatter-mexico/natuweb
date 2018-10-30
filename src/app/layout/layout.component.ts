@@ -14,6 +14,8 @@ export class LayoutComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit() {
+    this.sidebarEnabled = this.appService.sidebarToggled;
+
     this.appService.sidebarToggle
       .subscribe((status: boolean) => this.sidebarEnabled = status);
   }
