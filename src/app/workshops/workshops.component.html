@@ -6,7 +6,7 @@
           <div class="col-12">
             <img src="/assets/img/icons/gradient-png/workshop.png" class="natura-card-icon">
             <h5 class="mb-0 font-weight-bold mt-2">Crear taller</h5>
-            <p class="m-0 d-none d-md-block">Selecciona un tipo de taller para comenzar</p>
+            <p class="m-0 d-none d-md-block">Selecciona el tipo de taller que deseas crear</p>
           </div>
           <div class="col-12 col-md-4 p-3" *ngFor="let type of workshopTypeList | sort:'order'">
             <div class="workshop-type" [routerLink]="['/talleres', 'crear', type.alias]"
@@ -24,6 +24,7 @@
       <app-workshop-list-preview
         [title]="myWorkshopsTitle"
         [workshopList]="myWorkshops"
+        [subtitle]="myWorkshopsSubtitle"
         size="medium"
         [mine]="true">
         <div bottom class="natura-card-bottom">
@@ -39,6 +40,7 @@
     <div class="col-12 col-md-6 mb-4">
       <app-workshop-list-preview
         title="Calendario de talleres"
+        subtitle="Consulta los talleres que impartirán Líderes y DRVs"
         [workshopList]="todayWorkshops"
         size="medium">
         <div top class="w-100 px-4 pt-3">

@@ -22,6 +22,7 @@ export class WorkshopsComponent implements OnInit {
   public dayList: any[];
   public isLeader: boolean;
   public myWorkshopsTitle: string;
+  public myWorkshopsSubtitle: string;
 
   constructor(private workshopService: WorkshopService, private toastr: ToastrService, private userService: UserService) {
     this.loading = false;
@@ -37,6 +38,7 @@ export class WorkshopsComponent implements OnInit {
 
   ngOnInit() {
     this.myWorkshopsTitle = this.userService.isLeader ? 'Mis talleres' : 'Soy Staff';
+    this.myWorkshopsSubtitle = this.userService.isLeader ? 'Consulta tus talleres creados' : 'Consulta los talleres en los que te asignaron como staff';
     this.fetchWorkshops();
   }
 
