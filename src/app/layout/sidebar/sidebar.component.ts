@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {AppService} from '../../services/app.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,9 @@ export class SidebarComponent implements OnInit {
   public consultant: any;
   public menuItems: any[];
 
-  constructor(private userService: UserService, private appService: AppService) {
+  constructor(private userService: UserService,
+              private appService: AppService,
+              private authService: AuthService) {
     this.isEnabled = appService.sidebarToggled;
     this.isEnabled = false;
     this.consultant = this.userService.consultant;
@@ -23,6 +26,7 @@ export class SidebarComponent implements OnInit {
       {name: 'Boletín natura', icon: 'news', route: '/boletin'},
       {name: 'Editar mi perfil', icon: 'profile', route: '/perfil'},
       /* {name: 'Ayuda', icon: 'help', route: '/ayuda'}, */
+      {name: 'Cerrar sesión', icon: 'logout', action: () => this.authService.logout()},
     ];
   }
 

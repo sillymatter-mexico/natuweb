@@ -27,12 +27,23 @@
       </h4>
     </div>
     <div class="w-100 mt-3">
-      <div class="menu-item py-3"
-           [ngClass]="{'text-left pl-2': isEnabled, 'text-center pl-0': !isEnabled}"
-           *ngFor="let item of menuItems" [routerLink]="[item.route]" routerLinkActive="active">
-        <i class="natura-icon-{{item.icon}}"></i>
-        <span class="font-weight-light ml-4" *ngIf="isEnabled">{{item.name}}</span>
-      </div>
+      <ng-container *ngFor="let item of menuItems">
+        <div class="menu-item py-3"
+             *ngIf="item.route"
+             [ngClass]="{'text-left pl-2': isEnabled, 'text-center pl-0': !isEnabled}"
+             [routerLink]="[item.route]"
+             routerLinkActive="active">
+          <i class="natura-icon-{{item.icon}}"></i>
+          <span class="font-weight-light ml-4" *ngIf="isEnabled">{{item.name}}</span>
+        </div>
+        <div class="menu-item py-3"
+             *ngIf="item.action"
+             [ngClass]="{'text-left pl-2': isEnabled, 'text-center pl-0': !isEnabled}"
+             (click)="item.action()">
+          <i class="natura-icon-{{item.icon}}"></i>
+          <span class="font-weight-light ml-4" *ngIf="isEnabled">{{item.name}}</span>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
