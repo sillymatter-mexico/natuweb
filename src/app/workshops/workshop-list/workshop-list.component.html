@@ -10,7 +10,6 @@
       <h5 class="text-primary m-0">Fecha</h5>
     </div>
   </div>
-  <p *ngIf="workshopList.length === 0" class="my-3 mx-1 m-md-3">No hay talleres disponibles en esta lista</p>
   <div class="row my-3 mx-1 m-md-3 rounded bg-light align-items-baseline" *ngFor="let workshop of workshopList">
     <div class="col-3 col-md-2 p-0 p-md-2 text-center">
       <app-avatar [consultant]="workshop.author.consultant_avatar" *ngIf="workshop.author" size="big"></app-avatar>

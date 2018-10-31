@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit {
     this.menuItems = [
       {name: 'Inicio', icon: 'home', route: '/inicio'},
       {name: 'Talleres', icon: this.userService.isLeader ? 'workshop' : 'workshop-cn', route: '/talleres'},
-      {name: 'Boletín natura', icon: 'news', route: '/boletin'},
+      {name: 'Boletín Mi Natura', icon: 'news', route: '/boletin'},
       {name: 'Editar mi perfil', icon: 'profile', route: '/perfil'},
       /* {name: 'Ayuda', icon: 'help', route: '/ayuda'}, */
       {name: 'Cerrar sesión', icon: 'logout', action: () => this.authService.logout()},
