@@ -23,7 +23,7 @@
                 [consultant]="consultant"
                 [mine]="mine">
               </app-workshop-list>
-              <p *ngIf="workshopList.length === 0 && !loading"
+              <p *ngIf="workshopList?.length === 0 && !loading"
                  class="my-1 px-3 m-md-3">
                 No hay talleres disponibles en esta lista
               </p>
