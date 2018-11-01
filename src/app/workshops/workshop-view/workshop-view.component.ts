@@ -59,7 +59,7 @@ export class WorkshopViewComponent implements OnInit {
           this.fetchLeaderData(id);
         } else {
           this.loading = false;
-          this.router.navigate(['/talleres']);
+          this.router.navigate(['/talleres', 'invitacion', id]);
         }
       }, (error: any) => {
         console.log(error);
@@ -121,6 +121,10 @@ export class WorkshopViewComponent implements OnInit {
       workshop: this.workshop
     };
     this.deleteModal = this.modalService.show(WorkshopDeleteComponent, {initialState});
+  }
+
+  onEditWorkshop() {
+    this.router.navigate(['/talleres', 'editar', this.workshop.id]);
   }
 
   enabledCheckin() {

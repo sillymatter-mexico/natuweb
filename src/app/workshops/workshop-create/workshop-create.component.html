@@ -22,7 +22,7 @@
           <div class="col-12 pt-3">
             <app-loader [loading]="loading"></app-loader>
           </div>
-          <div class="col-12 col-md-4 col-lg-3 px-3 py-1" *ngFor="let workshop of nameList">
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3 px-3 py-1" *ngFor="let workshop of nameList">
             <div class="natura-card-button p-3 d-flex align-items-center cursor-pointer"
                  (click)="setSelectedWorkshop(workshop)">
               <p class="m-0 font-weight-bold">{{workshop.name}}</p>

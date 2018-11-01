@@ -12,8 +12,13 @@ import {WorkshopService} from '../../services/workshop.service';
 export class WorkshopCreatedComponent implements OnInit {
 
   public workshop: Workshop;
+  public edit: boolean;
 
-  constructor(private _bsModalRef: BsModalRef, private router: Router, private workshopService: WorkshopService) { }
+  constructor(private _bsModalRef: BsModalRef,
+              private router: Router,
+              private workshopService: WorkshopService) {
+    this.edit = false;
+  }
 
   ngOnInit() {
   }

@@ -14,9 +14,15 @@
           </div>
           <div class="col-12 px-3 pb-1 pt-3">
             <div class="workshop-type py-5"
+                 *ngIf="!editMode"
                  [style.backgroundImage]="'url(/assets/img/images/' + workshopType.picture + ')'">
               <p class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="workshopType.name"></p>
               <h1 class="text-white ml-3 font-weight-bold">{{workshopName?.name}}</h1>
+            </div>
+            <div class="workshop-type py-5"
+                 *ngIf="editMode && !loading"
+                 [style.backgroundImage]="'url(' + workshopPicture + ')'">
+              <h1 class="text-white ml-3 font-weight-bold">{{workshop?.name}}</h1>
             </div>
           </div>
           <div class="col-12 pt-3">
@@ -58,7 +64,7 @@
             </p>
           </div>
           -->
-          <div class="col-12 p-1 p-md-3">
+          <div class="col-12 p-1 p-md-3" *ngIf="!loading">
             <div class="natura-card">
               <div class="natura-card-header p-3">
                 <h5 class="m-0 font-weight-bold">Taller</h5>
@@ -71,7 +77,7 @@
                       <input type="text" class="form-control" name="name"
                              id="name" placeholder="Nombre del taller"
                              [(ngModel)]="workshop.name" required
-                             [disabled]="workshopName.id !== 1" #name="ngModel"
+                             [disabled]="editMode || workshopName?.id !== 1" #name="ngModel"
                              [ngClass]="{'is-invalid': f.submitted && name.errors}">
                     </div>
                     <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
@@ -79,11 +85,11 @@
                       <textarea class="form-control" name="description" rows="4"
                                 id="description" placeholder="Descripción" #description="ngModel"
                                 [(ngModel)]="workshop.description" required
-                                [disabled]="workshopName.id !== 1 && workshopType.id === 1"
+                                [disabled]="!editMode && workshopName.id !== 1 && workshopType.id === 1"
                                 [ngClass]="{'is-invalid': f.submitted && description.errors}"></textarea>
                     </div>
                     <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2"
-                         *ngIf="consultant.isDRV && workshopType.id === 2">
+                         *ngIf="editMode ||(consultant.isDRV && workshopType.id === 2)">
                       <label for="sede"><strong>Sede</strong></label>
                       <input type="text" class="form-control" name="sede"
                              id="sede" placeholder="Sede"
@@ -92,7 +98,7 @@
                   </div>
                   <div class="form-row justify-content-center">
                     <div class="form-group col-12 col-sm-6"
-                         [ngClass]="workshopName.specialist ? 'col-lg-3' : 'col-lg-4'">
+                         [ngClass]="(editMode || workshopName.specialist) ? 'col-xl-3' : 'col-xl-4'">
                       <label for="date"><strong>Fecha*</strong></label>
                       <input class="form-control" name="selectedDate"
                              id="date" placeholder="Fecha del taller"
@@ -103,7 +109,7 @@
                              autocomplete="off" required>
                     </div>
                     <div class="form-group col-12 col-sm-6"
-                         [ngClass]="workshopName.specialist ? 'col-lg-3' : 'col-lg-4'">
+                         [ngClass]="(editMode || workshopName.specialist) ? 'col-xl-3' : 'col-xl-4'">
                       <label for="hour"><strong>Hora*</strong></label>
                       <timepicker [(ngModel)]="selectedHour" id="hour"
                                   name="selectedHour" [showSpinners]="false"
@@ -111,7 +117,7 @@
                                   [ngClass]="{'is-invalid': f.submitted && hour.errors}"></timepicker>
                     </div>
                     <div class="form-group col-12"
-                         [ngClass]="workshopName.specialist ? 'col-sm-6 col-lg-3' : 'col-lg-4'">
+                         [ngClass]="(editMode || workshopName.specialist) ? 'col-sm-6 col-xl-3' : 'col-xl-4'">
                       <label for="duration"><strong>Duración*</strong></label>
                       <select
                           class="form-control" name="duration"
@@ -123,8 +129,8 @@
                         </option>
                       </select>
                     </div>
-                    <div class="form-group col-12 col-sm-6 col-lg-3"
-                         *ngIf="workshopName.specialist">
+                    <div class="form-group col-12 col-sm-6 col-xl-3"
+                         *ngIf="editMode || workshopName.specialist">
                       <label for="duration"><strong>Especialista</strong></label>
                       <select
                         class="form-control" name="specialist"
@@ -154,11 +160,18 @@
               </div>
             </div>
           </div>
-          <div class="col-12 text-center">
+          <div class="col-12 text-center" *ngIf="!editMode">
             <button type="submit" class="btn btn-natura btn-big"
                     form="workshopForm" [disabled]="loadingWorkshop">
               <i class="fas fa-spinner fa-spin" *ngIf="loadingWorkshop"></i>
               Crear taller
+            </button>
+          </div>
+          <div class="col-12 text-center" *ngIf="editMode && !loading">
+            <button type="submit" class="btn btn-natura btn-big"
+                    form="workshopForm" [disabled]="loadingWorkshop">
+              <i class="fas fa-spinner fa-spin" *ngIf="loadingWorkshop"></i>
+              Actualizar taller
             </button>
           </div>
         </div>

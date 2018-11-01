@@ -171,6 +171,11 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.detail));
   }
 
+  public editWorkshop(workshop: Workshop) {
+    return this.http.put('/api/v2/workshop/update/', workshop)
+      .pipe(map ((response: any) => response.data));
+  }
+
   public getWorkshop(id: number) {
     return this.http.get('/api/v2/workshop/?workshop=' + id)
             .pipe(map ((response: any) => response.data));

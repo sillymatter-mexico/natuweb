@@ -39,6 +39,7 @@ const routes: Routes = [
         {path: 'talleres/taller/:id', component: WorkshopViewComponent},
         {path: 'talleres/filtros/consulta-y-registro', component: WorkshopFiltersComponent},
         {path: 'talleres/invitacion/:id', component: WorkshopInvitationComponent},
+        {path: 'talleres/editar/:workshop', component: WorkshopCreateDetailComponent},
       ]
     }]
   }

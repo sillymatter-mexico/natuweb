@@ -12,4 +12,5 @@ export interface Workshop {
   address_point?: AddressPoint; // Object with latitude and longitude
   address_string?: string; // string
   private?: boolean; // boolean not implemented yet
+  [propName: string]: any; // for extra properties
 }
