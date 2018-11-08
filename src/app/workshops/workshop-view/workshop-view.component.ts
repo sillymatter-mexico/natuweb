@@ -131,18 +131,19 @@ export class WorkshopViewComponent implements OnInit {
     const now = new Date();
     const finish_date = this.toNormalDate(new Date(this.workshop.finish_date));
     const start_date =  this.toNormalDate(new Date(this.workshop.start_date));
-    const open_date = start_date.setHours(start_date.getHours() - 1);
-    let expire_date = finish_date.setDate(finish_date.getDate() + 14);
-    if (this.consultant && this.consultant.isDRV) {
-      expire_date = finish_date.setDate(finish_date.getDate() + 30);
+    start_date.setHours(start_date.getHours() - 1);
+    if (this.consultant.isDRV) {
+      finish_date.setDate(finish_date.getDate() + 30);
+    } else {
+      finish_date.setDate(finish_date.getDate() + 14);
     }
-    return this.consultant.isDRV && this.isAfter(now, open_date) && this.isBefore(now, expire_date);
+    return this.isWorkshopLeader() && this.isAfter(now, start_date) && this.isBefore(now, finish_date);
   }
 
   enabledAddStaff() {
     const now = new Date();
     const finish_date = this.toNormalDate(new Date(this.workshop.finish_date));
-    return this.isBefore(now, finish_date) || this.consultant.isDRV;
+    return this.isWorkshopLeader() && (this.isBefore(now, finish_date) || this.consultant.isDRV);
   }
 
   toggleShare() {
