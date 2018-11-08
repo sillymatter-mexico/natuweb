@@ -143,7 +143,7 @@ export class WorkshopViewComponent implements OnInit {
   enabledAddStaff() {
     const now = new Date();
     const finish_date = this.toNormalDate(new Date(this.workshop.finish_date));
-    return this.isWorkshopLeader() && (this.isBefore(now, finish_date) || this.consultant.isDRV);
+    return this.isWorkshopLeader() && this.isBefore(now, finish_date);
   }
 
   toggleShare() {
