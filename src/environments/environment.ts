@@ -11,7 +11,8 @@ export const environment = {
     projectId: 'mi-natura-web',
     storageBucket: 'mi-natura-web.appspot.com',
     messagingSenderId: '520331211571'
-  }
+  },
+  server: 'http://54.188.33.142:8080'
 };
 
 /*

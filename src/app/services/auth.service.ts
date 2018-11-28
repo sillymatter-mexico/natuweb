@@ -15,12 +15,12 @@ export class AuthService {
 
   login(user: any) {
 
-    user.device_uuid = 'PC';
-    user.device_name = 'PC';
-    user.device_platform = 'PC';
-    user.device_model = 'PC';
+    // user.device_uuid = 'PC';
+    // user.device_name = 'PC';
+    // user.device_platform = 'PC';
+    // user.device_model = 'PC';
 
-    return this.http.post('/api/v2/login/', user);
+    return this.http.post('/api/v1/consultant/login/', user);
   }
 
   saveSession(consultant: any) {

@@ -14,7 +14,7 @@
               Código de consultor (a)
             </label>
             <input type="number" name="username" required
-                   class="form-control" id="username" [(ngModel)]="user.username"
+                   class="form-control" id="username" [(ngModel)]="user.cn_code"
                    placeholder="Código de consultor (a)" #username="ngModel"
                    [class.is-invalid]="(f.submitted && username.invalid)">
             <div *ngIf="f.submitted && username.invalid" class="invalid-feedback">

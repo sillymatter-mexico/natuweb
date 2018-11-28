@@ -2,6 +2,7 @@ import { HttpInterceptor, HttpRequest } from '@angular/common/http/';
 import { HttpHandler } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {ServerService} from '../services/server.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ServerHttpInterceptor implements HttpInterceptor {
@@ -10,8 +11,8 @@ export class ServerHttpInterceptor implements HttpInterceptor {
 
   private readonly server: string;
 
-  constructor(public serverService: ServerService) {
-    this.server = this.serverService.url;
+  constructor() {
+    this.server = environment.server;
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

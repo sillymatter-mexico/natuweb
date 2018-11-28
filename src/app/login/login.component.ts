@@ -28,12 +28,20 @@ export class LoginComponent implements OnInit {
   onSubmit(form: any) {
     if (form.valid) {
       this.loading = true;
-
-      this.authService.login(this.user).subscribe(
-        (data: any) => {
-          this.loginSuccessHandler(data);
+      const data = {
+        cn_code: '\'' + this.user.cn_code + '\'',
+        password: this.user.password
+      };
+      console.log('data to send', data);
+      this.authService.login(data).subscribe(
+        (response: any) => {
+          console.log('success', response);
+          debugger;
+          this.loginSuccessHandler(response);
         },
         (err: any) => {
+          console.log('error', err);
+          debugger;
           this.loginErrorHandler(err);
         }
       );
