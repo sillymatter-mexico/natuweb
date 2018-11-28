@@ -3,3 +3,11 @@
   height: 50px;
   padding: 0;
 }
+
+.instructions-section {
+  position: relative;
+  .btn-section {
+    position: absolute;
+    bottom: 0;
+  }
+}
