@@ -94,7 +94,7 @@ a {
   &:hover {
     border: 1px solid #004897;
   }
-  &:active {
+  &:active, &.active {
     background: #417cb9;
     border: 1px solid transparent;
     background: -moz-linear-gradient(left, #417cb9 0%, #7b84c4 100%);

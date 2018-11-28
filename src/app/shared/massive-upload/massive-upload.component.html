@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-12 px-3 pt-3 text-center">
+    <h5 class="text-primary font-weight-bold mt-4">Carga masiva de {{uploadName}}</h5>
+    <p class="font-weight-bold text-dark w-75 d-inline-block">
+      Para realizar la carga masiva de {{uploadName}} tienes que seguir estos pasos:
+    </p>
+  </div>
+  <div class="col-12 col-md-4 border-right text-left px-2 px-lg-3">
+    <h5 class="text-primary font-weight-bold mt-4">Paso 1</h5>
+    <p class="font-weight-bold text-dark d-inline-block mb-5">
+      Descarga el formato .xlsx (excel) para que manualmente registres tus {{uploadName}}.
+    </p>
+    <div class="w-100 text-center">
+      <button class="btn btn-natura rounded-circle text-center" (click)="downloadFile()">
+        <i class="fas fa-cloud-download-alt"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-12 col-md-4 border-right text-left px-2 px-lg-3">
+    <h5 class="text-primary font-weight-bold mt-4">Paso 2</h5>
+    <p class="font-weight-bold text-dark d-inline-block mb-5">
+      Verifica que hayas llenado todos los campos del formato correctamente y sube el formato .xlsx (excel).
+    </p>
+    <div class="w-100 text-center">
+      <input type="file" (change)="onFileSelected($event)" #fileInput class="d-none">
+      <button class="btn btn-natura rounded-circle text-center" (click)="fileInput.click()">
+        <i class="fas fa-cloud-upload-alt"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-12 col-md-4 border-right text-left px-2 px-lg-3">
+    <h5 class="text-primary font-weight-bold mt-4">Paso 3</h5>
+    <p class="font-weight-bold text-dark d-inline-block mb-5">
+      Una vez que hayas subido el formato selecciona cargar para que automaticamente se registren tus {{uploadName}}.
+    </p>
+    <div class="w-100 text-center">
+      <button class="btn btn-natura text-center"
+              (click)="onUpload()"
+              [disabled]="selectedFile == null"
+              [ngClass]="{'active': selectedFile != null}">
+        Cargar
+      </button>
+    </div>
+  </div>
+</div>

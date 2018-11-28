@@ -29,6 +29,12 @@
             </div>
           </div>
         </div>
+        <hr>
+        <app-massive-upload
+          uploadName="talleres"
+          downloadUrl="https://s3-us-west-2.amazonaws.com/minatura/web/formatos/talleres.xlsx"
+          [serviceUrl]="'/api/v1/consultant/'+consultant.cn_code+'/upload_workshop/'"
+        ></app-massive-upload>
       </div>
     </div>
   </div>

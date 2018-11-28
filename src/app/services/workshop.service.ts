@@ -242,4 +242,7 @@ export class WorkshopService {
     return this.http.request('delete',  '/api/v2/workshop/delete/', options);
   }
 
+  public uploadWorkshopList(url: string, fd: FormData) {
+    return this.http.post(url, fd);
+  }
 }

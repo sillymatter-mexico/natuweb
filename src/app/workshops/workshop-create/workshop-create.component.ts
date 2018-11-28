@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {WorkshopService} from '../../services/workshop.service';
 import {ToastrService} from 'ngx-toastr';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-workshop-create',
@@ -13,11 +14,14 @@ export class WorkshopCreateComponent implements OnInit {
   public workshopType: any;
   public loading: boolean;
   public nameList: any[];
+  public consultant: any;
 
   constructor(private route: ActivatedRoute,
               private workshopService: WorkshopService,
               private router: Router,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private userService: UserService) {
+    this.consultant = userService.consultant;
     this.loading = false;
     this.nameList = [];
   }
