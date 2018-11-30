@@ -41,15 +41,14 @@ export class LoginComponent implements OnInit {
   }
 
   loginSuccessHandler(response: any) {
-    const data = response.data;
 
     this.loading = false;
     this.requestError = null;
 
-    this.consultant = data.consultant;
-    this.consultant.token = 'Token ' + data.token;
-    this.consultant.FMN = data.FMN;
-    this.consultant.isDRV = data.isDRV;
+    this.consultant = response.consultant;
+    this.consultant.token = 'Token ' + response.token;
+    this.consultant.FMN = response.FMN;
+    this.consultant.isDRV = response.isDRV;
     this.authService.rememberSession = this.rememberSession;
     this.authService.saveSession(this.consultant);
 

@@ -1,6 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from './user.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService {
     user.device_platform = 'PC';
     user.device_model = 'PC';
 
-    return this.http.post('/api/v2/login/', user);
+    return this.http.post('/api/v2/login/', user)
+            .pipe(map ((response: any) => response.data));
   }
 
   saveSession(consultant: any) {
