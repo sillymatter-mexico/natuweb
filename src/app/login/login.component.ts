@@ -41,14 +41,12 @@ export class LoginComponent implements OnInit {
   }
 
   loginSuccessHandler(response: any) {
-
     this.loading = false;
     this.requestError = null;
-
-    this.consultant = response.consultant;
-    this.consultant.token = 'Token ' + response.token;
-    this.consultant.FMN = response.FMN;
-    this.consultant.isDRV = response.isDRV;
+    this.consultant = response;
+    // this.consultant.token = response.token;
+    // this.consultant.FMN = response.FMN;
+    // this.consultant.isDRV = response.isDRV;
     this.authService.rememberSession = this.rememberSession;
     this.authService.saveSession(this.consultant);
 
@@ -63,11 +61,10 @@ export class LoginComponent implements OnInit {
       'appminatura@natura.net' +
       '</a>';
 
-    console.log('error', data);
-
     this.loading = false;
-    const e = data.error;
+    const e = data;
+    console.error(e)
     this.requestError
-      = (e.detail === 'Contraseña incorrecta.') ? passwordError : e.detail;
+      = (!e.success) ? passwordError : e.detail;
   }
 }

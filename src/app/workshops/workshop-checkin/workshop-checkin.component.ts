@@ -68,7 +68,7 @@ export class WorkshopCheckinComponent implements OnInit {
           const newAssist = response.assists.find(x => +x.cn === +assist.cn);
           if (newAssist) {
             assist.name = newAssist.name;
-            assist.carrer_level = newAssist.carrer_level;
+            assist.career_level = newAssist.career_level;
             assist.checkin = newAssist.checkin;
           }
         }

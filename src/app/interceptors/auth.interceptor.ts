@@ -7,7 +7,7 @@ import {UserService} from '../services/user.service';
 export class AuthHttpInterceptor implements HttpInterceptor {
 
   private urlExceptions: string [] = [
-    '/api/v2/login/',
+    '/api/v1/consultant/login/',
   ];
 
   private token: string;

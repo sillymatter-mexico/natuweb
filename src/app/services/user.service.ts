@@ -21,7 +21,7 @@ export class UserService {
   }
 
   get isLeader(): boolean {
-    return (!this.consultant.carrer_level.startsWith('CN') || this.consultant.isDRV);
+    return (!this.consultant.career_level.code.startsWith('CN') || this.consultant.isDRV);
   }
 
   get consultant() {

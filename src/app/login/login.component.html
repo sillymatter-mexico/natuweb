@@ -9,16 +9,16 @@
         <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="text-left mt-4 px-2 px-md-5">
           <h5 class="text-primary mb-3"><strong>Ingresa tus datos</strong></h5>
           <div class="form-group mb-3">
-            <label for="username" class="font-weight-bold"
-                   [class.text-danger]="(f.submitted && username.invalid)">
+            <label for="cn_code" class="font-weight-bold"
+                   [class.text-danger]="(f.submitted && cn_code.invalid)">
               Código de consultor (a)
             </label>
-            <input type="number" name="username" required
-                   class="form-control" id="username" [(ngModel)]="user.username"
-                   placeholder="Código de consultor (a)" #username="ngModel"
-                   [class.is-invalid]="(f.submitted && username.invalid)">
-            <div *ngIf="f.submitted && username.invalid" class="invalid-feedback">
-              <p *ngIf="username.errors.required">Este campo es requerido.</p>
+            <input type="text" name="cn_code" required
+                   class="form-control" id="cn_code" [(ngModel)]="user.cn_code"
+                   placeholder="Código de consultor (a)" #cn_code="ngModel"
+                   [class.is-invalid]="(f.submitted && cn_code.invalid)">
+            <div *ngIf="f.submitted && cn_code.invalid" class="invalid-feedback">
+              <p *ngIf="cn_code.errors.required">Este campo es requerido.</p>
             </div>
           </div>
           <div class="form-group mb-3">
