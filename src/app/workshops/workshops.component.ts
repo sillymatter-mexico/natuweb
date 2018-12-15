@@ -44,7 +44,7 @@ export class WorkshopsComponent implements OnInit {
 
   private fetchWorkshops() {
     this.loading = true;
-    const mine = this.workshopService.getMyWorkshops();
+    const mine = this.workshopService.getMyWorkshops(this.userService.consultant.uuid);
     const recent = this.workshopService.getTodayWorkshops();
 
     const request = forkJoin([mine, recent]);
@@ -61,8 +61,8 @@ export class WorkshopsComponent implements OnInit {
   }
 
   private setData(response: any[]) {
-    this.myWorkshops = response[0].workshop;
-    this.todayWorkshops = response[1].workshop;
+    this.myWorkshops = response[0];
+    this.todayWorkshops = response[1];
   }
 
   private buildCalendar() {

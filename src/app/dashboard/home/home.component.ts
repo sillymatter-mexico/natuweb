@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     const news = this.appService.getNews();
     // const initData = this.appService.getInitData();
 
-    // const request = combineLatest([mine, recent, news, iniStData]);
+    // const request = combineLatest([mine, recent, news, initData]);
     const request = combineLatest([mine, recent, news]);
     request
       .pipe(take(1))
