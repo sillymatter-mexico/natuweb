@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {of, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Workshop} from '../interfaces/workshop.interface';
+import {UserService} from './user.service';
+
 import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkshopService {
-
   private _workshopTypes: any;
   private _workshopTypeList: any[];
   private _listTypes: any[];
@@ -18,7 +19,7 @@ export class WorkshopService {
   private readonly _hours: any[] = [];
   private _watchPermission: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
 
     this._workshopTypeList  = [
       {
@@ -62,7 +63,7 @@ export class WorkshopService {
         name: 'mios',
         title: 'Mis talleres',
         subtitle: 'Consulta y edita los talleres creados',
-        list: this.getMyWorkshops(),
+        list: this.getMyWorkshops(this.userService.consultant.uuid),
         mine: true
       },
       {
