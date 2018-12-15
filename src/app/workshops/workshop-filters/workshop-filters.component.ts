@@ -156,7 +156,7 @@ export class WorkshopFiltersComponent implements OnInit {
         this.date = new Date(year, month - 1, day);
       }
       this.workshopLists[this.selectedFilter].loading = true;
-      this.workshopService.getWorkshopsByDate(day, month, year)
+      this.workshopService.getWorkshopsByDate(moment().format('YYYY-MM-DD HH:mm:ss'))
         .pipe(take(1))
         .subscribe((response: any) => {
           this.workshopLists[this.selectedFilter].list = response.workshop;

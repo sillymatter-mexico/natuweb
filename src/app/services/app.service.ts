@@ -38,12 +38,12 @@ export class AppService {
   }
 
   getInitData() {
-    return this.http.get('/api/v2/news/list/')
+    return this.http.get('/api/v1/news/list/')
             .pipe(map ((response: any) => response.data));
   }
 
   getNew(id: number) {
-    return this.http.get('/api/v2/news/?new_id=' + id)
+    return this.http.get('/api/v1/news/?new_id=' + id)
             .pipe(map ((response: any) => response.data));
   }
 

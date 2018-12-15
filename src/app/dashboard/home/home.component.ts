@@ -39,12 +39,13 @@ export class HomeComponent implements OnInit {
 
   private fetchData() {
     this.loading = true;
-    const mine = this.workshopService.getMyWorkshops();
+    const mine = this.workshopService.getMyWorkshops(this.userService.consultant.uuid);
     const recent = this.workshopService.getTodayWorkshops();
     const news = this.appService.getNews();
-    const initData = this.appService.getInitData();
+    // const initData = this.appService.getInitData();
 
-    const request = combineLatest([mine, recent, news, initData]);
+    // const request = combineLatest([mine, recent, news, iniStData]);
+    const request = combineLatest([mine, recent, news]);
     request
       .pipe(take(1))
       .subscribe((response: any[]) => {
@@ -52,15 +53,14 @@ export class HomeComponent implements OnInit {
         this.setData(response);
       }, error => {
         this.loading = false;
-        console.log(error);
         this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
       });
   }
 
   private setData(response: any[]) {
     const consultant =  this.userService.consultant;
-    this.myWorkshops = response[0].workshop;
-    this.recentWorkshops = response[1].workshop;
+    this.myWorkshops = response[0];
+    this.recentWorkshops = response[1];
     this.news = response[2];
     this.appService.news = this.news;
     consultant.career_level = response[3].career_level;

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {of, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Workshop} from '../interfaces/workshop.interface';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -138,8 +139,8 @@ export class WorkshopService {
     }
   }
 
-  public getMyWorkshops(page: number = 1) {
-    return this.http.get('/api/v2/workshop/mylist/?page=' + page)
+  public getMyWorkshops(uuid : string = '', page: number = 1) {
+    return this.http.get(`/api/v1/workshop/${uuid}/my_list/?page=` + page)
             .pipe(map ((response: any) => response.data));
   }
 
@@ -152,8 +153,11 @@ export class WorkshopService {
   }
 
   public getTodayWorkshops() {
-    const date = new Date();
-    return this.getWorkshopsByDate(date.getDate(), date.getMonth() + 1, date.getFullYear());
+    // const date = new Date();
+    const date = moment().format('YYYY-MM-DD HH:mm:ss')
+
+    // return this.getWorkshopsByDate(date.getDate(), date.getMonth() + 1, date.getFullYear());
+    return this.getWorkshopsByDate(date);
   }
 
   public getWorkshopPage(url: string) {
@@ -206,15 +210,16 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
-  public getWorkshopsByDate(day, month, year, page = 1) {
-    let url = '/api/v2/workshop/search-day/?page=' + page;
+  public getWorkshopsByDate(date, page = 1) {
+    let url = '/api/v1/workshop/search_by_date/?page=' + page;
 
-    if (day !== null) {
-      url = url + '&day=' + day;
-    }
+    // if (day !== null) {
+    //   url = url + '&day=' + day;
+    // }
 
-    url += '&month=' + month + '&year=' + year;
-
+    // url += '&month=' + month + '&year=' + year;
+    // url += `&search=${date}`
+    url += `&search=2018-10-11 00:00:00`
     return this.http.get(url)
       .pipe(map ((response: any) => response.data));
   }
