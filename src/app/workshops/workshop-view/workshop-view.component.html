@@ -16,7 +16,7 @@
           <div class="col-12 px-3 pb-1 pt-3 mb-4">
             <div class="workshop-type py-5"
                  [style.backgroundImage]="'url(' + workshop.images + ')'">
-              <h1 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name}}</h1>
+              <h1 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name_workshop.name_workshop}}</h1>
             </div>
           </div>
           <div class="col-12 col-md-6 col-lg-3 px-3 py-1">
@@ -57,7 +57,6 @@
               </div>
               <div class="natura-card-body">
                 <div class="w-100 p-3 d-flex">
-                  <app-avatar [consultant]="workshop.author.consultant_avatar" size=""></app-avatar>
                   <div class="ml-3">
                     <p class="font-weight-bold m-0">Creado por</p>
                     <p class="font-weight-bold m-0 text-primary">{{workshop.author.full_name}}</p>
@@ -120,13 +119,13 @@
                 <div class="w-100 p-3">
                   <p>
                     <i class="natura-icon-id mr-3 font-weight-bold"></i>
-                    <span>ID {{workshop.id}}</span>
+                    <span>ID {{workshop.uuid}}</span>
                   </p>
-                  <p *ngIf="isWorkshopLeader()">
+                  <!-- <p *ngIf="isWorkshopLeader()">
                     <i class="natura-icon-attendance mr-3 font-weight-bold"></i>
                     <span class="text-primary">{{workshop.assists.length}} </span>
                     persona<span *ngIf="workshop.assists.length !== 1">s</span> registrada<span *ngIf="workshop.assists.length !== 1">s</span>
-                  </p>
+                  </p> -->
                   <p>
                     <i class="far fa-clock mr-3"></i>
                     <span>{{workshop.start_date | momentDate:'hh:mm A'}}</span>

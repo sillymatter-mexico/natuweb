@@ -30,9 +30,9 @@ export class WorkshopInvitationComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
       if (this.workshop !== undefined) {
-        this.fetchWorkshop(this.workshop.id);
+        this.fetchWorkshop(this.workshop.workshop_name.uuid);
       } else {
-        this.fetchWorkshop(+id);
+        this.fetchWorkshop(id);
       }
     });
   }
@@ -50,7 +50,7 @@ export class WorkshopInvitationComponent implements OnInit {
     this.showShare = !this.showShare;
   }
 
-  fetchWorkshop(id: number) {
+  fetchWorkshop(id: string) {
     this.loading = true;
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {

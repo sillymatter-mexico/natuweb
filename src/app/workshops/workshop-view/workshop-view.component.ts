@@ -40,23 +40,24 @@ export class WorkshopViewComponent implements OnInit {
     this.consultant = this.userService.consultant;
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
-      this.fetchWorkshop(+id);
+      this.fetchWorkshop(id);
     });
   }
 
   isWorkshopLeader() {
-    return this.consultant.id === this.workshop.author.id;
+    return this.consultant.uuid === this.workshop.author.uuid;
   }
 
-  fetchWorkshop(id: number) {
+  fetchWorkshop(id: string) {
     this.loading = true;
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
-        this.workshop = response.workshop;
+        console.log('no mas>>>>', response)
+        this.workshop = response;
         this.workshop.assistance  = response.assistance;
         if (this.isWorkshopLeader() ||
             (this.watchPermission.permission && +this.watchPermission.workshop === +id)) {
-          this.fetchLeaderData(id);
+          this.fetchLeaderData(this.consultant.uuid);
         } else {
           this.loading = false;
           this.router.navigate(['/talleres', 'invitacion', id]);
@@ -68,7 +69,7 @@ export class WorkshopViewComponent implements OnInit {
       });
   }
 
-  fetchLeaderData(id: number) {
+  fetchLeaderData(id: string) {
     this.workshopService.getLeaderWorkshop(id)
       .subscribe((response: any) => {
         this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.id;

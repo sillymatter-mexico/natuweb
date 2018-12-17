@@ -85,7 +85,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
       const type = params.get('type');
       this.workshopType = this.workshopService.getWorkshopType(type);
 
-      const id = parseInt(params.get('workshop'), 10);
+      const id = params.get('workshop');
 
       if (this.workshopName === null || this.workshopType === null || id !== this.workshopName.id) {
         this.router.navigate(['/talleres', 'crear', this.workshopType.alias]);
@@ -102,12 +102,12 @@ export class WorkshopCreateDetailComponent implements OnInit {
 
   private setEditModule() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      const id: number = +params.get('workshop');
+      const id: string = params.get('workshop');
       this.fetchWorkshop(id);
     });
   }
 
-  fetchWorkshop(id: number) {
+  fetchWorkshop(id: string) {
     this.loading = true;
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {

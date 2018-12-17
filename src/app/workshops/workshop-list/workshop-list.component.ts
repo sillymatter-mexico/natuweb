@@ -29,14 +29,15 @@ export class WorkshopListComponent implements OnInit {
   }
 
   onOpenWorkshop(workshop: any) {
+    console.log('MIRA NO MAS', workshop)
     let watchPermission: any;
-    if (this.mine || +workshop.author.id === +this.userService.consultant.id) {
+    if (this.mine || +workshop.author.uuid === +this.userService.consultant.uuid) {
       watchPermission = {
         permission: true,
-        workshop: workshop.id
+        workshop: workshop.uuid
       };
       this.workshopService.watchPermission = watchPermission;
-      this.router.navigate(['/talleres', 'taller', workshop.id]);
+      this.router.navigate(['/talleres', 'taller', workshop.uuid]);
     } else {
       const initialState = {
         workshop: workshop,

@@ -181,13 +181,13 @@ export class WorkshopService {
       .pipe(map ((response: any) => response.data));
   }
 
-  public getWorkshop(id: number) {
-    return this.http.get('/api/v2/workshop/?workshop=' + id)
+  public getWorkshop(id: string) {
+    return this.http.get(`/api/v1/workshop/${id}/read/`)
             .pipe(map ((response: any) => response.data));
   }
 
-  public getLeaderWorkshop(id: number) {
-    return this.http.get('/api/v2/workshop/mylist/' + id + '/')
+  public getLeaderWorkshop(id: string) {
+    return this.http.get(`/api/v1/workshop/${id}/my_list/?page=1`)
             .pipe(map ((response: any) => response.data));
   }
 
