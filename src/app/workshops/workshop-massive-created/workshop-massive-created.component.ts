@@ -12,13 +12,13 @@ import {WorkshopService} from '../../services/workshop.service';
 export class WorkshopMassiveCreatedComponent implements OnInit {
 
   public workshop: Workshop;
-  public assitance: boolean;
+  public assistance: boolean;
   public confirmName: boolean;
 
   constructor(private _bsModalRef: BsModalRef,
               private router: Router,
               private workshopService: WorkshopService) {
-    this.assitance = false;
+    this.assistance = false;
   }
 
   ngOnInit() {
