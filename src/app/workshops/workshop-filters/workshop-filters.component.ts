@@ -151,13 +151,15 @@ export class WorkshopFiltersComponent implements OnInit {
   }
 
   public getDayWorkshops(day: number, month: number, year: number) {
+    let date = ''
     if (this.selectedFilter === 'calendario' || this.selectedFilter === 'dia') {
       if (this.selectedFilter === 'calendario') {
         // this.date = new Date(year, month - 1, day);
-        this.date = moment(year, month - 1, day).startOf('day');
+        // this.date = moment(`${year}`, `${month - 1}`, `${day}`).startOf('day').format('YYYY-MM-DD HH:mm:ss');
+        let date = moment(`${year}`, `${month - 1}`, `${day}`).startOf('day').format('YYYY-MM-DD HH:mm:ss');
       }
       this.workshopLists[this.selectedFilter].loading = true;
-      this.workshopService.getWorkshopsByDate(this.date.format('YYYY-MM-DD HH:mm:ss'))
+      this.workshopService.getWorkshopsByDate(date)
         .pipe(take(1))
         .subscribe((response: any) => {
           this.workshopLists[this.selectedFilter].list = response.workshop;
