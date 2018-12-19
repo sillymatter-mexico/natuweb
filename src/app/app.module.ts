@@ -50,6 +50,7 @@ import {ShareButtonsModule} from '@ngx-share/buttons';
 import { WorkshopDeleteComponent } from './workshops/workshop-delete/workshop-delete.component';
 import { SortPipe } from './pipes/sort.pipe';
 import { MassiveUploadComponent } from './shared/massive-upload/massive-upload.component';
+import { WorkshopMassiveCreatedComponent } from './workshops/workshop-massive-created/workshop-massive-created.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -89,6 +90,7 @@ registerLocaleData(locale, 'es-MX');
     WorkshopDeleteComponent,
     SortPipe,
     MassiveUploadComponent,
+    WorkshopMassiveCreatedComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,7 +119,8 @@ registerLocaleData(locale, 'es-MX');
     WorkshopCheckinComponent,
     WorkshopAddStaffComponent,
     WorkshopInvitationComponent,
-    WorkshopDeleteComponent
+    WorkshopDeleteComponent,
+    WorkshopMassiveCreatedComponent,
   ],
   providers: [
     AuthGuard,

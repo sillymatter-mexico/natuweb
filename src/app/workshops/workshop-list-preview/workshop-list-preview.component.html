@@ -10,9 +10,9 @@
         No hay talleres disponibles en esta lista.
       </p>
       <div class="workshop" *ngFor="let workshop of workshopList">
-        <p class="font-weight-bold mb-2">{{workshop.name_workshop.name_workshop}}</p>
+        <p class="font-weight-bold mb-2">{{workshop.name_workshop}}</p>
         <p class="text-muted mb-1 description">
-          {{workshop.name_workshop.description}}
+          {{workshop.description}}
         </p>
         <p class="text-muted text-capitalize">{{ workshop.start_date | momentDate:'MMMM DD YYYY, h:mm:ss a' }} </p>
         <button class="btn btn-natura btn-small" [routerLink]="[url]" *ngIf="url">Más información</button>

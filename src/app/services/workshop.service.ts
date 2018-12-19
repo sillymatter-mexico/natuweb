@@ -167,7 +167,7 @@ export class WorkshopService {
   }
 
   public getWorkshopNameList(id: number) {
-    return this.http.get('/api/v2/workshop-list/?id=' + id)
+    return this.http.get('/api/v1/workshop/name_workshop/')
             .pipe(map ((response: any) => response.data));
   }
 
@@ -237,6 +237,11 @@ export class WorkshopService {
 
   public searchWorkshop(keyword: string, page = 1) {
     return this.http.get('/api/v2/workshop/search/?page=' + page + '&search=' + keyword)
+            .pipe(map ((response: any) => response.data));
+  }
+
+  public getWorkShopAssistance(id: string) {
+    return this.http.get(`/api/v1/workshop/${id}/report_assistance`)
             .pipe(map ((response: any) => response.data));
   }
 

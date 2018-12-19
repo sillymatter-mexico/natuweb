@@ -25,7 +25,20 @@ export class WorkshopCheckinComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.assists = [...this.workshop.assists];
+    this.fetchAssists();
+  }
+
+  public fetchAssists() {
+    this.loading = true;
+    this.workshopService.getWorkShopAssistance(this.workshop.uuid)
+      .subscribe((response: any) => {
+        this.assists = response.data
+        this.loading = false;
+      }, (error: any) => {
+        this.loading = false;
+        this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
+        console.log('error', error);
+      });
   }
 
   closeModal() {
