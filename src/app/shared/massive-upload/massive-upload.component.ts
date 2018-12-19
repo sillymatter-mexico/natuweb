@@ -31,11 +31,10 @@ export class MassiveUploadComponent implements OnInit {
 
   onUpload() {
     this.toastr.success('Se ha subido la lista de ' + this.uploadName);
-    this.selectedFile = null;
-    /*
-    NOT IMPLEMENTED YET, DO NOT DELETE
+    // this.selectedFile = null;
+    console.log(this.selectedFile)
     const fd = new FormData();
-    fd.append('file', this.selectedFile, this.selectedFile.name);
+    fd.append('file', this.selectedFile, 'asistencias');
     this.workshopService.uploadWorkshopList(this.serviceUrl, fd)
       .subscribe((data: any) => {
         this.toastr.success('Se ha subido la lista de ' + this.uploadName);
@@ -45,7 +44,7 @@ export class MassiveUploadComponent implements OnInit {
         this.toastr.error('Ocurrió un error al subir la lista de ' + this.uploadName);
         this.selectedFile = null;
       });
-      */
+
   }
 
 }

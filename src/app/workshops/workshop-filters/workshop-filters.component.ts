@@ -153,10 +153,11 @@ export class WorkshopFiltersComponent implements OnInit {
   public getDayWorkshops(day: number, month: number, year: number) {
     if (this.selectedFilter === 'calendario' || this.selectedFilter === 'dia') {
       if (this.selectedFilter === 'calendario') {
-        this.date = new Date(year, month - 1, day);
+        // this.date = new Date(year, month - 1, day);
+        this.date = moment(year, month - 1, day).startOf('day');
       }
       this.workshopLists[this.selectedFilter].loading = true;
-      this.workshopService.getWorkshopsByDate(moment().format('YYYY-MM-DD HH:mm:ss'))
+      this.workshopService.getWorkshopsByDate(this.date.format('YYYY-MM-DD HH:mm:ss'))
         .pipe(take(1))
         .subscribe((response: any) => {
           this.workshopLists[this.selectedFilter].list = response.workshop;

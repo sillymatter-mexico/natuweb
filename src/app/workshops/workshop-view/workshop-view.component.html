@@ -169,7 +169,7 @@
           *ngIf="!loading"
           uploadName="asistencias"
           downloadUrl="https://s3-us-west-2.amazonaws.com/minatura/web/formatos/asistencias.xlsx"
-          [serviceUrl]="'/api/v1/consultant/' + workshop.id + '/report_assistance'"
+          [serviceUrl]="'/api/v1/workshop/' + workshop.uuid + '/massive_assistance/'"
         ></app-massive-upload>
       </div>
     </div>
