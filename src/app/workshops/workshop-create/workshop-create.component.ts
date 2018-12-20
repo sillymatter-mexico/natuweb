@@ -42,8 +42,9 @@ export class WorkshopCreateComponent implements OnInit {
     this.loading = true;
     this.workshopService.getWorkshopNameList(this.workshopType.id)
       .subscribe((response: any) => {
+        console.log('eh we!!>>>', response)
         this.loading = false;
-        this.nameList = response.name_list;
+        this.nameList = response;
       }, (error: any) => {
         this.loading = false;
         this.toastr.error('Lo sentimos, ocurrió un error en el servidor.');
@@ -52,7 +53,7 @@ export class WorkshopCreateComponent implements OnInit {
 
   setSelectedWorkshop(workshop: any) {
     this.workshopService.selectedWorkshopType = workshop;
-    this.router.navigate([workshop.id], {relativeTo: this.route});
+    this.router.navigate([workshop.uuid], {relativeTo: this.route});
   }
 
 }

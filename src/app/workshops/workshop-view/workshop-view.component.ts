@@ -52,7 +52,6 @@ export class WorkshopViewComponent implements OnInit {
     this.loading = true;
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
-        console.log('no mas>>>>', response)
         this.workshop = response;
         this.workshop.assistance  = response.assistance;
         if (this.isWorkshopLeader() ||
@@ -125,7 +124,7 @@ export class WorkshopViewComponent implements OnInit {
   }
 
   onEditWorkshop() {
-    this.router.navigate(['/talleres', 'editar', this.workshop.id]);
+    this.router.navigate(['/talleres', 'editar', this.workshop.uuid]);
   }
 
   enabledCheckin() {

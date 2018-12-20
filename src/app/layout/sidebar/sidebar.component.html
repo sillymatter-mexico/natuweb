@@ -13,14 +13,11 @@
     <div class="w-100 text-center mt-3 px-2">
       <small>¡Hola!</small>
       <p class="font-weight-bold m-0" *ngIf="isEnabled">
-        {{consultant.name}}
-      </p>
-      <p class="font-weight-bold m-0" *ngIf="!isEnabled">
-        {{consultant.alias}}
+        {{consultant.full_name}}
       </p>
       <hr class="m-0">
       <h3 class="text-primary m-0" *ngIf="!consultant.isDRV">
-        {{consultant.career_level}}
+        {{consultant.career_level.code}}
       </h3>
       <h4 class="text-primary m-0" *ngIf="consultant.isDRV">
         DRV

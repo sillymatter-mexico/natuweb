@@ -10,7 +10,7 @@
         No hay talleres disponibles en esta lista.
       </p>
       <div class="workshop" *ngFor="let workshop of workshopList">
-        <p class="font-weight-bold mb-2">{{workshop.name_workshop}}</p>
+        <p class="font-weight-bold mb-2">{{workshop.name_workshop ? workshop.name_workshop.name_workshop : null}}</p>
         <p class="text-muted mb-1 description">
           {{workshop.description}}
         </p>

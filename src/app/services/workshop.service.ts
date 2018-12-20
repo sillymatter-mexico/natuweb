@@ -172,12 +172,12 @@ export class WorkshopService {
   }
 
   public createWorkshop(workshop: Workshop) {
-    return this.http.post('/api/v2/workshop/', workshop)
-            .pipe(map ((response: any) => response.detail));
+    return this.http.post('/api/v1/workshop/created/', workshop)
+            .pipe(map ((response: any) => response.data));
   }
 
-  public editWorkshop(workshop: Workshop) {
-    return this.http.put('/api/v2/workshop/update/', workshop)
+  public editWorkshop(workshop: Workshop, uuid: string) {
+    return this.http.put(`/api/v1/workshop/${uuid}/update/`, workshop)
       .pipe(map ((response: any) => response.data));
   }
 

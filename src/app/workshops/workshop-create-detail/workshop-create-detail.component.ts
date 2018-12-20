@@ -53,7 +53,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         latitude: null,
         longitude: null
       },
-      address_string: null,
+      address: null,
       description: null,
       duration: null,
       id_name: null,
@@ -79,7 +79,6 @@ export class WorkshopCreateDetailComponent implements OnInit {
 
   private setCreateModule() {
     this.workshopName = this.workshopService.selectedWorkshopType;
-
     this.route.paramMap.subscribe((params: ParamMap) => {
 
       const type = params.get('type');
@@ -87,15 +86,16 @@ export class WorkshopCreateDetailComponent implements OnInit {
 
       const id = params.get('workshop');
 
-      if (this.workshopName === null || this.workshopType === null || id !== this.workshopName.id) {
+      if (this.workshopName === null || this.workshopType === null || id !== this.workshopName.uuid) {
         this.router.navigate(['/talleres', 'crear', this.workshopType.alias]);
       } else {
         this.workshop.private = false;
-        this.workshop.id_name = this.workshopName.id;
+        this.workshop.name_workshop_uuid = this.workshopName.uuid;
         this.workshop.name = this.workshopName.name;
-        this.workshop.description = this.workshopName.description;
+        this.workshop.description_workshop = this.workshopName.description;
         this.workshop.duration = this.hours[0].value;
-        this.workshop.specialist = 0;
+        this.workshop.specialist_uuid = this.consultant.uuid;
+        this.workshop.private = true;
       }
     });
   }
@@ -111,19 +111,21 @@ export class WorkshopCreateDetailComponent implements OnInit {
     this.loading = true;
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
-        const workshop = response.workshop;
+        const workshop = response;
+        this.workshop.name_workshop_uuid = workshop.name_workshop ? workshop.name_workshop.uuid : '';
         this.workshopPicture = workshop.images;
         this.workshop.workshop_id = workshop.id;
-        this.workshop.name = response.workshop.name;
-        this.workshop.description = workshop.description;
+        this.workshop.private = true;
+        this.workshop.name_workshop = workshop.name_workshop ? workshop.name_workshop.name_workshop : '';
+        this.workshop.description_workshop = workshop.description;
         this.workshop.author = workshop.author;
         if (workshop.sede) {
           this.workshop.sede = workshop.sede;
         }
         this.selectedDate = moment(workshop.start_date).utc().format('YYYY-MM-DD');
-        this.selectedHour = moment(workshop.start_date).utc().format('YYYY-MM-DD[T]HH:mm');
-        this.workshop.address_string = workshop.position_string;
-        this.workshop.specialist = 0;
+        this.selectedHour = moment(workshop.start_date).utc().format('YYYY-MM-DD HH:mm');
+        this.workshop.address = workshop.position_string;
+        this.workshop.specialist_uuid = this.consultant.uuid;
         this.workshop.duration = this.getDuration(workshop);
         if (workshop.point) {
           this.workshop.address_point = this.getCoordinates(workshop.point);
@@ -148,7 +150,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
       this.loadingWorkshop = true;
       const date = moment(this.selectedDate).format('YYYY-MM-DD');
       const hour = moment(this.selectedHour).format('HH:mm:ss');
-      this.workshop.start_date = `${date}T${hour}Z`;
+      this.workshop.start_date = `${date} ${hour}`;
       if (this.workshop.sede === null || this.workshop.sede.trim() === '') {
         delete this.workshop.sede;
       }
@@ -167,9 +169,14 @@ export class WorkshopCreateDetailComponent implements OnInit {
 
   private editWorkshop() {
     const data = {...this.workshop};
+    let id = null
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      id = params.get('workshop');
+      this.fetchWorkshop(id);
+    });
     delete data.author;
     delete data.id_name;
-    this.workshopService.editWorkshop(this.workshop)
+    this.workshopService.editWorkshop(this.workshop, id)
       .subscribe((response: any) => {
         this.loadingWorkshop = false;
         const initialState = {
@@ -190,7 +197,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
     this.loadingWorkshop = true;
     const date = moment(this.selectedDate).format('YYYY-MM-DD');
     const hour = moment(this.selectedHour).format('HH:mm:ss');
-    this.workshop.start_date = `${date}T${hour}Z`;
+    this.workshop.start_date = `${date} ${hour}`;
     if (this.workshop.sede === null || (this.workshop.sede && this.workshop.sede.trim() === '')) {
       delete this.workshop.sede;
     }
@@ -222,7 +229,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
     this.locationModal = this.modalService.show(LocationSelectorComponent);
     this.locationModal.content.onClose.subscribe((response: any) => {
       if (response.accepted) {
-        this.workshop.address_string = response.formattedAddress;
+        this.workshop.address = response.formattedAddress;
         this.workshop.address_point = response.addressPoint;
       }
     });

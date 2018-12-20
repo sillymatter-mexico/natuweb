@@ -24,7 +24,7 @@ export class WorkshopCreatedComponent implements OnInit {
   }
 
   onWorkshopLoad() {
-    this.router.navigate(['/talleres', 'taller', this.workshop.id]);
+    this.router.navigate(['/talleres', 'taller', this.workshop.uuid]);
     this.workshopService.clearSelectedWorkshopType();
     this._bsModalRef.hide();
   }
