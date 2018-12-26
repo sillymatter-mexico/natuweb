@@ -26,8 +26,7 @@ export class WorkshopDeleteComponent implements OnInit {
   }
 
   deleteWorkshop() {
-    const data = {'workshop_id': this.workshop.id};
-    this.workshopService.deleteWorkshop(data)
+    this.workshopService.deleteWorkshop(this.workshop.uuid)
       .subscribe((response: any) => {
         this.router.navigate(['/talleres', 'mios']);
         this.toastr.success('Taller borrado');

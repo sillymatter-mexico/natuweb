@@ -3,8 +3,5 @@
     <div class="main-avatar" style="z-index:1">
       <img [src]="consultant.avatar.image" id="avatar-image">
     </div>
-    <div *ngFor="let acc of consultant.accessories" class="avatar-accessory" [ngStyle]="{'z-index': acc.category.z_index}">
-      <img [src]="acc.image" alt="accessories">
-    </div>
   </div>
 </div>

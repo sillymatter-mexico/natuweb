@@ -57,7 +57,7 @@
                               <select class="form-control font-weight-bold text-primary input-natura"
                                       (change)="getDrvWorkshops()" [(ngModel)]="selectedDRV">
                                 <option *ngFor="let drv of drvList" [ngValue]="drv">
-                                  {{drv.name}}
+                                  {{drv.name.name}}
                                 </option>
                               </select>
                               <i class="fas position-absolute text-primary fa-angle-down"

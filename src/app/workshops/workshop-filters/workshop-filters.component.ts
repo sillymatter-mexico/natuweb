@@ -162,7 +162,7 @@ export class WorkshopFiltersComponent implements OnInit {
       this.workshopService.getWorkshopsByDate(date)
         .pipe(take(1))
         .subscribe((response: any) => {
-          this.workshopLists[this.selectedFilter].list = response.workshop;
+          this.workshopLists[this.selectedFilter].list = response;
           this.workshopLists[this.selectedFilter].next = this.nextPage = response.nextPage;
           this.workshopLists[this.selectedFilter].previous = this.previousPage = response.previousPage;
           this.workshopLists[this.selectedFilter].loading = false;
@@ -199,10 +199,11 @@ export class WorkshopFiltersComponent implements OnInit {
 
   getDrvWorkshops() {
     this.drvWorkshops.loading = true;
-    this.workshopService.getWorkshopsByDRV(this.selectedDRV.id)
+    console.log('DRV', this.selectedDRV)
+    this.workshopService.getWorkshopsByDRV(this.selectedDRV.uuid)
       .pipe(take(1))
       .subscribe((response: any) => {
-        this.drvWorkshops.list = response.workshop;
+        this.drvWorkshops.list = response;
         this.drvWorkshops.next = this.nextPage = response.nextPage;
         this.drvWorkshops.previous = this.previousPage = response.previousPage;
         this.nextPage = this.drvWorkshops.next;

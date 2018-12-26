@@ -6,7 +6,7 @@
   <div class="row p-0 m-0 align-items-center invitation-header"
        [style.backgroundImage]="'url(' + workshop.images + ')'" *ngIf="workshop">
     <div class="col-12">
-      <h2 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name}}</h2>
+      <h2 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name_workshop ? workshop.name_workshop.name_workshop : ''}}</h2>
     </div>
   </div>
   <app-loader [loading]="loading"></app-loader>
@@ -27,7 +27,7 @@
       <div class="w-100 p-3">
         <p>
           <i class="natura-icon-id mr-3 font-weight-bold"></i>
-          <span>ID {{workshop.id}}</span>
+          <span>ID {{workshop.uuid}}</span>
         </p>
         <p>
           <i class="far fa-clock mr-3"></i>

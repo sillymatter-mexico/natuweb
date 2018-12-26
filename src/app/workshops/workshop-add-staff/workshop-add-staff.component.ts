@@ -32,6 +32,7 @@ export class WorkshopAddStaffComponent implements OnInit {
     this.loadingSearch = true;
     this.workshopService.searchStaff(this.workshop.id, this.addInput)
       .subscribe((response: any) => {
+        console.log('si o no>>>>>>', response)
         this.loadingSearch = false;
         this.currentStaff = response;
         this.currentStaff.cn = this.addInput;

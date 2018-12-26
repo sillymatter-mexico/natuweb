@@ -29,8 +29,8 @@ export class WorkshopInvitationComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
-      if (this.workshop !== undefined) {
-        this.fetchWorkshop(this.workshop.workshop_name.uuid);
+      if (this.workshop.uuid) {
+        this.fetchWorkshop(this.workshop.uuid);
       } else {
         this.fetchWorkshop(id);
       }
@@ -54,9 +54,10 @@ export class WorkshopInvitationComponent implements OnInit {
     this.loading = true;
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
-        this.workshop = response.workshop;
-        this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.id;
+        this.workshop = response;
+        this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.uuid;
         this.loading = false;
+        console.log('epaa>>>>>', this.workshop, this.loading, this.shareURL)
       }, (error: any) => {
         console.log(error);
         this.toastr.error('Lo sentimos, ocurrió un error al cargar detalles del taller');

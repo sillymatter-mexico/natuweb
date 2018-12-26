@@ -197,7 +197,7 @@ export class WorkshopService {
   }
 
   public searchStaff(id: number, cn: number) {
-    return this.http.get('/api/v2/workshop/staff/?workshop_ID=' + id + '&cn_code=' + cn)
+    return this.http.get(`/api/v1/workshop/${cn}/staff/my_list/`)
             .pipe(map ((response: any) => response.data));
   }
 
@@ -226,31 +226,28 @@ export class WorkshopService {
   }
 
   public getDRVList() {
-    return this.http.get('/api/v2/drv-list/')
+    return this.http.get('/api/v1/consultant/DRV_list/')
             .pipe(map ((response: any) => response.data));
   }
 
   public getWorkshopsByDRV(id: number, page = 1) {
-    return this.http.get('/api/v2/workshop/search-drv/?page=' + page + '&drv_id=' + id)
+    return this.http.get(`/api/v1/workshop/${id}/workshop_by_DRV/`)
             .pipe(map ((response: any) => response.data));
   }
 
   public searchWorkshop(keyword: string, page = 1) {
-    return this.http.get('/api/v2/workshop/search/?page=' + page + '&search=' + keyword)
+    return this.http.get(`/api/v1/workshop/search/?search=${keyword}`)
             .pipe(map ((response: any) => response.data));
   }
 
   public getWorkShopAssistance(id: string) {
-    return this.http.get(`/api/v1/workshop/${id}/report_assistance`)
+    return this.http.get(`/api/v1/workshop/${id}/assistance/list/`)
             .pipe(map ((response: any) => response.data));
   }
 
-  public deleteWorkshop(workshop: any) {
-    const options = {
-      body: workshop
-    };
+  public deleteWorkshop(id: any) {
 
-    return this.http.request('delete',  '/api/v2/workshop/delete/', options);
+    return this.http.request('delete',  `/api/v1/workshop/${id}/delete/`);
   }
 
   public uploadWorkshopList(url: string, fd: FormData) {
