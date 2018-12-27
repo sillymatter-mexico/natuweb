@@ -7,6 +7,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {WorkshopCheckinComponent} from '../workshop-checkin/workshop-checkin.component';
 import {WorkshopAddStaffComponent} from '../workshop-add-staff/workshop-add-staff.component';
 import {WorkshopDeleteComponent} from '../workshop-delete/workshop-delete.component';
+import {GeneralModalAlertComponent} from '../../shared/general-modal-alert/general-modal-alert.component';
 import {ServerService} from '../../services/server.service';
 
 @Component({
@@ -115,6 +116,19 @@ export class WorkshopViewComponent implements OnInit {
         console.log('error', error);
       });
 
+  }
+
+  onDownloadAssistanceList() {
+    this.loading = true;
+    this.workshopService.downloadWorkShopAssistance(this.workshop.uuid)
+      .subscribe((response: any) => {
+        this.loading = false
+        console.log(response)
+        let initialState = {
+          'messages': response.messages
+        }
+        this.checkinModal = this.modalService.show(GeneralModalAlertComponent, {initialState});
+      });
   }
 
   onAddStaff() {

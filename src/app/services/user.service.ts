@@ -41,6 +41,6 @@ export class UserService {
   }
 
   public setAvatar(data: any) {
-    return this.http.put('/api/gamification/consultants-avatars/', data);
+    return this.http.post('/api/v1/consultant/avatar_create/', data);
   }
 }

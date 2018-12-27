@@ -50,14 +50,13 @@ export class ProfileComponent implements OnInit {
     for (const avatar of avatars) {
       const wrapper = {
         avatar: avatar,
-        accessories: avatar.accessories,
         id: avatar.id
       };
       this.avatars.push(wrapper);
     }
-    selectedIndex = this.avatars.findIndex(x => x.id === this.consultant.consultant_avatar.avatar.id);
-    if (this.gender === this.consultant.consultant_avatar.avatar.gender && selectedIndex === -1) {
-      this.avatars.push(this.consultant.consultant_avatar);
+    selectedIndex = this.avatars.findIndex(x => x.id === this.consultant.avatar.id);
+    if (this.gender === this.consultant.avatar.gender && selectedIndex === -1) {
+      this.avatars.push(this.consultant.avatar);
       selectedIndex = this.avatars.length - 1;
     }
     this.selectedAvatar = selectedIndex !== -1 ? selectedIndex : 0;
@@ -89,24 +88,19 @@ export class ProfileComponent implements OnInit {
 
   public saveAvatar() {
     this.saving = true;
-    const accessories: any[] = [];
     const avatar = this.avatars[this.selectedAvatar];
     this.consultant.gender = this.gender;
 
-    for (const accessory of avatar.accessories) {
-      accessories.push(accessory.id);
-    }
 
     const data = {
-      avatar_id: avatar.id,
-      accessories: accessories
+      avatar_uuid: avatar.id,
     };
 
     this.userService.setAvatar(data)
       .pipe(take(1))
       .subscribe((response: any) => {
         this.saving = false;
-        this.consultant.consultant_avatar = response.data;
+        this.consultant.avatar = response.data;
         this.userService.consultant = this.consultant;
         this.toastr.success('Se ha guardado el avatar que seleccionaste', 'Exito');
       }, (error: any) => {

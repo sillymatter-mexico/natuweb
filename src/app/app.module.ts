@@ -51,6 +51,7 @@ import { WorkshopDeleteComponent } from './workshops/workshop-delete/workshop-de
 import { SortPipe } from './pipes/sort.pipe';
 import { MassiveUploadComponent } from './shared/massive-upload/massive-upload.component';
 import { WorkshopMassiveCreatedComponent } from './workshops/workshop-massive-created/workshop-massive-created.component';
+import { GeneralModalAlertComponent } from './shared/general-modal-alert/general-modal-alert.component';
 defineLocale('es', esLocale);
 
 export function onInit(authService: AuthService) {
@@ -91,6 +92,7 @@ registerLocaleData(locale, 'es-MX');
     SortPipe,
     MassiveUploadComponent,
     WorkshopMassiveCreatedComponent,
+    GeneralModalAlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +123,7 @@ registerLocaleData(locale, 'es-MX');
     WorkshopInvitationComponent,
     WorkshopDeleteComponent,
     WorkshopMassiveCreatedComponent,
+    GeneralModalAlertComponent,
   ],
   providers: [
     AuthGuard,

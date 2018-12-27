@@ -247,6 +247,11 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
+  public downloadWorkShopAssistance(id: string) {
+    return this.http.get(`/api/v1/workshop/${id}/report_assistance`)
+            .pipe(map ((response: any) => response));
+  }
+
   public deleteWorkshop(id: any) {
 
     return this.http.request('delete',  `/api/v1/workshop/${id}/delete/`);
