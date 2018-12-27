@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {ServerService} from '../../services/server.service';
 
 @Component({
   selector: 'app-avatar',
@@ -8,16 +9,24 @@ import {Component, Input} from '@angular/core';
 
 export class AvatarComponent {
   private _consultant;
+  public avatarURL: string;
+  public _url: string;
+
+  constructor(public serverService: ServerService){
+    this._url = this.serverService.url;
+  }
 
   @Input() set consultant(consultant) {
     this._consultant = consultant;
-    if (this.consultant.accessories == null || this.consultant.accessories.length === 0) {
-      this.consultant.accessories = this.consultant.avatar.accessories;
-    }
+    this.avatarURL = this._url + consultant.avatar.image
   }
 
   get consultant() {
     return this._consultant;
+  }
+
+  get avatarUrl() {
+    return this.avatarUrl;
   }
 
   @Input() public size: string;

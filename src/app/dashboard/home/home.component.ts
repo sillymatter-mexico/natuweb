@@ -63,10 +63,10 @@ export class HomeComponent implements OnInit {
     this.recentWorkshops = response[1];
     this.news = response[2];
     this.appService.news = this.news;
-    consultant.career_level = response[3].career_level;
-    consultant.is_staff = response[3].is_staff;
+    // consultant.career_level = response[3].career_level;
+    // consultant.is_staff = response[3].is_staff;
     this.userService.consultant = consultant;
-    this.workshopService.workshopTypes = response[3].workshop_group;
+    // this.workshopService.workshopTypes = response[3].workshop_group;
   }
 
 }

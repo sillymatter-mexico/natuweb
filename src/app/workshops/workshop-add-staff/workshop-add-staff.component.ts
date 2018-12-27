@@ -30,7 +30,8 @@ export class WorkshopAddStaffComponent implements OnInit {
 
   onAddStaff() {
     this.loadingSearch = true;
-    this.workshopService.searchStaff(this.workshop.id, this.addInput)
+    console.log('algo?? >>>', this.workshop.uuid, this.addInput)
+    this.workshopService.searchStaff(this.workshop.uuid, this.addInput)
       .subscribe((response: any) => {
         console.log('si o no>>>>>>', response)
         this.loadingSearch = false;
@@ -47,11 +48,12 @@ export class WorkshopAddStaffComponent implements OnInit {
 
   saveStaff() {
     this.loading = true;
+    let formdata = []
+    formdata.push(this.currentStaff.cn)
     const data = {
-      workshop_ID: this.workshop.id,
-      cn_code: this.currentStaff.cn
+      cn_list: formdata
     };
-    this.workshopService.addStaff(data)
+    this.workshopService.addStaff(this.workshop.uuid, data)
       .subscribe((response: any) => {
         this.loading = false;
         this.toastr.success('Se ha añadido correctamente a ' + this.currentStaff.user + ' como staff');

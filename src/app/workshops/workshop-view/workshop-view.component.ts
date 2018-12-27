@@ -7,6 +7,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {WorkshopCheckinComponent} from '../workshop-checkin/workshop-checkin.component';
 import {WorkshopAddStaffComponent} from '../workshop-add-staff/workshop-add-staff.component';
 import {WorkshopDeleteComponent} from '../workshop-delete/workshop-delete.component';
+import {ServerService} from '../../services/server.service';
 
 @Component({
   selector: 'app-workshop-view',
@@ -24,8 +25,10 @@ export class WorkshopViewComponent implements OnInit {
   public watchPermission: any;
   public showShare: boolean;
   public shareURL: string;
+  public _url: string;
 
   constructor(private route: ActivatedRoute,
+              public serverService: ServerService,
               private workshopService: WorkshopService,
               private toastr: ToastrService,
               private userService: UserService,
@@ -33,6 +36,7 @@ export class WorkshopViewComponent implements OnInit {
               private router: Router) {
     this.loading = false;
     this.showShare = false;
+    this._url = this.serverService.url;
   }
 
   ngOnInit() {
@@ -53,6 +57,7 @@ export class WorkshopViewComponent implements OnInit {
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
         this.workshop = response;
+        this.workshop.image = response.name_workshop ? this._url + response.name_workshop.image : ''
         this.workshop.assistance  = response.assistance;
         if (this.isWorkshopLeader() ||
             (this.watchPermission.permission && +this.watchPermission.workshop === +id)) {

@@ -42,7 +42,7 @@ export class WorkshopListPreviewComponent implements OnInit {
         workshop: workshop.id
       };
       this.workshopService.watchPermission = watchPermission;
-      this.router.navigate(['/talleres', 'taller', workshop.id]);
+      this.router.navigate(['/talleres', 'taller', workshop.uuid]);
     } else {
       const initialState = {
         workshop: workshop,

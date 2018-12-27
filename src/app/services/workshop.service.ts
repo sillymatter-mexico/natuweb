@@ -23,7 +23,7 @@ export class WorkshopService {
 
     this._workshopTypeList  = [
       {
-        id: 1,
+        id: 'd007a90f9e04493bbfe2241b3c7473a1',
         name: 'Taller<br>mandatorio',
         picture: 'mandatory.png',
         alias: 'mandatorios',
@@ -32,7 +32,7 @@ export class WorkshopService {
         order: 1
       },
       {
-        id: 2,
+        id: '380f341be1284e96b3ea15fb04d09fa2',
         name: 'Taller<br>opcional',
         picture: 'optional.png',
         alias: 'opcionales',
@@ -40,7 +40,7 @@ export class WorkshopService {
         order: 3
       },
       {
-        id: 3,
+        id: '917f9caa4edf42dc8d89962fc68bb80b',
         name: 'Fortaleciendo<br>mi negocio',
         picture: 'fmn.png',
         alias: 'fmn',
@@ -167,7 +167,7 @@ export class WorkshopService {
   }
 
   public getWorkshopNameList(id: number) {
-    return this.http.get('/api/v1/workshop/name_workshop/')
+    return this.http.get(`/api/v1/workshop/${id}/workshop_by_type/`)
             .pipe(map ((response: any) => response.data));
   }
 
@@ -197,12 +197,14 @@ export class WorkshopService {
   }
 
   public searchStaff(id: number, cn: number) {
-    return this.http.get(`/api/v1/workshop/${cn}/staff/my_list/`)
+    // return this.http.get(`/api/v1/workshop/${cn}/staff/my_list/`)
+    //         .pipe(map ((response: any) => response.data));
+    return this.http.get(`/api/v1/workshop/${id}/staff_by_workshop/`)
             .pipe(map ((response: any) => response.data));
   }
 
-  public addStaff(data: any) {
-    return this.http.post('/api/v2/workshop/staff/', data)
+  public addStaff(id: string, data: any) {
+    return this.http.post(`/api/v1/workshop/${id}/staff_create/`, data)
             .pipe(map ((response: any) => response.data));
   }
 

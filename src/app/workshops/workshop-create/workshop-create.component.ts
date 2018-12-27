@@ -40,6 +40,7 @@ export class WorkshopCreateComponent implements OnInit {
 
   public fetchNameList() {
     this.loading = true;
+    console.log('liiist>>>', this.workshopType)
     this.workshopService.getWorkshopNameList(this.workshopType.id)
       .subscribe((response: any) => {
         console.log('eh we!!>>>', response)

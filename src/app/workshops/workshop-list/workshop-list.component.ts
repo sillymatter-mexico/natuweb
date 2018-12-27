@@ -29,7 +29,6 @@ export class WorkshopListComponent implements OnInit {
   }
 
   onOpenWorkshop(workshop: any) {
-    console.log('MIRA NO MAS', workshop)
     let watchPermission: any;
     if (this.mine || +workshop.author.uuid === +this.userService.consultant.uuid) {
       watchPermission = {
