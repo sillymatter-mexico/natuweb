@@ -35,7 +35,7 @@ export class WorkshopAddStaffComponent implements OnInit {
       .subscribe((response: any) => {
         console.log('si o no>>>>>>', response)
         this.loadingSearch = false;
-        this.currentStaff = response;
+        this.currentStaff = response.length > 0 ? response[0] : response ;
         this.currentStaff.cn = this.addInput;
         this.addInput = undefined;
       } , (error: any) => {
@@ -51,7 +51,7 @@ export class WorkshopAddStaffComponent implements OnInit {
     let formdata = []
     formdata.push(this.currentStaff.cn)
     const data = {
-      cn_list: formdata
+      cn_list: `${this.currentStaff.cn_code},${this.currentStaff.full_name}`
     };
     this.workshopService.addStaff(this.workshop.uuid, data)
       .subscribe((response: any) => {

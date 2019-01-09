@@ -28,20 +28,6 @@ export class WorkshopCheckinComponent implements OnInit {
     // this.fetchAssists();
   }
 
-  // fetchAssists() {
-  //   this.loading = true;
-  //   this.workshopService.getWorkShopAssistance(this.workshop.uuid)
-  //     .subscribe((response: any) => {
-  //       this.assists = response
-  //       console.log('Z>>>>>>>', this.assists)
-  //       this.loading = false;
-  //     }, (error: any) => {
-  //       this.loading = false;
-  //       this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
-  //       console.log('error', error);
-  //     });
-  // }
-
   closeModal() {
     this._bsModalRef.hide();
   }

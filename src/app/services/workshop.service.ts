@@ -199,7 +199,7 @@ export class WorkshopService {
   public searchStaff(id: number, cn: number) {
     // return this.http.get(`/api/v1/workshop/${cn}/staff/my_list/`)
     //         .pipe(map ((response: any) => response.data));
-    return this.http.get(`/api/v1/workshop/${id}/staff_by_workshop/`)
+    return this.http.get(`/api/v1/consultant/search/?search=${cn}`)
             .pipe(map ((response: any) => response.data));
   }
 
@@ -221,8 +221,8 @@ export class WorkshopService {
     // }
 
     // url += '&month=' + month + '&year=' + year;
-    // url += `&search=${date}`
-    url += `&search=2018-10-11 00:00:00`
+    url += `&search=${date}`
+    // url += `&search=2018-10-11 00:00:00`
     return this.http.get(url)
       .pipe(map ((response: any) => response.data));
   }

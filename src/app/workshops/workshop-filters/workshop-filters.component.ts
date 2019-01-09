@@ -151,13 +151,15 @@ export class WorkshopFiltersComponent implements OnInit {
   }
 
   public getDayWorkshops(day: number, month: number, year: number) {
-    let date = ''
+    console.log(day, month, year)
+    let date = moment(`${year}-${month}-${day}`, "YYYY-MM-DD").format('YYYY-MM-DD HH:mm:ss')
     if (this.selectedFilter === 'calendario' || this.selectedFilter === 'dia') {
       if (this.selectedFilter === 'calendario') {
         // this.date = new Date(year, month - 1, day);
         // this.date = moment(`${year}`, `${month - 1}`, `${day}`).startOf('day').format('YYYY-MM-DD HH:mm:ss');
-        let date = moment(`${year}`, `${month - 1}`, `${day}`).startOf('day').format('YYYY-MM-DD HH:mm:ss');
+      let date = moment(`${year}-${month}-${day}`, "YYYY-MM-DD").format('YYYY-MM-DD HH:mm:ss')
       }
+      console.log(date)
       this.workshopLists[this.selectedFilter].loading = true;
       this.workshopService.getWorkshopsByDate(date)
         .pipe(take(1))
@@ -223,7 +225,7 @@ export class WorkshopFiltersComponent implements OnInit {
         tap(() => this.searchWorkshops.loading = true),
         switchMap((query: any) =>  this.workshopService.searchWorkshop(query)))
       .subscribe((response: any) => {
-        this.searchWorkshops.list = response.workshop;
+        this.searchWorkshops.list = response;
         this.searchWorkshops.loading = false;
         this.searchWorkshops.previous = this.previousPage = response.previousPage;
         this.searchWorkshops.next = this.nextPage = response.nextPage;

@@ -91,11 +91,21 @@ export class WorkshopViewComponent implements OnInit {
   }
 
   onCheckinLoad() {
-    const initialState = {
-      workshop: this.workshop,
-      checkin: true
-    };
-    this.checkinModal = this.modalService.show(WorkshopCheckinComponent, {initialState});
+    this.loading = true;
+    this.workshopService.getWorkShopAssistance(this.workshop.uuid)
+      .subscribe((response: any) => {
+        this.loading = false;
+        const initialState = {
+          workshop: this.workshop,
+          checkin: true,
+          assists: response
+        };
+        this.checkinModal = this.modalService.show(WorkshopCheckinComponent, {initialState});
+      }, (error: any) => {
+        this.loading = false;
+        this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
+        console.log('error', error);
+      });
   }
 
   onAttendanceListLoad() {
