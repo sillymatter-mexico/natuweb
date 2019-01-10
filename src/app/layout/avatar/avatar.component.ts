@@ -17,6 +17,7 @@ export class AvatarComponent {
   }
 
   @Input() set consultant(consultant) {
+    console.log('el consultor ahora', consultant)
     this._consultant = consultant;
     this.avatarURL = this._url + consultant.avatar.image
   }

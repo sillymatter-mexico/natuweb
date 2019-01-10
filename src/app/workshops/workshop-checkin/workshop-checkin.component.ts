@@ -11,7 +11,7 @@ import {ToastrService} from 'ngx-toastr';
 export class WorkshopCheckinComponent implements OnInit {
 
   public workshop: any;
-  public checkin: boolean;
+  public check_in: boolean;
   public showAddInput: boolean;
   public addInput: number;
   public assists: any[];
@@ -37,39 +37,39 @@ export class WorkshopCheckinComponent implements OnInit {
   }
 
   onAddCN() {
-    const assist = {
-      cn: String(this.addInput),
-      checkin: true
-    };
-    if (!this.assists.some(x => +x.cn === +this.addInput)) {
-      this.assists.push(assist);
-    }
-    this.addInput = undefined;
+    this.loading = true;
+    this.workshopService.searchStaff(this.workshop.uuid, this.addInput)
+      .subscribe((response: any) => {
+        response.map((assist) => {
+          this.assists.push({consultant: assist, check_in: true})
+          this.addInput = undefined;
+          this.loading = false;
+        })
+      })
   }
 
   onSaveCheckin() {
+    console.log(this.assists)
     this.loading = true;
+    let cn_list = ""
+    for (const assist of this.assists) {
+      this.assists.map((assist, idx) => {
+        cn_list += `${assist.consultant.cn_code},${assist.consultant.full_name}${idx + 1 === this.assists.length ? null : '|'}`
+      });
+    }
     const data = {
-      workshop_ids: this.workshop.id,
-      cn_code: []
+      cn_list: cn_list
     };
 
-    for (const assist of this.assists) {
-      const element = [assist.cn, assist.checkin];
-      data.cn_code.push(element);
-    }
-
     console.log(data);
-
-    this.workshopService.saveCheckins(data)
+    this.workshopService.saveCheckins(data, this.workshop.uuid)
       .subscribe((response: any) => {
-        console.log('response', response);
         for (const assist of this.assists) {
-          const newAssist = response.assists.find(x => +x.cn === +assist.cn);
+          const newAssist = response.find(x => +x.cn === +assist.cn);
           if (newAssist) {
-            assist.name = newAssist.name;
-            assist.career_level = newAssist.career_level;
-            assist.checkin = newAssist.checkin;
+            assist.name = newAssist.consultant.full_name;
+            assist.career_level = newAssist.consultant.career_level.code;
+            assist.check_in = newAssist.check_in;
           }
         }
         this.workshop.assists = this.assists;

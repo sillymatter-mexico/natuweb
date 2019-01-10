@@ -93,15 +93,15 @@ export class ProfileComponent implements OnInit {
 
 
     const data = {
-      avatar_uuid: avatar.id,
+      avatar_uuid: avatar.avatar.uuid,
     };
-
     this.userService.setAvatar(data)
       .pipe(take(1))
       .subscribe((response: any) => {
         this.saving = false;
-        this.consultant.avatar = response.data;
+        this.consultant.avatar = response.data.avatar;
         this.userService.consultant = this.consultant;
+
         this.toastr.success('Se ha guardado el avatar que seleccionaste', 'Exito');
       }, (error: any) => {
         this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');

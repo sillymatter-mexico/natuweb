@@ -191,8 +191,8 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
-  public saveCheckins(checkins: any) {
-    return this.http.post('/api/v2/checkin/', checkins)
+  public saveCheckins(checkins: any, id: any) {
+    return this.http.post(`/api/v1/workshop/${id}/check_in/created/`, checkins)
             .pipe(map ((response: any) => response.data));
   }
 

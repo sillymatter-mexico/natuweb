@@ -30,10 +30,8 @@ export class WorkshopAddStaffComponent implements OnInit {
 
   onAddStaff() {
     this.loadingSearch = true;
-    console.log('algo?? >>>', this.workshop.uuid, this.addInput)
     this.workshopService.searchStaff(this.workshop.uuid, this.addInput)
       .subscribe((response: any) => {
-        console.log('si o no>>>>>>', response)
         this.loadingSearch = false;
         this.currentStaff = response.length > 0 ? response[0] : response ;
         this.currentStaff.cn = this.addInput;
