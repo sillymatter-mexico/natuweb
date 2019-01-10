@@ -4,7 +4,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
   <div class="row p-0 m-0 align-items-center invitation-header"
-       [style.backgroundImage]="'url(' + workshop.images + ')'" *ngIf="workshop">
+       [style.backgroundImage]="'url(' + workshop.image + ')'" *ngIf="workshop">
     <div class="col-12">
       <h2 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name_workshop ? workshop.name_workshop.name_workshop : ''}}</h2>
     </div>
@@ -13,7 +13,7 @@
   <div class="row p-0 m-0" *ngIf="!loading">
     <div class="col-12 col-lg-6 mt-lg-3 mb-3 mb-lg-0 border-right">
       <div class="w-100 p-3 d-flex align-items-center">
-        <app-avatar [consultant]="workshop.author.consultant_avatar" size="large"></app-avatar>
+        <app-avatar [consultant]="workshop.author" size="large"></app-avatar>
         <div class="ml-3">
           <p class="font-weight-bold m-0">Creado por</p>
           <p class="font-weight-bold m-0 text-primary">{{workshop.author.full_name}}</p>

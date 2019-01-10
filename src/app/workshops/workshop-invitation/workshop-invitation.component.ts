@@ -3,6 +3,7 @@ import {WorkshopService} from '../../services/workshop.service';
 import {BsModalRef} from 'ngx-bootstrap';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ServerService} from '../../services/server.service';
 
 @Component({
   selector: 'app-workshop-invitation',
@@ -16,14 +17,17 @@ export class WorkshopInvitationComponent implements OnInit {
   public modal: boolean;
   public shareURL: string;
   public showShare: boolean;
+  public _url: string;
 
   constructor(private workshopService: WorkshopService,
+              public serverService: ServerService,
               private toastr: ToastrService,
               private route: ActivatedRoute,
               private injector: Injector) {
     this.loading = false;
     this.modal = false;
     this.showShare = false;
+    this._url = this.serverService.url;
   }
 
   ngOnInit() {
@@ -55,6 +59,7 @@ export class WorkshopInvitationComponent implements OnInit {
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
         this.workshop = response;
+        this.workshop.image = response.name_workshop ? this._url + response.name_workshop.image : ''
         this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.uuid;
         this.loading = false;
         console.log('epaa>>>>>', this.workshop, this.loading, this.shareURL)
