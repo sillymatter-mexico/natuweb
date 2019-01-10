@@ -11,7 +11,7 @@ import {ToastrService} from 'ngx-toastr';
 export class WorkshopCheckinComponent implements OnInit {
 
   public workshop: any;
-  public check_in: boolean;
+  public checkin: boolean;
   public showAddInput: boolean;
   public addInput: number;
   public assists: any[];
@@ -41,7 +41,7 @@ export class WorkshopCheckinComponent implements OnInit {
     this.workshopService.searchStaff(this.workshop.uuid, this.addInput)
       .subscribe((response: any) => {
         response.map((assist) => {
-          this.assists.push({consultant: assist, check_in: true})
+          this.assists.push({consultant: assist, checkin: true})
           this.addInput = undefined;
           this.loading = false;
         })
@@ -69,7 +69,7 @@ export class WorkshopCheckinComponent implements OnInit {
           if (newAssist) {
             assist.name = newAssist.consultant.full_name;
             assist.career_level = newAssist.consultant.career_level.code;
-            assist.check_in = newAssist.check_in;
+            assist.checkin = newAssist.checkin;
           }
         }
         this.workshop.assists = this.assists;
