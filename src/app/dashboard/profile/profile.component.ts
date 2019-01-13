@@ -3,6 +3,7 @@ import {AppService} from '../../services/app.service';
 import {UserService} from '../../services/user.service';
 import {take} from 'rxjs/operators';
 import {ToastrService} from 'ngx-toastr';
+import {ServerService} from '../../services/server.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,13 +18,15 @@ export class ProfileComponent implements OnInit {
   public consultant: any;
   public selectedAvatar: number;
   public saving: boolean;
+  public _url: string;
 
-  constructor(private appService: AppService, private userService: UserService, private toastr: ToastrService) {
+  constructor(private appService: AppService, private userService: UserService, private toastr: ToastrService, public serverService: ServerService) {
     this.avatars = [];
     this.loading = false;
     this.saving = false;
     this.consultant = this.userService.consultant;
     this.gender = this.consultant.gender;
+    this._url = this.serverService.url;
   }
 
   ngOnInit() {
@@ -100,6 +103,7 @@ export class ProfileComponent implements OnInit {
       .subscribe((response: any) => {
         this.saving = false;
         this.consultant.avatar = response.data.avatar;
+        console.log('consultan>>>', this.consultant)
         this.userService.consultant = this.consultant;
 
         this.toastr.success('Se ha guardado el avatar que seleccionaste', 'Exito');

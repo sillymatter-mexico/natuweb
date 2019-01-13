@@ -52,11 +52,9 @@ export class WorkshopCheckinComponent implements OnInit {
     console.log(this.assists)
     this.loading = true;
     let cn_list = ""
-    for (const assist of this.assists) {
-      this.assists.map((assist, idx) => {
-        cn_list += `${assist.consultant.cn_code},${assist.consultant.full_name}${idx + 1 === this.assists.length ? null : '|'}`
-      });
-    }
+    this.assists.map((assist, idx) => {
+      cn_list += `${assist.consultant.cn_code},${assist.consultant.full_name}${this.assists.length - 1 === idx  ? null : '|'}`
+    });
     const data = {
       cn_list: cn_list
     };

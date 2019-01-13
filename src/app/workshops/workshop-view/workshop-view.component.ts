@@ -133,7 +133,6 @@ export class WorkshopViewComponent implements OnInit {
     this.workshopService.downloadWorkShopAssistance(this.workshop.uuid)
       .subscribe((response: any) => {
         this.loading = false
-        console.log(response)
         let initialState = {
           'messages': response.messages
         }

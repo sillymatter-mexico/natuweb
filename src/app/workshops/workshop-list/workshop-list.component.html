@@ -12,8 +12,8 @@
   </div>
   <div class="row my-3 mx-1 m-md-3 rounded bg-light align-items-baseline" *ngFor="let workshop of workshopList">
     <div class="col-3 col-md-2 p-0 p-md-2 text-center">
-<!--       <app-avatar [consultant]="workshop.author.consultant_avatar" *ngIf="workshop.author" size="big"></app-avatar>
-      <app-avatar [consultant]="consultant.consultant_avatar" *ngIf="!workshop.author"></app-avatar> -->
+      <app-avatar [consultant]="workshop.author" *ngIf="workshop.author" size="big"></app-avatar>
+      <app-avatar [consultant]="consultant" *ngIf="!workshop.author"></app-avatar>
       <p class="font-weight-bold text-primary m-0 avatar-name" *ngIf="workshop.author">
         {{ workshop.author.full_name }}
       </p>
