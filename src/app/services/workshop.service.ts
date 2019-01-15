@@ -23,7 +23,7 @@ export class WorkshopService {
 
     this._workshopTypeList  = [
       {
-        id: 'd007a90f9e04493bbfe2241b3c7473a1',
+        id: 'd14bfeb4511e43a5bdc03725275f3722',
         name: 'Taller<br>mandatorio',
         picture: 'mandatory.png',
         alias: 'mandatorios',
@@ -32,7 +32,7 @@ export class WorkshopService {
         order: 1
       },
       {
-        id: '380f341be1284e96b3ea15fb04d09fa2',
+        id: '5939632ff4764d62bc53593bf0fa179f',
         name: 'Taller<br>opcional',
         picture: 'optional.png',
         alias: 'opcionales',
@@ -40,7 +40,7 @@ export class WorkshopService {
         order: 3
       },
       {
-        id: '917f9caa4edf42dc8d89962fc68bb80b',
+        id: '90a1b702478243fe805862e6a1401b0e',
         name: 'Fortaleciendo<br>mi negocio',
         picture: 'fmn.png',
         alias: 'fmn',
