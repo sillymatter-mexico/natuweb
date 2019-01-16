@@ -4,6 +4,7 @@ export interface Workshop {
   id?: number;
   id_name: number; // id only
   name: string; // string
+  description_workshop: string; // string
   description: string; // string
   start_date: string; // TZ date string. Example: 2018-10-12T13:00:00Z
   specialist?: number; // id only

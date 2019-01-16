@@ -36,7 +36,11 @@ export class ProfileComponent implements OnInit {
   public fetchAvatars() {
     this.loading = true;
     this.avatars = [];
-    this.appService.getAvatars(this.gender)
+    let gender = {
+      F: '165968e2937841bc890e8afab26526d1',
+      M: '0529c079a36248049e44de171fc479bc'
+    }
+    this.appService.getAvatars(gender[this.gender])
       .pipe(take(1))
       .subscribe((response: any) => {
         this.buildAvatars(response);
@@ -44,7 +48,6 @@ export class ProfileComponent implements OnInit {
       }, (error: any) => {
         this.loading = false;
         this.toastr.error('Lo sentimos, ocurrió un error con el servidor', 'Error');
-        console.log('error', error);
       });
   }
 
@@ -103,7 +106,6 @@ export class ProfileComponent implements OnInit {
       .subscribe((response: any) => {
         this.saving = false;
         this.consultant.avatar = response.data.avatar;
-        console.log('consultan>>>', this.consultant)
         this.userService.consultant = this.consultant;
 
         this.toastr.success('Se ha guardado el avatar que seleccionaste', 'Exito');

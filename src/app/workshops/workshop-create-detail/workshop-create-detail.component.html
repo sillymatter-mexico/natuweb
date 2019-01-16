@@ -84,7 +84,7 @@
                       <label for="description"><strong>Descripción*</strong></label>
                       <textarea class="form-control" name="description" rows="4"
                                 id="description" placeholder="Descripción" #description="ngModel"
-                                [(ngModel)]="workshop.description" required
+                                [(ngModel)]="workshop.description_workshop" required
                                 [disabled]="!editMode && workshopName.id !== 1 && workshopType.id === 1"
                                 [ngClass]="{'is-invalid': f.submitted && description.errors}"></textarea>
                     </div>

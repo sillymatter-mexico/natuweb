@@ -49,7 +49,6 @@ export class WorkshopCheckinComponent implements OnInit {
   }
 
   onSaveCheckin() {
-    console.log(this.assists)
     this.loading = true;
     let cn_list = ""
     this.assists.map((assist, idx) => {
@@ -59,7 +58,6 @@ export class WorkshopCheckinComponent implements OnInit {
       cn_list: cn_list
     };
 
-    console.log(data);
     this.workshopService.saveCheckins(data, this.workshop.uuid)
       .subscribe((response: any) => {
         for (const assist of this.assists) {

@@ -54,8 +54,9 @@ export class WorkshopCreateDetailComponent implements OnInit {
         longitude: null
       },
       address: null,
-      description: null,
+      description_workshop: null,
       duration: null,
+      description: null,
       id_name: null,
       name: null,
       sede: null,
@@ -92,7 +93,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         this.workshop.private = false;
         this.workshop.name_workshop_uuid = this.workshopName.uuid;
         this.workshop.name = this.workshopName.name;
-        this.workshop.description_workshop = this.workshopName.description;
+        this.workshop.description_workshop = this.workshopName.description_workshop;
         this.workshop.duration = this.hours[0].value;
         this.workshop.specialist_uuid = this.consultant.uuid;
         this.workshop.private = true;
@@ -117,7 +118,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         this.workshop.workshop_id = workshop.id;
         this.workshop.private = true;
         this.workshop.name_workshop = workshop.name_workshop ? workshop.name_workshop.name_workshop : '';
-        this.workshop.description_workshop = workshop.description;
+        this.workshop.description_workshop = workshop.description_workshop;
         this.workshop.author = workshop.author;
         if (workshop.sede) {
           this.workshop.sede = workshop.sede;
@@ -168,6 +169,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
   }
 
   private editWorkshop() {
+    this.workshop.description = this.workshop.description_workshop
     const data = {...this.workshop};
     let id = null
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -205,7 +207,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
 
     // not implemented yet.
     delete this.workshop.private;
-
+    this.workshop.description = this.workshop.description_workshop
     this.workshopService.createWorkshop(this.workshop)
       .subscribe((response: any) => {
         this.loadingWorkshop = false;
