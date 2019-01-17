@@ -53,13 +53,13 @@ export class WorkshopCreateDetailComponent implements OnInit {
         latitude: null,
         longitude: null
       },
+      sede:"",
       address: null,
       description_workshop: null,
       duration: null,
       description: null,
       id_name: null,
       name: null,
-      sede: null,
       specialist: null,
       start_date: null
     };
@@ -97,6 +97,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         this.workshop.duration = this.hours[0].value;
         this.workshop.specialist_uuid = this.consultant.uuid;
         this.workshop.private = true;
+        this.workshop.sede = "";
       }
     });
   }
@@ -170,6 +171,8 @@ export class WorkshopCreateDetailComponent implements OnInit {
 
   private editWorkshop() {
     this.workshop.description = this.workshop.description_workshop
+    this.workshop.sede = ""
+    this.workshop.address = ""
     const data = {...this.workshop};
     let id = null
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -200,14 +203,15 @@ export class WorkshopCreateDetailComponent implements OnInit {
     const date = moment(this.selectedDate).format('YYYY-MM-DD');
     const hour = moment(this.selectedHour).format('HH:mm:ss');
     this.workshop.start_date = `${date} ${hour}`;
-    if (this.workshop.sede === null || (this.workshop.sede && this.workshop.sede.trim() === '')) {
-      delete this.workshop.sede;
-    }
+    // if (this.workshop.sede === null || (this.workshop.sede && this.workshop.sede.trim() === '')) {
+    //   delete this.workshop.sede;
+    // }
     this.workshop.duration = +this.workshop.duration; // to make sure it is an integer, otherwise server crashes
 
     // not implemented yet.
     delete this.workshop.private;
     this.workshop.description = this.workshop.description_workshop
+    this.workshop.sede = ""
     this.workshopService.createWorkshop(this.workshop)
       .subscribe((response: any) => {
         this.loadingWorkshop = false;
@@ -231,7 +235,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
     this.locationModal = this.modalService.show(LocationSelectorComponent);
     this.locationModal.content.onClose.subscribe((response: any) => {
       if (response.accepted) {
-        this.workshop.address = response.formattedAddress;
+        this.workshop.address_string = response.formattedAddress;
         this.workshop.address_point = response.addressPoint;
       }
     });

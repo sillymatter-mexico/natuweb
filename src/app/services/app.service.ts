@@ -48,7 +48,7 @@ export class AppService {
   }
 
   getAvatars(gender) {
-    return this.http.get(`/api/v1/consultant/avatar_list/?gender=${gender}`)
+    return this.http.get(`/api/v1/consultant/${gender}/avatar_by_gender/`)
             .pipe(map ((response: any) => response.data));
   }
 

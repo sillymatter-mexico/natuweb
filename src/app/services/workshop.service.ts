@@ -51,11 +51,11 @@ export class WorkshopService {
     ];
 
     this._specialists = [
-      { id: '0', name: 'Ninguno' },
-      { id: '1', name: 'Emmanuel Romero - Maquillaje' },
-      { id: '2', name: 'Julio Castillo - Maquillaje' },
-      { id: '3', name: 'Andrea Quiroga - Perfumería' },
-      { id: '4', name: 'Julia García - Rostro' }
+      { id: '0', uuid: '', name: 'Ninguno' },
+      { id: '1', uuid: '3972344b5d71469c8944112234decb2c', name: 'Emmanuel Romero - Maquillaje' },
+      { id: '2', uuid: '487a344547c64860b91bc466067f4fd0', name: 'Julio Castillo - Maquillaje' },
+      { id: '3', uuid: 'd7c8bcff4a9e455d8fda6596922dc46b', name: 'Andrea Quiroga - Perfumería' },
+      { id: '4', uuid: '487a344547c64860b91bc466067f4fd0', name: 'Julia García - Rostro' }
     ];
 
     this._listTypes = [
