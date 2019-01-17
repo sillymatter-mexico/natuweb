@@ -171,6 +171,7 @@ export class WorkshopFiltersComponent implements OnInit {
         }, (error: any) => {
           this.workshopLists[this.selectedFilter].loading = false;
           console.log(error);
+          this.loading = false;
           this.toastr.error('Lo sentimos, ocurrió un error al cargar los talleres del día seleccionado');
         });
     }
@@ -194,6 +195,7 @@ export class WorkshopFiltersComponent implements OnInit {
       }, (error: any) => {
         this.drvWorkshops.loading = false;
         console.log(error);
+        this.loading = false;
         this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de DRVs');
       }
     );
@@ -213,6 +215,7 @@ export class WorkshopFiltersComponent implements OnInit {
       }, (error: any) => {
         this.drvWorkshops.loading = false;
         console.log(error);
+        this.loading = false;
         this.toastr.error('Lo sentimos, ocurrió un error al cargar los talleresdel DRV seleccionado');
       });
   }
@@ -231,6 +234,7 @@ export class WorkshopFiltersComponent implements OnInit {
         this.searchWorkshops.next = this.nextPage = response.nextPage;
       }, (error: any) => {
         console.log(error);
+        this.searchWorkshops.loading = false;
         this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
       });
   }
@@ -251,6 +255,7 @@ export class WorkshopFiltersComponent implements OnInit {
         this.workshopLists[this.selectedFilter].next = this.nextPage = response.nextPage;
       }, (error: any) => {
         console.log(error);
+        this.loading = false;
         this.workshopLists[this.selectedFilter].loading = false;
         this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
       });

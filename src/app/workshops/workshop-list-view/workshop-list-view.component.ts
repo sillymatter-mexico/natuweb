@@ -49,6 +49,8 @@ export class WorkshopListViewComponent implements OnInit {
         this.fetchList(data.list);
       }, (error: any) => {
         console.log(error);
+        this.loading = false;
+        this.workshopList = [];
         this.toastr.error(error);
       });
   }
@@ -63,6 +65,7 @@ export class WorkshopListViewComponent implements OnInit {
     }, (error: any) => {
       console.log(error);
       this.loading = false;
+      this.workshopList = [];
       this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
     });
   }

@@ -25,6 +25,7 @@ export class WorkshopService {
       {
         id: 'd14bfeb4511e43a5bdc03725275f3722',
         name: 'Taller<br>mandatorio',
+        name_alias: 'Taller mandatorio',
         picture: 'mandatory.png',
         alias: 'mandatorios',
         description: 'Selecciona el Taller Mandatorio de Crecimiento y Mantenimiento ' +
@@ -34,6 +35,7 @@ export class WorkshopService {
       {
         id: '5939632ff4764d62bc53593bf0fa179f',
         name: 'Taller<br>opcional',
+        name_alias: 'Taller opcional',
         picture: 'optional.png',
         alias: 'opcionales',
         description: 'Selecciona, crea y entrena a tus consultores con talleres de tu autoría.',
@@ -42,6 +44,7 @@ export class WorkshopService {
       {
         id: '90a1b702478243fe805862e6a1401b0e',
         name: 'Fortaleciendo<br>mi negocio',
+        name_alias: 'Fortaleciendo >mi negocio',
         picture: 'fmn.png',
         alias: 'fmn',
         description: 'Selecciona uno de los talleres y entrena a tu Red ' +
@@ -129,6 +132,10 @@ export class WorkshopService {
 
   public getWorkshopType(alias: string) {
     return this._workshopTypeList.find(x => x.alias === alias);
+  }
+
+  public getWorkshopTypeByNameAlias(name_alias: string) {
+    return this._workshopTypeList.find(x => x.name_alias === name_alias);
   }
 
   public getWorkshopList(name: string) {
@@ -247,8 +254,8 @@ export class WorkshopService {
             .pipe(map ((response: any) => response.data));
   }
 
-  public downloadWorkShopAssistance(id: string) {
-    return this.http.get(`/api/v1/workshop/${id}/report_assistance`)
+  public downloadWorkShopAssistance(id: string, email: string) {
+    return this.http.get(`/api/v1/workshop/${id}/report_assistance/?mail=${email}`)
             .pipe(map ((response: any) => response));
   }
 

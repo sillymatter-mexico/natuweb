@@ -57,13 +57,14 @@
               </div>
               <div class="natura-card-body">
                 <div class="w-100 p-3 d-flex">
+                  <app-avatar [consultant]="workshop.author" size=""></app-avatar>
                   <div class="ml-3">
                     <p class="font-weight-bold m-0">Creado por</p>
                     <p class="font-weight-bold m-0 text-primary">{{workshop.author.full_name}}</p>
                   </div>
                 </div>
                 <div class="w-100 px-3 pb-3">
-                  <p class="m-0">{{workshop.description}}</p>
+                  <p class="m-0">{{workshop.description_workshop}}</p>
                 </div>
               </div>
             </div>
@@ -140,10 +141,6 @@
                     <i class="fas fa-map-pin mr-3"></i>
                     <span>{{workshop.sede}}</span>
                   </p>
-                  <p *ngIf="workshop.description_workshop">
-                    <i class="fas fa-file mr-3"></i>
-                    <span>{{workshop.description_workshop}}</span>
-                  </p>
                   <p *ngIf="workshop.specialist.length > 0">
                     <i class="far fa-user mr-3"></i>
                     <span>{{workshop.specialist[0].first_name}} {{workshop.specialist[0].first_last_name}}</span>
@@ -158,7 +155,7 @@
                     <share-buttons [show]="3" [url]="shareURL"
                                    [include]="['facebook','twitter','whatsapp','linkedin','pinterest','telegram','email']"
                                    [title]="workshop.name" [theme]="'modern-light'"
-                                   [description]="workshop.description"
+                                   [description]="workshop.description_workshop"
                                    [image]="workshop.images"
                                    [autoSetMeta]="false"
                     ></share-buttons>

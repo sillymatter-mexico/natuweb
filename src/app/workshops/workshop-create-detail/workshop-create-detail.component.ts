@@ -93,7 +93,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         this.workshop.private = false;
         this.workshop.name_workshop_uuid = this.workshopName.uuid;
         this.workshop.name = this.workshopName.name;
-        this.workshop.description_workshop = this.workshopName.description_workshop;
+        this.workshop.description_workshop = this.workshopName.description_workshop ? this.workshopName.description_workshop : this.workshopName.description;
         this.workshop.duration = this.hours[0].value;
         this.workshop.specialist_uuid = this.consultant.uuid;
         this.workshop.private = true;

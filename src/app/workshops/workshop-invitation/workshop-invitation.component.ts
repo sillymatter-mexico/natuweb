@@ -18,6 +18,7 @@ export class WorkshopInvitationComponent implements OnInit {
   public shareURL: string;
   public showShare: boolean;
   public _url: string;
+  public workshopType: any;
 
   constructor(private workshopService: WorkshopService,
               public serverService: ServerService,
@@ -59,7 +60,8 @@ export class WorkshopInvitationComponent implements OnInit {
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
         this.workshop = response;
-        this.workshop.image = response.name_workshop ? this._url + response.name_workshop.image : ''
+        this.workshopType = this.workshopService.getWorkshopTypeByNameAlias(response.name_workshop.type_workshop.name_workshop);
+        this.workshop.image = this.workshopType.picture
         this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.uuid;
         this.loading = false;
         console.log('epaa>>>>>', this.workshop, this.loading, this.shareURL)

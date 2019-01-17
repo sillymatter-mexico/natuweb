@@ -76,8 +76,8 @@
                       <label for="name"><strong>Nombre del taller*</strong></label>
                       <input type="text" class="form-control" name="name"
                              id="name" placeholder="Nombre del taller"
-                             [(ngModel)]="workshop.name_workshop ? workshop.name_workshop.name_workshop : workshop.name"required
-                             [disabled]="editMode || workshopName?.id !== 1" #name="ngModel"
+                             [(ngModel)]="workshopName.name_workshop"required
+                             [disabled]="editMode || workshopName?.type_workshop.name_workshop !== 'Taller opcional'" #name="ngModel"
                              [ngClass]="{'is-invalid': f.submitted && name.errors}">
                     </div>
                     <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
@@ -85,15 +85,15 @@
                       <textarea class="form-control" name="description" rows="4"
                                 id="description" placeholder="Descripción" #description="ngModel"
                                 [(ngModel)]="workshop.description_workshop" required
-                                [disabled]="!editMode && workshopName.id !== 1 && workshopType.id === 1"
+                                [disabled]="!editMode && workshopName.type_workshop.name_workshop !== 'Taller opcional' && workshopType.id === 1"
                                 [ngClass]="{'is-invalid': f.submitted && description.errors}"></textarea>
                     </div>
-                    <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
+<!--                     <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
                       <label for="sede"><strong>Sede</strong></label>
                       <input type="text" class="form-control" name="sede"
                              id="sede" placeholder="Sede"
                              [(ngModel)]="workshop.sede">
-                    </div>
+                    </div> -->
                   </div>
                   <div class="form-row justify-content-center">
                     <div class="form-group col-12 col-sm-6"

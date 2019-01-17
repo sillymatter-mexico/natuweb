@@ -130,7 +130,7 @@ export class WorkshopViewComponent implements OnInit {
 
   onDownloadAssistanceList() {
     this.loading = true;
-    this.workshopService.downloadWorkShopAssistance(this.workshop.uuid)
+    this.workshopService.downloadWorkShopAssistance(this.workshop.uuid, this.consultant.email)
       .subscribe((response: any) => {
         this.loading = false
         let initialState = {
@@ -148,7 +148,7 @@ export class WorkshopViewComponent implements OnInit {
   }
 
   onSendReport() {
-    this.workshopService.sendReport(this.consultant.email, this.workshop.id)
+    this.workshopService.downloadWorkShopAssistance(this.workshop.uuid, this.consultant.email)
       .subscribe((data: any) => {
         this.toastr.success('Reporte enviado a ' + this.consultant.email);
       }, (error: any) => {
