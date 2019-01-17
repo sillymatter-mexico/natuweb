@@ -8,6 +8,7 @@ import {WorkshopCheckinComponent} from '../workshop-checkin/workshop-checkin.com
 import {WorkshopAddStaffComponent} from '../workshop-add-staff/workshop-add-staff.component';
 import {WorkshopDeleteComponent} from '../workshop-delete/workshop-delete.component';
 import {GeneralModalAlertComponent} from '../../shared/general-modal-alert/general-modal-alert.component';
+import {InputModalComponent} from '../../shared/input-modal/input-modal.component';
 import {ServerService} from '../../services/server.service';
 
 @Component({
@@ -129,15 +130,16 @@ export class WorkshopViewComponent implements OnInit {
   }
 
   onDownloadAssistanceList() {
-    this.loading = true;
-    this.workshopService.downloadWorkShopAssistance(this.workshop.uuid, this.consultant.email)
-      .subscribe((response: any) => {
-        this.loading = false
-        let initialState = {
-          'messages': response.messages
-        }
-        this.checkinModal = this.modalService.show(GeneralModalAlertComponent, {initialState});
-      });
+    // this.loading = true;
+    // this.workshopService.downloadWorkShopAssistance(this.workshop.uuid, this.consultant.email)
+    //   .subscribe((response: any) => {
+    //     this.loading = false
+    //     this.checkinModal = this.modalService.show(InputModalComponent, {initialState});
+    //   });
+    let initialState = {
+      'workshop_uuid': this.workshop.uuid,
+    }
+    this.checkinModal = this.modalService.show(InputModalComponent, {initialState});
   }
 
   onAddStaff() {

@@ -61,7 +61,7 @@ export class WorkshopInvitationComponent implements OnInit {
       .subscribe((response: any) => {
         this.workshop = response;
         this.workshopType = this.workshopService.getWorkshopTypeByNameAlias(response.name_workshop.type_workshop.name_workshop);
-        this.workshop.image = this.workshopType.picture
+        this.workshop.image = this.workshopType ? this.workshopType.picture : ''
         this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.uuid;
         this.loading = false;
         console.log('epaa>>>>>', this.workshop, this.loading, this.shareURL)

@@ -1,0 +1,28 @@
+<div class="modal-body natura-modal-bg p-3">
+  <div class="row">
+    <div class="col-12 text-center p-3 mt-3">
+      <i class="far fa-3x fa-check-circle text-primary"></i>
+      <h4 class="text-primary font-weight-bold my-2">Introduce el correo electrónico para recibir la descarga</h4>
+    </div>
+    <div class="col-12 text-left px-3 px-md-5">
+      <div class="input-group pt-3">
+        <input type="text" class="form-control"
+               placeholder="Correo electrónico"
+               aria-label="CN" [(ngModel)]="addInput">
+        <div class="input-group-append">
+          <button class="btn btn-secondary bg-natura"
+                  type="button" id="button-CN"
+                  (click)="onDownloadAssistanceList()">
+            <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
+            Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+      <div class="col-12 col-sm-6 offset-sm-3 text-left py-3 px-3 px-md-5 mb-3">
+        <div class="btn btn-block btn-natura mt-3" (click)="onClose()">
+          Cancelar
+        </div>
+      </div>
+  </div>
+</div>

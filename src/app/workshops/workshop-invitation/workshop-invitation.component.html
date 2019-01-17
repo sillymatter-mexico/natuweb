@@ -6,6 +6,7 @@
   <div class="row p-0 m-0 align-items-center invitation-header"
        [style.backgroundImage]="'url(/assets/img/images/' + workshop.image + ')'" *ngIf="workshop">
     <div class="col-12">
+      <h2 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name_workshop.type_workshop ? workshop.name_workshop.type_workshop.name_workshop : ''}}</h2>
       <h2 class="text-white ml-2 ml-md-3 my-3 font-weight-bold">{{workshop.name_workshop ? workshop.name_workshop.name_workshop : ''}}</h2>
     </div>
   </div>
