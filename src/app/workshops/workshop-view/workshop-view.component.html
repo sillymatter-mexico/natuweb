@@ -119,7 +119,7 @@
                 <div class="w-100 p-3">
                   <p>
                     <i class="natura-icon-id mr-3 font-weight-bold"></i>
-                    <span>ID {{workshop.uuid}}</span>
+                    <span>ID {{workshop.id}}</span>
                   </p>
                   <!-- <p *ngIf="isWorkshopLeader()">
                     <i class="natura-icon-attendance mr-3 font-weight-bold"></i>
@@ -139,6 +139,10 @@
                   <p *ngIf="workshop.sede">
                     <i class="fas fa-map-pin mr-3"></i>
                     <span>{{workshop.sede}}</span>
+                  </p>
+                  <p *ngIf="workshop.description_workshop">
+                    <i class="fas fa-file mr-3"></i>
+                    <span>{{workshop.description_workshop}}</span>
                   </p>
                   <p *ngIf="workshop.specialist.length > 0">
                     <i class="far fa-user mr-3"></i>

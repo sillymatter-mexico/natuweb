@@ -76,7 +76,7 @@
                       <label for="name"><strong>Nombre del taller*</strong></label>
                       <input type="text" class="form-control" name="name"
                              id="name" placeholder="Nombre del taller"
-                             [(ngModel)]="workshop.name" required
+                             [(ngModel)]="workshop.name_workshop ? workshop.name_workshop.name_workshop : workshop.name"required
                              [disabled]="editMode || workshopName?.id !== 1" #name="ngModel"
                              [ngClass]="{'is-invalid': f.submitted && name.errors}">
                     </div>
@@ -88,13 +88,12 @@
                                 [disabled]="!editMode && workshopName.id !== 1 && workshopType.id === 1"
                                 [ngClass]="{'is-invalid': f.submitted && description.errors}"></textarea>
                     </div>
-<!--                     <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2"
-                         *ngIf="editMode ||(consultant.isDRV && workshopType.id === 2)">
+                    <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
                       <label for="sede"><strong>Sede</strong></label>
                       <input type="text" class="form-control" name="sede"
                              id="sede" placeholder="Sede"
                              [(ngModel)]="workshop.sede">
-                    </div> -->
+                    </div>
                   </div>
                   <div class="form-row justify-content-center">
                     <div class="form-group col-12 col-sm-6"
@@ -129,8 +128,7 @@
                         </option>
                       </select>
                     </div>
-                    <div class="form-group col-12 col-sm-6 col-xl-3"
-                         *ngIf="editMode || workshopName.specialist">
+                    <div class="form-group col-12 col-sm-6 col-xl-3">
                       <label for="duration"><strong>Especialista</strong></label>
                       <select
                         class="form-control" name="specialist"
