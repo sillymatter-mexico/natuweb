@@ -61,10 +61,10 @@ export class WorkshopInvitationComponent implements OnInit {
       .subscribe((response: any) => {
         this.workshop = response;
         this.workshopType = this.workshopService.getWorkshopTypeByNameAlias(response.name_workshop.type_workshop.name_workshop);
+        this.workshop.type_workshop = this.workshopType.name;
         this.workshop.image = this.workshopType ? this.workshopType.picture : ''
         this.shareURL = window.location.origin + '/talleres/invitacion/' + this.workshop.uuid;
         this.loading = false;
-        console.log('epaa>>>>>', this.workshop, this.loading, this.shareURL)
       }, (error: any) => {
         console.log(error);
         this.toastr.error('Lo sentimos, ocurrió un error al cargar detalles del taller');

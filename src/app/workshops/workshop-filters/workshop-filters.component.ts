@@ -235,7 +235,9 @@ export class WorkshopFiltersComponent implements OnInit {
       }, (error: any) => {
         console.log(error);
         this.searchWorkshops.loading = false;
-        this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
+        this.setWorkshopSearch();
+
+        // this.toastr.error('Lo sentimos, ocurrió un error al cargar la lista de talleres');
       });
   }
 
