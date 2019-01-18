@@ -15,6 +15,7 @@ export class MassiveUploadComponent implements OnInit {
   @Input() public uploadName: string;
   @Input() public serviceUrl: string;
   public selectedFile: File;
+  public nameFile: string;
   private createdWorkshopModal: BsModalRef;
 
   constructor(private workshopService: WorkshopService, private toastr: ToastrService, private modalService: BsModalService,) {
@@ -29,6 +30,7 @@ export class MassiveUploadComponent implements OnInit {
   }
 
   onFileSelected(event) {
+    this.nameFile = event.target.files[0].name
     this.selectedFile = <File>event.target.files[0];
   }
 
