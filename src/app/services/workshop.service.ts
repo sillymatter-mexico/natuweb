@@ -44,7 +44,7 @@ export class WorkshopService {
       {
         id: '90a1b702478243fe805862e6a1401b0e',
         name: 'Fortaleciendo<br>mi negocio',
-        name_alias: 'Fortaleciendo >mi negocio',
+        name_alias: 'Fortaleciendo mi negocio',
         picture: 'fmn.png',
         alias: 'fmn',
         description: 'Selecciona uno de los talleres y entrena a tu Red ' +

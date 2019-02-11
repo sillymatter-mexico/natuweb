@@ -211,7 +211,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
     // not implemented yet.
     delete this.workshop.private;
     this.workshop.description = this.workshop.description_workshop
-    this.workshop.sede = ""
+    // this.workshop.sede = ""
     this.workshopService.createWorkshop(this.workshop)
       .subscribe((response: any) => {
         this.loadingWorkshop = false;
@@ -235,8 +235,10 @@ export class WorkshopCreateDetailComponent implements OnInit {
     this.locationModal = this.modalService.show(LocationSelectorComponent);
     this.locationModal.content.onClose.subscribe((response: any) => {
       if (response.accepted) {
-        this.workshop.address_string = response.formattedAddress;
-        this.workshop.address_point = response.addressPoint;
+        console.log(response)
+        this.workshop.sede = response.formattedAddress;
+        this.workshop.lat = response.lat;
+        this.workshop.lng = response.lng;
       }
     });
   }

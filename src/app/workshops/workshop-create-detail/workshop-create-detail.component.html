@@ -96,8 +96,8 @@
                     </div> -->
                   </div>
                   <div class="form-row justify-content-center">
-                    <div class="form-group col-12 col-sm-6"
-                         [ngClass]="(editMode || workshopName.specialist) ? 'col-xl-3' : 'col-xl-4'">
+                    <div class="form-group col-12 col-sm-3"
+                         [ngClass]="(editMode || workshopName.specialist) ? 'col-xl-3' : 'col-xl-3'">
                       <label for="date"><strong>Fecha*</strong></label>
                       <input class="form-control" name="selectedDate"
                              id="date" placeholder="Fecha del taller"
@@ -107,8 +107,8 @@
                              [ngClass]="{'is-invalid': f.submitted && date.errors}"
                              autocomplete="off" required>
                     </div>
-                    <div class="form-group col-12 col-sm-6"
-                         [ngClass]="(editMode || workshopName.specialist) ? 'col-xl-3' : 'col-xl-4'">
+                    <div class="form-group col-12 col-sm-3"
+                         [ngClass]="(editMode || workshopName.specialist) ? 'col-xl-3' : 'col-xl-3'">
                       <label for="hour"><strong>Hora*</strong></label>
                       <timepicker [(ngModel)]="selectedHour" id="hour"
                                   name="selectedHour" [showSpinners]="false"
@@ -116,7 +116,7 @@
                                   [ngClass]="{'is-invalid': f.submitted && hour.errors}"></timepicker>
                     </div>
                     <div class="form-group col-12"
-                         [ngClass]="(editMode || workshopName.specialist) ? 'col-sm-6 col-xl-3' : 'col-xl-4'">
+                         [ngClass]="(editMode || workshopName.specialist) ? 'col-sm-3 col-xl-3' : 'col-xl-3'">
                       <label for="duration"><strong>Duración*</strong></label>
                       <select
                           class="form-control" name="duration"
@@ -128,7 +128,7 @@
                         </option>
                       </select>
                     </div>
-                    <div class="form-group col-12 col-sm-6 col-xl-3">
+                    <div class="form-group col-12 col-sm-3 col-xl-3">
                       <label for="duration"><strong>Especialista</strong></label>
                       <select
                         class="form-control" name="specialist"

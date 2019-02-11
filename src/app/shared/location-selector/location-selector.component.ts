@@ -123,6 +123,8 @@ export class LocationSelectorComponent implements OnInit {
     const response = {
       accepted: true,
       addressPoint: location,
+      lat: this.location.lat,
+      lng: this.location.lng,
       formattedAddress: this.formattedAddress
     };
     this.onClose.next(response);
