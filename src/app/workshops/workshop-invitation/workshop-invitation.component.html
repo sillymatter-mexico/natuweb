@@ -32,7 +32,7 @@
         </p>
         <p>
           <i class="far fa-clock mr-3"></i>
-          <span>{{workshop.start_date | momentDate:'hh:mm A'}}</span>
+          <span>{{workshop.start_date | momentDate:'dddd DD MMM hh:mm A'}}</span>
         </p>
         <p *ngIf="workshop.position_string">
           <i class="fas fa-map-marker-alt mr-3"></i>
@@ -46,7 +46,7 @@
         </p>
         <p *ngIf="workshop.specialist.length > 0">
           <i class="far fa-user mr-3"></i>
-          <span>{{workshop.specialist[0]}}</span>
+          <span>{{workshop.specialist[0].first_name}} {{workshop.specialist[0].first_last_name}}</span>
         </p>
       </div>
     </div>

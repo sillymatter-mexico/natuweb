@@ -384,7 +384,7 @@ timepicker {
 
 .calendar-header {
   white-space: nowrap;
-  overflow-x: auto;
+  overflow: auto;
   display: inline-block;
   min-height: 70px;
   .calendar-item {
