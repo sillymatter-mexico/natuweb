@@ -386,6 +386,7 @@ timepicker {
   white-space: nowrap;
   overflow-x: auto;
   display: inline-block;
+  min-height: 70px;
   .calendar-item {
     display: inline-block;
     margin: 0 .85rem;
