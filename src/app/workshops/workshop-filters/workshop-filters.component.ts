@@ -153,9 +153,10 @@ export class WorkshopFiltersComponent implements OnInit {
   public getDayWorkshops(day: number, month: number, year: number) {
     console.log(day, month, year)
     let date = moment(`${year}-${month}-${day}`, "YYYY-MM-DD").format('YYYY-MM-DD HH:mm:ss')
+    this.date = new Date(year, month - 1, day);
+    // this.date = moment(`${year}-${month}-${day}`, "YYYY-MM-DD")
     if (this.selectedFilter === 'calendario' || this.selectedFilter === 'dia') {
       if (this.selectedFilter === 'calendario') {
-        // this.date = new Date(year, month - 1, day);
         // this.date = moment(`${year}`, `${month - 1}`, `${day}`).startOf('day').format('YYYY-MM-DD HH:mm:ss');
       let date = moment(`${year}-${month}-${day}`, "YYYY-MM-DD").format('YYYY-MM-DD HH:mm:ss')
       }
