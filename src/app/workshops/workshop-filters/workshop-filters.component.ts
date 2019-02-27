@@ -165,7 +165,7 @@ export class WorkshopFiltersComponent implements OnInit {
       this.workshopService.getWorkshopsByDate(date)
         .pipe(take(1))
         .subscribe((response: any) => {
-          this.workshopLists[this.selectedFilter].list = response;
+          this.workshopLists[this.selectedFilter].list = Array.isArray(response) ? response : []
           this.workshopLists[this.selectedFilter].next = this.nextPage = response.nextPage;
           this.workshopLists[this.selectedFilter].previous = this.previousPage = response.previousPage;
           this.workshopLists[this.selectedFilter].loading = false;
