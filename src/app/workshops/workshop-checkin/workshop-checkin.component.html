@@ -22,8 +22,11 @@
         <span>{{workshop.start_date | momentDate:'ddd, D [de] MMM HH:mm [hrs.]' }}</span>
       </p>
     </div>
-    <div class="col-12 text-left px-3 px-md-5" *ngIf="checkin">
-      <button class="btn btn-natura mr-3" [disabled]="loading || assists.length === 0" (click)="onSaveCheckin()">
+    <div class="col-12 text-left px-3 px-md-5" *ngIf="checkin && !hasAttendance">
+      <button
+        class="btn btn-natura mr-3"
+        [disabled]="loading || assists.length === 0"
+        (click)="onSaveCheckin()">
         <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
         Guardar asistencias
       </button>

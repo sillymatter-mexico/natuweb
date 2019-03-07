@@ -16,6 +16,7 @@ export class WorkshopCheckinComponent implements OnInit {
   public addInput: number;
   public assists: any[];
   public loading: boolean;
+  public hasAttendance: boolean;
 
   constructor(private _bsModalRef: BsModalRef,
               private workshopService: WorkshopService,
@@ -26,6 +27,7 @@ export class WorkshopCheckinComponent implements OnInit {
 
   ngOnInit() {
     this.assists = [...this.workshop.assists];
+    this.hasAttendance = localStorage.getItem('attendance-' + this.workshop.id) != null;
   }
 
   closeModal() {
@@ -48,38 +50,45 @@ export class WorkshopCheckinComponent implements OnInit {
   }
 
   onSaveCheckin() {
-    this.loading = true;
-    const data = {
-      workshop_ids: this.workshop.id,
-      cn_code: []
-    };
 
-    for (const assist of this.assists) {
-      const element = [assist.cn, assist.checkin];
-      data.cn_code.push(element);
-    }
+    const answer = confirm('Solo podrás enviar esta lista una vez, asegurate de que esté completa antes de enviarla ¿Deseas continuar?');
 
-    console.log(data);
+    if (answer) {
+      this.loading = true;
+      const data = {
+        workshop_ids: this.workshop.id,
+        cn_code: []
+      };
 
-    this.workshopService.saveCheckins(data)
-      .subscribe((response: any) => {
-        console.log('response', response);
-        for (const assist of this.assists) {
-          const newAssist = response.assists.find(x => +x.cn === +assist.cn);
-          if (newAssist) {
-            assist.name = newAssist.name;
-            assist.carrer_level = newAssist.carrer_level;
-            assist.checkin = newAssist.checkin;
+      for (const assist of this.assists) {
+        const element = [assist.cn, assist.checkin];
+        data.cn_code.push(element);
+      }
+
+      console.log(data);
+
+      this.workshopService.saveCheckins(data)
+        .subscribe((response: any) => {
+          console.log('response', response);
+          for (const assist of this.assists) {
+            const newAssist = response.assists.find(x => +x.cn === +assist.cn);
+            if (newAssist) {
+              assist.name = newAssist.name;
+              assist.carrer_level = newAssist.carrer_level;
+              assist.checkin = newAssist.checkin;
+            }
           }
-        }
-        this.workshop.assists = this.assists;
-        this.loading = false;
-        this.toastr.success('¡Las asistencias se han guardado correctamente!');
-      }, (error: any) => {
-        console.log(error);
-        this.loading = false;
-        this.toastr.error('Lo sentimos, ocurrió un error al guardar las asistencoas');
-      });
+          this.workshop.assists = this.assists;
+          this.loading = false;
+          this.toastr.success('¡Las asistencias se han guardado correctamente!');
+          localStorage.setItem('attendance-' + this.workshop.id, 'true');
+          this.hasAttendance = true;
+        }, (error: any) => {
+          console.log(error);
+          this.loading = false;
+          this.toastr.error('Lo sentimos, ocurrió un error al guardar las asistencoas');
+        });
+    }
   }
 
 }

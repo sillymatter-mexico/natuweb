@@ -176,12 +176,26 @@ export class WorkshopCreateDetailComponent implements OnInit {
           workshop: response,
           edit: true
         };
-        this.createdWorkshopModal = this.modalService.show(WorkshopCreatedComponent,
-          {initialState, keyboard: false, ignoreBackdropClick: true});
+        const config = {
+          keyboard: false,
+          ignoreBackdropClick: true,
+          initialState: initialState
+        };
+        this.createdWorkshopModal = this.modalService.show(WorkshopCreatedComponent, config);
       }, (error: any) => {
         this.loadingWorkshop = false;
         console.log('error', error);
-        this.toastr.error('Lo sentimos, ocurrió un error al editar el taller.');
+        const initialState = {
+          workshop: null,
+          edit: true
+        };
+        const config = {
+          keyboard: false,
+          ignoreBackdropClick: true,
+          initialState: initialState
+        };
+        this.createdWorkshopModal = this.modalService.show(WorkshopCreatedComponent, config);
+        // this.toastr.error('Lo sentimos, ocurrió un error al editar el taller.');
       });
   }
 
@@ -202,19 +216,29 @@ export class WorkshopCreateDetailComponent implements OnInit {
     this.workshopService.createWorkshop(this.workshop)
       .subscribe((response: any) => {
         this.loadingWorkshop = false;
-        const config = {
-          keyboard: false,
-          ignoreBackdropClick: true
-        };
         const initialState = {
           workshop: response
         };
+        const config = {
+          keyboard: false,
+          ignoreBackdropClick: true,
+          initialState: initialState
+        };
         (<any>window).ga('send', 'event', 'talleres', 'crear', response.name);
-        this.createdWorkshopModal = this.modalService.show(WorkshopCreatedComponent, {initialState});
+        this.createdWorkshopModal = this.modalService.show(WorkshopCreatedComponent, config);
       }, (error: any) => {
         this.loadingWorkshop = false;
         console.log('error', error);
-        this.toastr.error('Lo sentimos, ocurrió un error al crear el taller.');
+        // this.toastr.error('Lo sentimos, ocurrió un error al crear el taller.');
+        const initialState = {
+          workshop: null
+        };
+        const config = {
+          keyboard: false,
+          ignoreBackdropClick: true,
+          initialState: initialState
+        };
+        this.createdWorkshopModal = this.modalService.show(WorkshopCreatedComponent, config);
       });
   }
 

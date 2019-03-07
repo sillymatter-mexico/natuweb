@@ -6,7 +6,7 @@
       <h4 class="text-primary font-weight-bold my-2" *ngIf="edit">Taller actualizado</h4>
     </div>
     <div class="col-12 col-sm-6 offset-sm-3 text-left py-3 px-3 px-md-5 mb-3">
-      <div class="btn btn-block btn-natura" (click)="onWorkshopLoad()">
+      <div class="btn btn-block btn-natura" (click)="onWorkshopLoad()" *ngIf="workshop">
         Ver info. del taller
       </div>
       <div class="btn btn-block btn-natura mt-3" (click)="onWorkshopsLoad()">
