@@ -10,7 +10,7 @@ export class ServerService {
   private readonly _devPageUrl: string;
 
   constructor() {
-    this._url = 'http://54.188.33.142:8080';
+    this._url = 'http://3.86.225.55:8080';
     this._devPageUrl = 'https://mn-web-dev.herokuapp.com';
     this._pageUrl = 'https://mi-natura-web.herokuapp.com';
   }
