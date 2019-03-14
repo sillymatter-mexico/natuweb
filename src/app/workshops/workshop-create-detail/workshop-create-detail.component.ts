@@ -110,6 +110,8 @@ export class WorkshopCreateDetailComponent implements OnInit {
   }
 
   fetchWorkshop(id: string) {
+    this.workshop.lat = 0.0
+    this.workshop.lng = 0.0
     this.loading = true;
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
@@ -160,7 +162,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
       this.workshop.duration = +this.workshop.duration; // to make sure it is an integer, otherwise server crashes
 
       // not implemented yet.
-      delete this.workshop.private;
+      // delete this.workshop.private;
 
       if (this.editMode) {
         this.editWorkshop();
@@ -238,6 +240,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
       if (response.accepted) {
         console.log(response)
         this.workshop.sede = response.formattedAddress;
+        this.workshop.address_string = response.formattedAddress;
         this.workshop.lat = response.lat;
         this.workshop.lng = response.lng;
       }
