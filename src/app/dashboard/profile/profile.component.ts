@@ -37,8 +37,8 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     this.avatars = [];
     let gender = {
-      F: '165968e2937841bc890e8afab26526d1',
-      M: '0529c079a36248049e44de171fc479bc'
+      F: '119672ed16084beab86b1689e2e96fa1',
+      M: 'e31e5fbbcf6f437a8e080955209c8d57'
     }
     this.appService.getAvatars(gender[this.gender])
       .pipe(take(1))

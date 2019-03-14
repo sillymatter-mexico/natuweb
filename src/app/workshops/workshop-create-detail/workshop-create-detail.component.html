@@ -77,7 +77,7 @@
                       <input type="text" class="form-control" name="name"
                              id="name" placeholder="Nombre del taller"
                              [(ngModel)]="workshopName.name_workshop"required
-                             [disabled]="editMode || workshopName?.type_workshop.name_workshop !== 'Taller opcional'" #name="ngModel"
+                             [disabled]="editMode || workshopName.type_workshop.name_workshop !== 'Taller opcional'" #name="ngModel"
                              [ngClass]="{'is-invalid': f.submitted && name.errors}">
                     </div>
                     <div class="form-group col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">

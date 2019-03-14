@@ -114,6 +114,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
     this.workshopService.getWorkshop(id)
       .subscribe((response: any) => {
         const workshop = response;
+        this.workshopName = workshop.name_workshop;
         this.workshop.name_workshop_uuid = workshop.name_workshop ? workshop.name_workshop.uuid : '';
         this.workshopPicture = workshop.images;
         this.workshop.workshop_id = workshop.id;
