@@ -95,7 +95,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         this.workshop.name = this.workshopName.name;
         this.workshop.description_workshop = this.workshopName.description_workshop ? this.workshopName.description_workshop : this.workshopName.description;
         this.workshop.duration = this.hours[0].value;
-        this.workshop.specialist_uuid = this.consultant.uuid;
+        // this.workshop.specialist_uuid = this.workshop.specialist.lenght > 0 ? this.workshop.specialist[0] : ''
         this.workshop.private = true;
         this.workshop.sede = "";
       }
@@ -124,13 +124,16 @@ export class WorkshopCreateDetailComponent implements OnInit {
         this.workshop.name_workshop = workshop.name_workshop ? workshop.name_workshop.name_workshop : '';
         this.workshop.description_workshop = workshop.description_workshop;
         this.workshop.author = workshop.author;
+        this.workshop.address_string = workshop.sede;
         if (workshop.sede) {
           this.workshop.sede = workshop.sede;
         }
         this.selectedDate = moment(workshop.start_date).utc().format('YYYY-MM-DD');
         this.selectedHour = moment(workshop.start_date).utc().format('YYYY-MM-DD HH:mm');
         this.workshop.address = workshop.position_string;
-        this.workshop.specialist_uuid = this.consultant.uuid;
+        // this.workshop.specialist_uuid = this.consultant.uuid;
+        this.workshop.specialist_uuid = workshop.specialist.length > 0 ? workshop.specialist[0].uuid : ''
+        this.workshop.specialist = workshop.specialist.length > 0 ? workshop.specialist[0].uuid : ''
         this.workshop.duration = this.getDuration(workshop);
         if (workshop.point) {
           this.workshop.address_point = this.getCoordinates(workshop.point);
@@ -160,7 +163,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         delete this.workshop.sede;
       }
       this.workshop.duration = +this.workshop.duration; // to make sure it is an integer, otherwise server crashes
-
+      this.workshop.specialist_uuid = this.workshop.specialist
       // not implemented yet.
       // delete this.workshop.private;
 
@@ -174,7 +177,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
 
   private editWorkshop() {
     this.workshop.description = this.workshop.description_workshop
-    this.workshop.sede = ""
+    this.workshop.sede = this.workshop.address_string
     this.workshop.address = ""
     const data = {...this.workshop};
     let id = null
