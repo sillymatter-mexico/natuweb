@@ -66,7 +66,7 @@ export class WorkshopService {
         name: 'mios',
         title: 'Mis talleres',
         subtitle: 'Consulta y edita los talleres creados',
-        list: this.getMyWorkshops(this.userService.consultant.uuid),
+        list: this.userService.isLeader ? this.getMyWorkshops(this.userService.consultant.uuid) : this.getStaffWorkshops(this.userService.consultant.uuid),
         mine: true
       },
       {
@@ -151,6 +151,18 @@ export class WorkshopService {
     return this.http.get(`/api/v1/workshop/${uuid}/my_list/?page=` + page)
             .pipe(map ((response: any) => response.data));
   }
+
+  public getStaffWorkshops(uuid : string = ''){
+      return this.http.get(`/api/v1/workshop/${uuid}/staff/my_list/`)
+            .pipe(map ((response: any) => {
+             let workshops = []
+             response.data.map((data) => {
+              workshops.push(data.workshop)
+             })
+             return workshops
+         }
+       ));
+    }
 
   get workshopTypeList() {
     return this._workshopTypeList;

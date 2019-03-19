@@ -41,7 +41,7 @@ export class WorkshopCheckinComponent implements OnInit {
     this.workshopService.searchStaff(this.workshop.uuid, this.addInput)
       .subscribe((response: any) => {
         response.map((assist) => {
-          this.assists.push({consultant: assist, checkin: true})
+          this.assists.push({consultant: assist, check_in: true})
           this.addInput = undefined;
           this.loading = false;
         })

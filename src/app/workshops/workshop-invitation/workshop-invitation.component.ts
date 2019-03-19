@@ -34,10 +34,10 @@ export class WorkshopInvitationComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
-      if (this.workshop.uuid) {
-        this.fetchWorkshop(this.workshop.uuid);
-      } else {
+      if (id) {
         this.fetchWorkshop(id);
+      } else {
+        this.fetchWorkshop(this.workshop.uuid);
       }
     });
   }

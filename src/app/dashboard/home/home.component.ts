@@ -39,7 +39,8 @@ export class HomeComponent implements OnInit {
 
   private fetchData() {
     this.loading = true;
-    const mine = this.workshopService.getMyWorkshops(this.userService.consultant.uuid);
+    const mine = this.userService.isLeader ? this.workshopService.getMyWorkshops(this.userService.consultant.uuid) : this.workshopService.getStaffWorkshops(this.userService.consultant.uuid)
+    // const mine = this.workshopService.getMyWorkshops(this.userService.consultant.uuid)
     const recent = this.workshopService.getTodayWorkshops();
     const news = this.appService.getNews();
     // const initData = this.appService.getInitData();

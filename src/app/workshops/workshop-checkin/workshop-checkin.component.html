@@ -49,7 +49,7 @@
         <div [ngClass]="{'custom-control custom-checkbox': checkin}">
           <input type="checkbox" id="checkbox-{{assist.consultant}}"
                  class="custom-control-input"
-                 [(ngModel)]="assist.checkin"
+                 [(ngModel)]="assist.check_in"
                  *ngIf="checkin">
           <label for="checkbox-{{assist.consultant}}" [ngClass]="{'custom-control-label': checkin}">
             <h5 class="m-0 font-weight-bold">{{assist.name}}</h5>
