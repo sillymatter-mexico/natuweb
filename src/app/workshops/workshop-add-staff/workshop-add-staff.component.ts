@@ -15,6 +15,7 @@ export class WorkshopAddStaffComponent implements OnInit {
   public loading: boolean;
   public loadingSearch: boolean;
   public currentStaff: any;
+  public staffResults: any;
 
   constructor(private _bsModalRef: BsModalRef, private workshopService: WorkshopService, private toastr: ToastrService) {
     this.loading = false;
@@ -34,6 +35,7 @@ export class WorkshopAddStaffComponent implements OnInit {
       .subscribe((response: any) => {
         this.loadingSearch = false;
         this.currentStaff = response.length > 0 ? response[0] : response ;
+        this.staffResults = response
         this.currentStaff.cn = this.addInput;
         this.addInput = undefined;
       } , (error: any) => {
@@ -44,18 +46,18 @@ export class WorkshopAddStaffComponent implements OnInit {
       });
   }
 
-  saveStaff() {
+  saveStaff(staff, i) {
     this.loading = true;
     let formdata = []
-    formdata.push(this.currentStaff.cn)
+    formdata.push(staff.cn)
     const data = {
-      cn_list: `${this.currentStaff.cn_code},${this.currentStaff.full_name}`
+      cn_list: `${staff.cn_code},${staff.full_name}`
     };
     this.workshopService.addStaff(this.workshop.uuid, data)
       .subscribe((response: any) => {
         this.loading = false;
-        this.toastr.success('Se ha añadido correctamente a ' + this.currentStaff.user + ' como staff');
-        this.currentStaff = null;
+        this.toastr.success('Se ha añadido correctamente a ' + staff.full_name + ' como staff');
+        this.staffResults.splice(i, 1)
       } , (error: any) => {
         this.loading = false;
         console.log(error);

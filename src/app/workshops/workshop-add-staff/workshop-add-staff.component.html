@@ -35,13 +35,12 @@
         </div>
       </div>
     </div>
-    <div class="col-12 px-3 pt-4 pb-3 px-md-5" *ngIf="currentStaff">
+    <div class="col-12 px-3 pt-4 pb-3 px-md-5"  *ngFor="let staff of staffResults; let i = index">
       <p>
-        ¿Deseas agregar a <strong>{{currentStaff.full_name}}</strong>
-        como staff del taller <strong>{{currentStaff.workshop}}</strong>?
+        ¿Deseas agregar a <strong>{{staff.full_name}}</strong>
+        como staff del taller <strong>{{staff.workshop}}</strong>?
       </p>
-      <button class="btn btn-danger mr-3" (click)="cancelAddStaff()">No agregar</button>
-      <button class="btn btn-primary m" (click)="saveStaff()">Agregar</button>
+      <button class="btn btn-primary m" (click)="saveStaff(staff, i)">Agregar</button>
     </div>
   </div>
 </div>
