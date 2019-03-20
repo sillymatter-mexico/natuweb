@@ -61,13 +61,13 @@ export class WorkshopViewComponent implements OnInit {
         this.workshop = response;
         this.workshop.image = response.name_workshop ? this._url + response.name_workshop.image : ''
         this.workshop.assistance  = response.assistance;
-        if (this.isWorkshopLeader() ||
-            (this.watchPermission.permission && +this.watchPermission.workshop === +id)) {
+        // if (this.isWorkshopLeader() ||
+        //     (this.watchPermission.permission && +this.watchPermission.workshop === +id)) {
           this.fetchLeaderData(this.consultant.uuid);
-        } else {
-          this.loading = false;
-          this.router.navigate(['/talleres', 'invitacion', id]);
-        }
+        // } else {
+        //   this.loading = false;
+        //   this.router.navigate(['/talleres', 'invitacion', id]);
+        // }
       }, (error: any) => {
         console.log(error);
         this.loading = false;

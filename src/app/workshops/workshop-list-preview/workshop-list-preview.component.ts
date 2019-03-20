@@ -48,6 +48,7 @@ export class WorkshopListPreviewComponent implements OnInit {
         workshop: workshop,
         modal: true
       };
+      // this.router.navigate(['/talleres', 'taller', workshop.uuid]);
       this.workshopModal = this.modalService.show(WorkshopInvitationComponent, {initialState, class: 'modal-lg'});
     }
   }
