@@ -15,6 +15,7 @@ export class WorkshopCheckinComponent implements OnInit {
   public showAddInput: boolean;
   public addInput: number;
   public assists: any[];
+  public newAssists: any[];
   public loading: boolean;
 
   constructor(private _bsModalRef: BsModalRef,
@@ -26,6 +27,7 @@ export class WorkshopCheckinComponent implements OnInit {
 
   ngOnInit() {
     // this.fetchAssists();
+    this.newAssists = this.assists.slice();
   }
 
   closeModal() {
@@ -36,12 +38,26 @@ export class WorkshopCheckinComponent implements OnInit {
     this.showAddInput = true;
   }
 
+  toggleSelection(assist) {
+    let index = this.assists.findIndex(x => x.name === assist.name)
+    console.log('entro!', assist, index)
+    if (index > -1){
+      this.assists[index].check_in = false
+      this.newAssists.splice(index, 1)
+    }
+    else {
+      this.assists[index].check_in = true
+      this.newAssists.push(assist)
+    }
+  }
+
   onAddCN() {
     this.loading = true;
     this.workshopService.searchStaff(this.workshop.uuid, this.addInput)
       .subscribe((response: any) => {
         response.map((assist) => {
-          this.assists.push({consultant: assist, check_in: true})
+          this.assists.push({consultant: assist, check_in: false})
+          this.newAssists.push({consultant: assist, check_in: false})
           this.addInput = undefined;
           this.loading = false;
         })
@@ -51,8 +67,8 @@ export class WorkshopCheckinComponent implements OnInit {
   onSaveCheckin() {
     this.loading = true;
     let cn_list = ""
-    this.assists.map((assist, idx) => {
-      cn_list += `${assist.consultant.cn_code},${assist.consultant.full_name}${this.assists.length - 1 === idx  ? null : '|'}`
+    this.newAssists.map((assist, idx) => {
+      cn_list += `${assist.consultant.cn_code},${assist.consultant.full_name}${this.newAssists.length - 1 === idx  ? null : '|'}`
     });
     const data = {
       cn_list: cn_list
@@ -60,7 +76,7 @@ export class WorkshopCheckinComponent implements OnInit {
 
     this.workshopService.saveCheckins(data, this.workshop.uuid)
       .subscribe((response: any) => {
-        for (const assist of this.assists) {
+        for (const assist of this.newAssists) {
           const newAssist = response.find(x => +x.cn === +assist.cn);
           if (newAssist) {
             assist.name = newAssist.consultant.full_name;
@@ -68,7 +84,7 @@ export class WorkshopCheckinComponent implements OnInit {
             assist.checkin = newAssist.checkin;
           }
         }
-        this.workshop.assists = this.assists;
+        this.workshop.assists = this.newAssists;
         this.loading = false;
         this.toastr.success('¡Las asistencias se han guardado correctamente!');
       }, (error: any) => {

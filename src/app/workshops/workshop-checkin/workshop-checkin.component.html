@@ -45,13 +45,14 @@
     </div>
     <div class="col-12 px-3 pt-4 pb-3 px-md-5">
       <p *ngIf="assists.length === 0">No has registrado asistencias para este taller.</p>
-      <div class="w-100 p-3" *ngFor="let assist of assists">
-        <div [ngClass]="{'custom-control custom-checkbox': checkin}">
-          <input type="checkbox" id="checkbox-{{assist.consultant}}"
-                 class="custom-control-input"
+      <div class="w-100 p-3" *ngFor="let assist of assists; let i = index;">
+        <div>
+          <input type="checkbox" id="checkbox-{{assist.uuid}}" class="cst-checkbox"
+                 name="checks"
+                 (click)="toggleSelection(assist)"
                  [(ngModel)]="assist.check_in"
                  *ngIf="checkin">
-          <label for="checkbox-{{assist.consultant}}" [ngClass]="{'custom-control-label': checkin}">
+          <label for="checkbox-{{assist.consultant}}">
             <h5 class="m-0 font-weight-bold">{{assist.name}}</h5>
             <h5 class="m-0 text-primary font-weight-bold">
               <span>{{assist.career_level_consultant}}</span>
