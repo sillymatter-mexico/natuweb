@@ -30,6 +30,7 @@ export class WorkshopService {
         alias: 'mandatorios',
         description: 'Selecciona el Taller Mandatorio de Crecimiento y Mantenimiento ' +
                   'en el que te encuentres especializado para entrenar a tu red.',
+        permissionMessage: 'No puedes crear talleres en esta categoría con tu nivel de carrera actual',
         order: 1
       },
       {
@@ -39,6 +40,7 @@ export class WorkshopService {
         picture: 'optional.png',
         alias: 'opcionales',
         description: 'Selecciona, crea y entrena a tus consultores con talleres de tu autoría.',
+        permissionMessage: 'No puedes crear talleres en esta categoría con tu nivel de carrera actual',
         order: 3
       },
       {
@@ -49,6 +51,7 @@ export class WorkshopService {
         alias: 'fmn',
         description: 'Selecciona uno de los talleres y entrena a tu Red ' +
           'para que aprendan todo sobre nuestros productos, negocio y desarrollo.',
+        permissionMessage: 'No puedes crear talleres en esta categoría con tu nivel de carrera actual',
         order: 2
       }
     ];

@@ -17,7 +17,7 @@
                  [style.backgroundImage]="'url(/assets/img/images/' + workshopType.picture + ')'">
               <h1 class="text-white font-weight-bold text-left ml-3 mb-0" [innerHTML]="workshopType.name"></h1>
             </div>
-            <p class="my-3 text-muted font-weight-bold">{{workshopType.description}}</p>
+            <p class="my-3 text-muted font-weight-bold">{{nameList.length > 0 ? workshopType.description : workshopType.permissionMessage}}</p>
           </div>
           <div class="col-12 pt-3">
             <app-loader [loading]="loading"></app-loader>
@@ -30,11 +30,13 @@
           </div>
         </div>
         <hr>
+        <div *ngIf="nameList.length>0">
         <app-massive-upload
           uploadName="talleres"
           downloadUrl="https://s3-us-west-2.amazonaws.com/minatura/web/formatos/plantilla_taller.xlsx?versionId=null"
           [serviceUrl]="'/api/v1/workshop/'+consultant.cn_code+'/upload_workshop/'"
         ></app-massive-upload>
+        </div>
       </div>
     </div>
   </div>

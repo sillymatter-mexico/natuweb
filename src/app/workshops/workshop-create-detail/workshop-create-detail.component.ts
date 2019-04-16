@@ -61,6 +61,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
       id_name: null,
       name: null,
       specialist: null,
+      specialist_uuid: '',
       start_date: null
     };
   }
@@ -163,7 +164,7 @@ export class WorkshopCreateDetailComponent implements OnInit {
         delete this.workshop.sede;
       }
       this.workshop.duration = +this.workshop.duration; // to make sure it is an integer, otherwise server crashes
-      this.workshop.specialist_uuid = this.workshop.specialist
+      this.workshop.specialist_uuid = this.workshop.specialist ? this.workshop.specialist : ''
       // not implemented yet.
       // delete this.workshop.private;
 
