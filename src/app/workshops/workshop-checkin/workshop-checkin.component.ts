@@ -53,22 +53,17 @@ export class WorkshopCheckinComponent implements OnInit {
 
   onAddCN() {
     this.loading = true;
-    this.workshopService.searchStaff(this.workshop.uuid, this.addInput)
-      .subscribe((response: any) => {
-        response.map((assist) => {
-          this.assists.push({consultant: assist, check_in: false})
-          this.newAssists.push({consultant: assist, check_in: false})
-          this.addInput = undefined;
-          this.loading = false;
-        })
-      })
+    this.newAssists.push({consultant: String(this.addInput), check_in: false})
+    this.addInput = undefined;
+    this.loading = false;
+    this.onSaveCheckin()
   }
 
   onSaveCheckin() {
     this.loading = true;
     let cn_list = ""
     this.newAssists.map((assist, idx) => {
-      cn_list += `${assist.consultant.cn_code},${assist.consultant.full_name}${this.newAssists.length - 1 === idx  ? null : '|'}`
+      cn_list += `${assist.consultant},${this.newAssists.length - 1 === idx  ? null : '|'}`
     });
     const data = {
       cn_list: cn_list

@@ -23,15 +23,8 @@
       </p>
     </div>
     <div class="col-12 text-left px-3 px-md-5" *ngIf="checkin">
-      <button class="btn btn-natura mr-3" [disabled]="loading || assists.length === 0" (click)="onSaveCheckin()">
-        <i class="fas fa-spinner fa-spin" *ngIf="loading"></i>
-        Guardar asistencias
-      </button>
-      <button class="btn btn-natura rounded-circle"
-              (click)="toggleAddInput()">
-        <i class="fas fa-plus"></i>
-      </button>
-      <div class="input-group pt-3" *ngIf="showAddInput">
+
+      <div class="input-group pt-3">
         <input type="number" class="form-control"
                placeholder="Inserta aquí el CN"
                aria-label="CN" [(ngModel)]="addInput">
